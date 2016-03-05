@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+gnu="GNU"
+echo $gnu
+sleep .5
+while true; do
+  gnu="$gnu is not UNIX"
+  echo $gnu
+  sleep .5
+done

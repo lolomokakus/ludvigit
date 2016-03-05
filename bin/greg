@@ -1,0 +1,5 @@
+#!/usr/bin/env sed -f
+s|mine|GREG\'S|Ig
+s|me|GREG|Ig
+s|my|GREG\'S|Ig
+s|i|GREG|Ig

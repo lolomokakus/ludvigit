@@ -1,0 +1,51 @@
+#!/bin/bash
+
+if [ "$( whoami )" != "root" ] ; then
+	sudo $0 $@
+	exit
+fi
+
+while getopts ":ocs" opt ; do
+	case $opt in
+		o)
+			if mount | grep /dev/mapper/vault >/dev/null 2>&1 ; then
+				echo error: vault already opened
+				exit 2
+			fi
+			cryptsetup luksOpen /dev/disk/by-partlabel/vault vault && mount /dev/mapper/vault /vault
+			if [ "$?" = "0" ] ; then
+				echo vault opened.
+				exit 0
+			else
+				echo errors encountered\; vault not opened.
+				exit 4
+			fi
+			;;
+		c)
+			if ! mount | grep /dev/mapper/vault >/dev/null 2>&1 ; then
+				echo error: vault already closed
+				exit 3
+			fi
+			umount /dev/mapper/vault && cryptsetup luksClose vault
+			if [ "$?" = "0" ] ; then
+				echo vault closed.
+				exit 0
+			else
+				echo errors encountered\; vault not closed.
+				exit 4
+			fi
+			;;
+		s)
+			if mount | grep /dev/mapper/vault >/dev/null 2>&1 ; then
+				echo vault is open.
+			else
+				echo vault is closed.
+			fi
+			exit 0
+			;;
+		\?)
+			echo error: invalid option: -$OPTARG
+			exit 1
+			;;
+	esac
+done

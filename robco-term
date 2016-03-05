@@ -1,0 +1,40 @@
+clear
+sleep 1
+
+typewriterprint() {
+  local length=${#1}
+  for letter in $(seq 0 $length); do
+    echo -n "${1:$letter:1}"
+    sleep .01
+  done
+  echo
+}
+
+robcoprint() {
+  local cols=$(tput cols)
+  local length=${#1}
+  printf "%"$(((cols-length)/2))"s"
+  typewriterprint "$1"
+}
+
+robcoprint "ROBCO INDUSTRIES UNIFIED OPERATING SYSTEM"
+robcoprint "COPYRIGHT 2075-2077 ROBCO INDUSTRIES"
+robcoprint "-Server 6-"
+echo
+typewriterprint "Current time: $(date)"
+typewriterprint "Welcome, $USER"
+typewriterprint "--------------------------------------------------"
+echo
+
+prompt_exitcode() {
+  local exitcode=$?
+  if [ $exitcode = 0 ]; then
+    exitcode=""
+  else
+    exitcode="ERROR $exitcode"
+  fi
+  echo -n $exitcode
+}
+PROMPT_COMMAND="prompt_exitcode"
+export PATH="$HOME/bin:/usr/local/sbin:/usr/local/bin:/usr/bin:/opt/cuda/bin:/usr/lib/jvm/default/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:."
+PS1='> '

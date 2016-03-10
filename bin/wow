@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 if [[ "$@" = "ethan great moves keep it up proud of you" ]]; then
 	echo TRIGGERED
 	exit

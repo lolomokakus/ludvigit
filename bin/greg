@@ -6,7 +6,7 @@ if [ "$(uname)" = "Linux" ]; then
 elif [ -n "$(command -v gsed)" ]; then
 	sed=gsed
 else
-	echo missing dependency: GNU sed (gsed)
+	echo "missing dependency: GNU sed (gsed)"
 	exit 1 # non-GNU sed doesn't support case-insensitivity, so we can't use it
 fi
 

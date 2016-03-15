@@ -6,16 +6,11 @@
 # using --decode instead of -d or -D makes the script work on both mac os and linux.
 base64 --decode <<<"H4sIAGV84FYAA5WSQW7EIAxF9zmFlY0nEtj7qOo5urBEDsLh+51AJgFmpgXFiuQH74MgGowtysYSeRq26i8AaYnSjqImsUCDXcgxTdkcGO+xacIwHomeFonzHKW4iDrXTuoXPR7LQt82yOMrxWVA0TyVVyqICNqeKKdSzFOF9gJC9NVhI8HksCcIUwekZnSYk6zVVavdEcUV3vq5Y4C0gNcbxNSJOp3wyNUaA491jVRFXhjvXt651xueJMv6xnuxB17fq58BdP1oPzPgQPIxQI2BU61/yFCTGBITHkjyR3O8nFL85OmcBwAeOGXTTNhh8ZIuJf0cHxkoOAjp53+O6RebRuHeNAQAAA==" | gunzip
 
-if [ -z "$(command -v beep)" ] ; then
-	# if beep is not installed, don't beep
+if [ -z "$(command -v tone)" ] ; then
+	# if tone is not installed, exit without the x-files theme
 	exit 0
 fi
 
-beep -f 880 -l 500 # a5, 500 ms
-beep -f 1318.51 -l 500 # e6, 500 ms
-beep -f 1174.66 -l 500 # d6, 500 ms
-beep -f 1318.51 -l 500 # e6, 500 ms
-beep -f 1567.98 -l 500 # g6, 500 ms
-beep -f 1318.51 -l 500 # e6, 500 ms
+tone a5 500 e6 500 d6 500 e6 500 g6 500 e6 500
 
 exit 0

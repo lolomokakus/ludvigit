@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 scrot -z /tmp/lock.png # take a screenshot (without beeping)
-convert /tmp/screen.png -scale 10% -scale 1000% /tmp/lock.png # scale the image
+convert /tmp/lock.png -scale 10% -scale 1000% /tmp/lock.png # scale the image
 # first, we scale the image down to 10% of its original size
 # then, we scale it up to the original size (1000% of 10% is 100%)
 # this gives the image a nice pixelated effect.

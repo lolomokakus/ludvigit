@@ -36,5 +36,5 @@ prompt_exitcode() {
   echo -n $exitcode
 }
 PROMPT_COMMAND="prompt_exitcode"
-export PATH="$HOME/bin:/usr/local/sbin:/usr/local/bin:/usr/bin:/opt/cuda/bin:/usr/lib/jvm/default/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:."
+export PATH="$PATH:."
 PS1='> '

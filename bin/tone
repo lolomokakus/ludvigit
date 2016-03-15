@@ -6,7 +6,7 @@ Freqs=( 16.35 17.32 18.35 19.45 20.6 21.83 23.12 24.5 25.96 27.5 29.14 30.87 32.
 verbose=false
 
 function help() {
-  echo "Usage: $( basename $0 ) [OPTION] NOTE1 LENGTH1 [NOTE2 LENGTH2...]"
+  echo "Usage: $( basename $0 ) [OPTION]... NOTE LENGTH [NOTE2 LENGTH2]..."
   echo "Valid options:"
   echo "  -h: Display this help"
   echo "  -l: List all valid notes"

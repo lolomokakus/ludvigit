@@ -8,7 +8,7 @@ alias pcu='pacaur -Syu'
 alias pcud='pacaur -Syu --devel'
 alias pcn='locate .pacnew'
 alias pcs='locate .pacsave'
-alias pcns='locate .pacnew .pacsafe'
+alias pcns='locate .pacnew .pacsave'
 
 alias shutdown='systemctl poweroff'
 alias reboot='systemctl reboot'

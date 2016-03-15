@@ -1,19 +1,21 @@
 #!/usr/bin/env bash
 
+# if we're not already running as root, run the script as root and then exit
 if [ "$( whoami )" != "root" ] ; then
 	sudo $0 $@
 	exit
 fi
 
+# detect flags -o, -c and -s (for open, close, and status respectively)
 while getopts ":ocs" opt ; do
 	case $opt in
 		o)
-			if mount | grep /dev/mapper/vault >/dev/null 2>&1 ; then
+			if mount | grep /dev/mapper/vault >/dev/null 2>&1 ; then # exit with error if vault is already open
 				echo "error: vault already opened"
 				exit 2
 			fi
 			cryptsetup luksOpen /dev/disk/by-partlabel/vault vault && mount /dev/mapper/vault /vault
-			if [ "$?" = "0" ] ; then
+			if [ "$?" = "0" ] ; then # if something goes wrong, exit with error
 				echo "vault opened."
 				exit 0
 			else
@@ -22,7 +24,7 @@ while getopts ":ocs" opt ; do
 			fi
 			;;
 		c)
-			if ! mount | grep /dev/mapper/vault >/dev/null 2>&1 ; then
+			if ! mount | grep /dev/mapper/vault >/dev/null 2>&1 ; then # exit with error if vault is already closed
 				echo "error: vault already closed"
 				exit 3
 			fi
@@ -36,7 +38,7 @@ while getopts ":ocs" opt ; do
 			fi
 			;;
 		s)
-			if mount | grep /dev/mapper/vault >/dev/null 2>&1 ; then
+			if mount | grep /dev/mapper/vault >/dev/null 2>&1 ; then # check whether vault is open or closed, then echo the result
 				echo "vault is open."
 			else
 				echo "vault is closed."
@@ -44,7 +46,7 @@ while getopts ":ocs" opt ; do
 			exit 0
 			;;
 		\?)
-			echo "error: invalid option: -$OPTARG"
+			echo "error: invalid option: -$OPTARG" # handle invalid parameters
 			exit 1
 			;;
 	esac

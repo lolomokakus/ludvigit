@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
-scrot -z /tmp/screen.png
-convert /tmp/screen.png -scale 10% -scale 1000% /tmp/screen.png
-i3lock -b -u -i /tmp/screen.png
-rm /tmp/screen.png
+scrot -z /tmp/screen.png # take a screenshot (without beeping)
+convert /tmp/screen.png -scale 10% -scale 1000% /tmp/screen.png # scale the image
+# first, we scale the image down to 10% of its original size
+# then, we scale it up to the original size (1000% of 10% is 100%)
+# this gives the image a nice pixelated effect.
+i3lock -b -u -i /tmp/screen.png # run the locker with the modified screenshot as a background image
+# also disable the ugly password indicator ui (it beeps on incorrect password, that's all we need)
+rm /tmp/screen.png # delete the image

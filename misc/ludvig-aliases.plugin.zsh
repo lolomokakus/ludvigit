@@ -1,6 +1,6 @@
 # my personal collection of aliases
 
-alias sudo='sudo '
+alias sudo='sudo ' # this makes aliases work when run with sudo
 
 alias pci='pacaur -S'
 alias pcr='pacaur -Rs'

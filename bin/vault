@@ -1,53 +1,73 @@
 #!/usr/bin/env bash
 
 # if we're not already running as root, run the script as root and then exit
-if [ "$( whoami )" != "root" ] ; then
+if [[ "$( whoami )" != "root" ]] ; then
 	sudo $0 $@
 	exit
 fi
 
-# detect flags -o, -c and -s (for open, close, and status respectively)
-while getopts ":ocs" opt ; do
+function help() {
+	echo "Usage: $( basename $0 ) [OPTION]"
+	echo "Valid options:"
+	echo "  -h: Display this help"
+	echo "  -o: Open the vault"
+	echo "  -c: Close the vault"
+	echo "  -s: Display vault status"
+}
+
+if [[ -z "$@" ]] ; then # has the user supplied any arguments?
+	echo "Error: No options specified" >&2
+	help >&2
+	exit 1
+fi
+
+# detect flags -h, -o, -c and -s (for help, open, close, and status respectively)
+while getopts ":hocs" opt ; do
 	case $opt in
+		h)
+			help
+			exit 0
+			;;
 		o)
 			if mount | grep /dev/mapper/vault >/dev/null 2>&1 ; then # exit with error if vault is already open
-				echo "error: vault already opened"
-				exit 2
+				echo "Error: Vault already opened" >&2
+				exit 3
 			fi
 			cryptsetup luksOpen /dev/disk/by-partlabel/vault vault && mount /dev/mapper/vault /vault
-			if [ "$?" = "0" ] ; then # if something goes wrong, exit with error
-				echo "vault opened."
+			if [[ "$?" = "0" ]] ; then # if something goes wrong, exit with error
+				echo "Vault opened"
 				exit 0
 			else
-				echo "errors encountered; vault not opened."
-				exit 4
+				echo "Errors encountered; vault not opened." >&2
+				exit 5
 			fi
 			;;
 		c)
 			if ! mount | grep /dev/mapper/vault >/dev/null 2>&1 ; then # exit with error if vault is already closed
-				echo "error: vault already closed"
-				exit 3
+				echo "Error: Vault already closed" >&2
+				exit 4
 			fi
 			umount /dev/mapper/vault && cryptsetup luksClose vault
-			if [ "$?" = "0" ] ; then
-				echo "vault closed."
+			if [[ "$?" = "0" ]] ; then
+				echo "Vault closed"
 				exit 0
 			else
-				echo "errors encountered; vault not closed."
-				exit 4
+				echo "Errors encountered; vault not closed." >&2
+				exit 5
 			fi
 			;;
 		s)
 			if mount | grep /dev/mapper/vault >/dev/null 2>&1 ; then # check whether vault is open or closed, then echo the result
-				echo "vault is open."
+				echo "Vault is open"
 			else
-				echo "vault is closed."
+				echo "Vault is closed"
 			fi
 			exit 0
 			;;
 		\?)
-			echo "error: invalid option: -$OPTARG" # handle invalid parameters
-			exit 1
+			echo "Error: Invalid option: -$OPTARG" >&2 # handle invalid parameters
+			help >&2
+			exit 2
 			;;
 	esac
 done

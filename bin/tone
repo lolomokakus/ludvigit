@@ -26,18 +26,18 @@ function tone() {
     if [[ $freq = 0 ]] ; then # $freq still has its initial value, therefore the note entered was not valid
       echo "Error: Invalid note: $note" >&2 # echo to stderr instead of stdout
       help >&2
-      exit 2 # there's probably some sort of error code standard that i don't know about
+      exit 3 # there's probably some sort of error code standard that i don't know about
     fi
     if [[ -z "$2" ]] ; then
       echo "Error: Note length not specified" >&2
       help >&2
-      exit 3
+      exit 4
     fi
-    local length=$( echo $2 | sed s/,/./ )
+    local length=$( echo $2 | sed s/,/./ ) # replace all commas with dots, for safety
     if [[ ! $length =~ ^[0-9]+([.][0-9]+)?$ ]] ; then # is the tone length numeric?
       echo "Error: Note length must be a positive number" >&2
       help >&2
-      exit 4
+      exit 5
     fi
     if [[ "$verbose" = "true" ]] ; then
       echo "$note ($freq Hz) for $length ms" # print some text if verbose mode is enabled

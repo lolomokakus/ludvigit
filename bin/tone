@@ -16,8 +16,8 @@ function help() {
 
 function tone() {
   while [[ "$#" != 0 ]] ; do # stop if there are no unprocessed arguments left
-    note=$1
-    freq=0
+    local note=$1
+    local freq=0
     for var in $( seq 0 ${#Notes[@]} ) ; do
       if [[ "$note" = ${Notes[$var]} ]] ; then
         freq=${Freqs[$var]}
@@ -26,14 +26,19 @@ function tone() {
     if [[ $freq = 0 ]] ; then # $freq still has its initial value, therefore the note entered was not valid
       echo "Error: Invalid note: $note" >&2 # echo to stderr instead of stdout
       help >&2
-      exit 4 # there's probably some sort of error code standard that i don't know about
+      exit 2 # there's probably some sort of error code standard that i don't know about
     fi
     if [[ -z "$2" ]] ; then
       echo "Error: Note length not specified" >&2
       help >&2
       exit 3
     fi
-    length=$2
+    local length=$( echo $2 | sed s/,/./ )
+    if [[ ! $length =~ ^[0-9]+([.][0-9]+)?$ ]] ; then # is the tone length numeric?
+      echo "Error: Note length must be a positive number" >&2
+      help >&2
+      exit 4
+    fi
     if [[ "$verbose" = "true" ]] ; then
       echo "$note ($freq Hz) for $length ms" # print some text if verbose mode is enabled
     fi

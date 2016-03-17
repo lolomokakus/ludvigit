@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # the note/frequency arrays
-Notes=( c0 csharp0 d0 dsharp0 e0 f0 fsharp0 g0 gsharp0 a0 asharp0 b0 c1 csharp1 d1 dsharp1 e1 f1 fsharp1 g1 gsharp1 a1 asharp1 b1 c2 csharp2 d2 dsharp2 e2 f2 fsharp2 g2 gsharp2 a2 asharp2 b2 c3 csharp3 d3 dsharp3 e3 f3 fsharp3 g3 gsharp3 a3 asharp3 b3 c4 csharp4 d4 dsharp4 e4 f4 fsharp4 g4 gsharp4 a4 asharp4 b4 c5 csharp5 d5 dsharp5 e5 f5 fsharp5 g5 gsharp5 a5 asharp5 b5 c6 csharp6 d6 dsharp6 e6 f6 fsharp6 g6 gsharp6 a6 asharp6 b6 c7 csharp7 d7 dsharp7 e7 f7 fsharp7 g7 gsharp7 a7 asharp7 b7 c8 csharp8 d8 dsharp8 e8 f8 fsharp8 g8 gsharp8 a8 asharp8 b8 )
-Freqs=( 16.35 17.32 18.35 19.45 20.6 21.83 23.12 24.5 25.96 27.5 29.14 30.87 32.7 34.65 36.71 38.89 41.2 43.65 46.25 49 51.91 55 58.27 61.74 65.41 69.3 73.42 77.78 82.41 87.31 92.5 98 103.83 110 116.54 123.47 130.81 138.59 146.83 155.56 164.81 174.61 185 196 207.65 220 233.08 246.94 261.63 277.18 293.66 311.13 329.63 349.23 369.99 392 415.3 440 466.16 493.88 523.25 554.37 587.33 622.25 659.25 698.46 739.99 783.99 830.61 880 932.33 987.77 1046.5 1108.73 1174.66 1244.51 1318.51 1396.91 1479.98 1567.98 1661.22 1760 1864.66 1975.53 2093 2217.46 2349.32 2489.02 2637.02 2739.83 2959.96 3135.96 3322.44 3520 3729.31 3951.07 4186.01 4434.92 4698.63 4978.03 5274.04 5587.65 5919.91 6271.93 6644.88 7040 7458.62 7902.13 )
+Notes=( silence c0 csharp0 d0 dsharp0 e0 f0 fsharp0 g0 gsharp0 a0 asharp0 b0 c1 csharp1 d1 dsharp1 e1 f1 fsharp1 g1 gsharp1 a1 asharp1 b1 c2 csharp2 d2 dsharp2 e2 f2 fsharp2 g2 gsharp2 a2 asharp2 b2 c3 csharp3 d3 dsharp3 e3 f3 fsharp3 g3 gsharp3 a3 asharp3 b3 c4 csharp4 d4 dsharp4 e4 f4 fsharp4 g4 gsharp4 a4 asharp4 b4 c5 csharp5 d5 dsharp5 e5 f5 fsharp5 g5 gsharp5 a5 asharp5 b5 c6 csharp6 d6 dsharp6 e6 f6 fsharp6 g6 gsharp6 a6 asharp6 b6 c7 csharp7 d7 dsharp7 e7 f7 fsharp7 g7 gsharp7 a7 asharp7 b7 c8 csharp8 d8 dsharp8 e8 f8 fsharp8 g8 gsharp8 a8 asharp8 b8 )
+Freqs=( 0 16.35 17.32 18.35 19.45 20.6 21.83 23.12 24.5 25.96 27.5 29.14 30.87 32.7 34.65 36.71 38.89 41.2 43.65 46.25 49 51.91 55 58.27 61.74 65.41 69.3 73.42 77.78 82.41 87.31 92.5 98 103.83 110 116.54 123.47 130.81 138.59 146.83 155.56 164.81 174.61 185 196 207.65 220 233.08 246.94 261.63 277.18 293.66 311.13 329.63 349.23 369.99 392 415.3 440 466.16 493.88 523.25 554.37 587.33 622.25 659.25 698.46 739.99 783.99 830.61 880 932.33 987.77 1046.5 1108.73 1174.66 1244.51 1318.51 1396.91 1479.98 1567.98 1661.22 1760 1864.66 1975.53 2093 2217.46 2349.32 2489.02 2637.02 2739.83 2959.96 3135.96 3322.44 3520 3729.31 3951.07 4186.01 4434.92 4698.63 4978.03 5274.04 5587.65 5919.91 6271.93 6644.88 7040 7458.62 7902.13 )
 verbose=false # disable verbose mode to begin with
 
 function help() {
@@ -16,13 +16,13 @@ function help() {
 function tone() {
   while [[ "$#" != 0 ]] ; do # stop if there are no unprocessed arguments left
     local note=$1
-    local freq=0
+    local freq=-1
     for var in $( seq 0 ${#Notes[@]} ) ; do
-      if [[ "$note" = ${Notes[$var]} ]] ; then
+      if [[ "$note" = "${Notes[$var]}" ]] ; then
         freq=${Freqs[$var]}
       fi
     done
-    if [[ $freq = 0 ]] ; then # $freq still has its initial value, therefore the note entered was not valid
+    if [[ "$freq" = -1 ]] ; then # $freq still has its initial value, therefore the note entered was not valid
       echo "Error: Invalid note: $note" >&2 # echo to stderr instead of stdout
       help >&2
       exit 3 # there's probably some sort of error code standard that i don't know about
@@ -33,15 +33,23 @@ function tone() {
       exit 4
     fi
     local length=$( echo $2 | sed s/,/./ ) # replace all commas with dots, for safety
-    if [[ ! $length =~ ^[0-9]+([.][0-9]+)?$ ]] ; then # is the tone length numeric?
+    if [[ ! "$length" =~ ^[0-9]+([.][0-9]+)?$ ]] ; then # is the tone length numeric?
       echo "Error: Note length must be a positive number" >&2
       help >&2
       exit 5
     fi
-    if [[ "$verbose" = "true" ]] ; then
-      echo "$note ($freq Hz) for $length ms" # print some text if verbose mode is enabled
+    if [[ "$verbose" = "true" ]] ; then # print some text if verbose mode is enabled
+      if [[ "$freq" = 0 ]] ; then
+        echo "$note for $length ms"
+      else
+        echo "$note ($freq Hz) for $length ms"
+      fi
     fi
-    beep -l $length -f $freq
+    if [[ "$freq" = 0 ]] ; then # beep doesn't take a frequency of zero, so i had to work around that
+      sleep $(( $length / 1000 )) # sleep takes seconds instead of milliseconds
+    else
+      beep -l $length -f $freq
+    fi
     shift 2
   done
 }
@@ -78,6 +86,6 @@ while getopts ":hltv" opt ; do
       ;;
   esac
 done
-shift $(( OPTIND-1 )) # remove the arguments getopts processed
+shift $(( OPTIND - 1 )) # remove the arguments getopts processed
 
 tone $@ # actually run the tone function

@@ -49,7 +49,7 @@ HIST_STAMPS="yyyy-mm-dd"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(command-not-found common-aliases dirhistory history ludvig-aliases sshbeep)
+plugins=( command-not-found common-aliases dirhistory history ludvig-aliases sshbeep )
 
 # User configuration
 
@@ -62,7 +62,7 @@ source $ZSH/oh-my-zsh.sh
 # export LANG=en_US.UTF-8
 
 # Preferred editor
-if [ -n "$SSH_CONNECTION" -o -z "$DISPLAY" ]; then
+if [[ -n "$SSH_CONNECTION" -o -z "$DISPLAY" ]] ; then
 	export EDITOR='nano'
 else
 	export EDITOR='scite'
@@ -73,4 +73,3 @@ fi
 
 # ssh
 export SSH_KEY_PATH="~/.ssh/id_rsa"
-

@@ -62,7 +62,7 @@ source $ZSH/oh-my-zsh.sh
 # export LANG=en_US.UTF-8
 
 # Preferred editor
-if [[ -n "$SSH_CONNECTION" -o -z "$DISPLAY" ]] ; then
+if [[ -n "$SSH_CONNECTION" || -z "$DISPLAY" ]] ; then
 	export EDITOR='nano'
 else
 	export EDITOR='scite'

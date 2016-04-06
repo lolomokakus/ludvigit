@@ -1,0 +1,16 @@
+#/usr/bin/env bash
+number=$RANDOM
+iterations=0
+echo "Starting number: $number"
+while [ $number -ne 1 ] ; do
+  previous=$number
+  iterations=$(($iterations + 1))
+  if [ $(($number % 2)) -eq 0 ] ; then
+    number=$(($number / 2))
+    echo "$iterations: $previous / 2 = $number"
+  else
+    number=$(($number * 3 + 1))
+    echo "$iterations: $previous * 3 + 1 = $number"
+  fi
+done
+echo "Reached 1 after $iterations iterations"

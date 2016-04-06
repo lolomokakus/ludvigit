@@ -1,11 +1,15 @@
 #/usr/bin/env bash
-number=$RANDOM
+if [[ -n $1 ]] ; then
+  number=$1
+else
+  number=$RANDOM
+fi
 iterations=0
 echo "Starting number: $number"
-while [ $number -ne 1 ] ; do
+while [[ $number -ne 1 ]] ; do
   previous=$number
   iterations=$(($iterations + 1))
-  if [ $(($number % 2)) -eq 0 ] ; then
+  if [[ $(($number % 2)) -eq 0 ]] ; then
     number=$(($number / 2))
     echo "$iterations: $previous / 2 = $number"
   else

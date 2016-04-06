@@ -14,3 +14,4 @@ while [ $number -ne 1 ] ; do
   fi
 done
 echo "Reached 1 after $iterations iterations"
+exit $iterations

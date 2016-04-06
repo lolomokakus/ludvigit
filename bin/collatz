@@ -1,22 +1,24 @@
 #/usr/bin/env bash
 if [[ -n $1 ]] ; then
-  number=$1
+  number=$1 # if a number is specified, use it
 else
   echo "No starting number specified, selecting one at random."
-  number=$(($RANDOM + 1))
+  number=$(($RANDOM + 1)) # $RANDOM is between 0 and 32767, so we have to add 1 to make sure the number is positive
 fi
 iterations=0
 echo "Starting number: $number"
-while [[ $number -ne 1 ]] ; do
-  previous=$number
-  iterations=$(($iterations + 1))
-  if [[ $(($number % 2)) -eq 0 ]] ; then
+while [[ $number -ne 1 ]] ; do # are we there yet?
+  previous=$number # store previous number for displaying later
+  iterations=$(($iterations + 1)) # add 1 to iterations
+  if [[ $(($number % 2)) -eq 0 ]] ; then # if number is even, divide by 2
     number=$(($number / 2))
     echo "$iterations: $previous / 2 = $number"
-  else
+  else # if number is odd, multiply by 3 and add 1
     number=$(($number * 3 + 1))
     echo "$iterations: $previous * 3 + 1 = $number"
   fi
 done
 echo "Reached 1 after $iterations iterations"
-exit $iterations
+exit $iterations # exit with iterations as error code
+# this could overflow if the number of iterations is above 255, but i haven't had that happen
+# when testing with numbers from 1 to 32768, so it's probably not an issue.

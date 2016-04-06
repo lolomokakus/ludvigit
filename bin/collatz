@@ -3,7 +3,7 @@ if [[ -n $1 ]] ; then
   number=$1
 else
   echo "No starting number specified, selecting one at random."
-  number=$RANDOM
+  number=$(($RANDOM + 1))
 fi
 iterations=0
 echo "Starting number: $number"

@@ -2,7 +2,7 @@
 if [[ -n $1 && $1 =~ ^[0-9]+$ ]] ; then # check if user has specified a positive integer
   number=$1 # if so, use it
 else
-  echo "No starting number specified, selecting one at random."
+  echo "No valid starting number specified, selecting one at random."
   number=$(($RANDOM + 1)) # $RANDOM is between 0 and 32767, so we have to add 1 to make sure the number is positive
 fi
 iterations=0

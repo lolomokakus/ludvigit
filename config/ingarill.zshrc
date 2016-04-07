@@ -15,10 +15,6 @@ HIST_STAMPS="yyyy-mm-dd"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 plugins=( command-not-found common-aliases dirhistory history ludvig-aliases sshbeep )
 
-# User configuration
-
-export PATH="$PATH:."
-
 source $ZSH/oh-my-zsh.sh
 
 # Preferred editor

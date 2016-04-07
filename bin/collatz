@@ -1,6 +1,6 @@
 #/usr/bin/env bash
-if [[ -n $1 ]] ; then
-  number=$1 # if a number is specified, use it
+if [[ -n $1 && $1 =~ ^[0-9]+$ ]] ; then # check if user has specified a positive integer
+  number=$1 # if so, use it
 else
   echo "No starting number specified, selecting one at random."
   number=$(($RANDOM + 1)) # $RANDOM is between 0 and 32767, so we have to add 1 to make sure the number is positive

@@ -18,7 +18,7 @@ alias emergency='systemctl emergency'
 alias ls='ls --color=auto'
 alias l='ls -lFh'
 alias la='ls -lAFh'
-alias ldot='ls -lFh .*'
+alias ldot='ls -lFhd .*'
 unalias lsa
 unalias ll
 

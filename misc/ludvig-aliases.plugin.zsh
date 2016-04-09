@@ -21,6 +21,7 @@ alias say='espeak -v en'
 alias säg='espeak -v sv'
 alias path='echo $PATH'
 alias x='exit'
+alias cmd='wine ~/.wine/drive_c/windows/system32/cmd.exe'
 
 alias srm='srm -d'
 alias pipes='pipes -t 3'

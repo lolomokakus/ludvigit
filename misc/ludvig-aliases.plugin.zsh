@@ -15,6 +15,13 @@ alias suspend='systemctl suspend'
 alias hibernate='systemctl hibernate'
 alias emergency='systemctl emergency'
 
+alias ls='ls --color=auto'
+alias l='ls -lFh'
+alias la='ls -lAFh'
+alias ldot='ls -lFh .*'
+unalias lsa
+unalias ll
+
 alias edit='$EDITOR'
 alias sudoedit='sudo $EDITOR'
 alias say='espeak -v en'
@@ -23,5 +30,8 @@ alias path='echo $PATH'
 alias x='exit'
 alias cmd='wine ~/.wine/drive_c/windows/system32/cmd.exe'
 
+alias rm='rm -i'
+alias cp='cp -i'
+alias mv='mv -i'
 alias srm='srm -d'
 alias pipes='pipes -t 3'

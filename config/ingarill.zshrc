@@ -21,7 +21,7 @@ source $ZSH/oh-my-zsh.sh
 if [[ -n "$SSH_CONNECTION" || -z "$DISPLAY" ]] ; then
 	export EDITOR='nano'
 else
-	export EDITOR='scite'
+	export EDITOR='atom'
 fi
 
 # ssh

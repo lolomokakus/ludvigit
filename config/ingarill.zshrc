@@ -23,6 +23,3 @@ if [[ -n "$SSH_CONNECTION" || -z "$DISPLAY" ]] ; then
 else
 	export EDITOR='atom'
 fi
-
-# ssh
-export SSH_KEY_PATH="~/.ssh/id_rsa"

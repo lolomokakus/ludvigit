@@ -13,7 +13,7 @@ export UPDATE_ZSH_DAYS=7
 HIST_STAMPS="yyyy-mm-dd"
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
-plugins=( command-not-found git ludvig-aliases sshbeep )
+plugins=( command-not-found git ludvig-aliases )
 
 source $ZSH/oh-my-zsh.sh
 

@@ -29,6 +29,7 @@ alias säg='espeak -v sv'
 alias path='echo $PATH'
 alias x='exit'
 alias cmd='wine ~/.wine/drive_c/windows/system32/cmd.exe'
+alias cputemp='sensors coretemp-isa-0000'
 
 alias rm='rm -i'
 alias cp='cp -i'

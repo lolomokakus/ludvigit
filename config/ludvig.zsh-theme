@@ -1,8 +1,17 @@
-setopt prompt_subst
+setopt promptsubst
 
-_prompt_user='%(?.%{$fg_bold[cyan]%}%n%{$reset_color%b%}.%{$fg_bold[red]%}%n%{$reset_color%b%})'
-_prompt_host='%(?.%{$fg_bold[cyan]%}%m%{$reset_color%b%}.%{$fg_bold[red]%}%m%{$reset_color%b%})'
-_prompt_dir='%(?.%{$fg[cyan]%}%~%{$reset_color%}.%{$fg[red]%}%~%{$reset_color%})'
+if [[ "$( uname )" = "Linux" ]] ; then
+  color=cyan
+elif [[ "$( uname )" = "Darwin" ]] ; then
+  color=green
+else
+  color=magenta
+fi
 
-PROMPT="[${_prompt_user}@${_prompt_host}:${_prompt_dir}] %# "
-unset RPROMPT
+_prompt_errorcode='%(?..%{$fg[red]%B%}%?%{$reset_color%b%}|)'
+_prompt_user='%{$fg[$color]%B%}%n%{$reset_color%b%}'
+_prompt_host='%{$fg[$color]%B%}%m%{$reset_color%b%}'
+_prompt_dir='%{$fg[$color]%}%~%{$reset_color%}'
+
+PROMPT="[${_prompt_errorcode}${_prompt_user}@${_prompt_host}:${_prompt_dir}] %# "
+RPROMPT=

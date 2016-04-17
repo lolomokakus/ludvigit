@@ -2,7 +2,7 @@
 export ZSH=/Users/ludvig/.oh-my-zsh
 
 # Set name of the theme to load.
-ZSH_THEME="fallout"
+ZSH_THEME="ludvig"
 
 # Uncomment the following line to change how often to auto-update (in days).
 export UPDATE_ZSH_DAYS=7
@@ -13,7 +13,7 @@ export UPDATE_ZSH_DAYS=7
 HIST_STAMPS="yyyy-mm-dd"
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
-plugins=( macports osx )
+plugins=( git macports osx )
 
 # User configuration
 

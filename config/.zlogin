@@ -12,6 +12,8 @@ elif [[ "$ART" = "glados" ]] ; then
 	echo
 elif [[ "$ART" = "lenny" ]] ; then
 	base64 -d <<<"H4sIAFO1FFcAA51UUQ7FIAj75xQel29IdsCd5MVNXbGoyTN+6FpKYWop07gvuy+P02bSMUBeRCH2AfSZDmuD+AoNNmxIQDOB9l16tIK/QdVobIC0QR/aEes2HKA6JeZ8pQwyYS/6IklGIf4RhQM+Ex6bPRWuGYp/wbHr0iNj/7MBORbk5j11uBRN/FLKapPacbK5R/9QzKtGxXPdkXOqvnHT00Dk799Pt24XIAXP+6rAXibe6hUfXLf1yTKfVbYzXMqaQ2R8gYyen/woh0T7QaKWW6piP6IMpt58BQAA" | gunzip
+	echo
+fi
 unset ART
 
 if [[ -n "$(command -v tone)" && -n "$SSH_CONNECTION" && ! -x "$HOME/.quickly_and_quietly" ]] ; then

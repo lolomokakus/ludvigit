@@ -1,6 +1,6 @@
 export PATH="$HOME/bin:$PATH:."
 
-source $HOME/.login_art
+[[ -e "$HOME/.login_art" ]] && source "$HOME/.login_art"
 if [[ "$ART" = "aperture" ]] ; then
 	base64 -d <<<"H4sIAFx2B1cAA21SMY7EMAjs8wqkmApj97aQKN245/8vuSHJ3e1qF0VRZMaTYQai12pVx+x9DqvHyymN5e57+z5Xb1V4/rVrDyHZ6KLPVpXXBjD6g1DB+aSSiCVaZ+zsXy/RCzM9m0qBa7PhRmSttZLz9N6AqrwvBqrO9qZYVU0NghNmfqbQwCBvcxFkRSnMLPMg09aTu9BHtemPvnFQeCcte/dPHJCSikByVHCtQcPHVxxZpChXANPEqDj7Un3pZcW2o6Xd+JT6DQgrpDU+Cybuj1rE8gmEoXtNMoxMnYULTPVi7yCouf8WV2LN9KlXQtjXUv0/7MrDEVLA18Ki1AasCrLMaXO747e49eE516wqK7/l0h32u0TGd9RFmxW/fZ2Yk+1/C+uQgv3p69x3udHblt5MIpwp96Ht+AG8pZSl3AIAAA==" | gunzip
 	echo

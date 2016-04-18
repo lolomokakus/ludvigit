@@ -130,9 +130,3 @@ _prompt_dir='%{$fg[cyan]%}%~%{$reset_color%}'
 
 PROMPT="[${_prompt_errorcode}${_prompt_user}@${_prompt_host}:${_prompt_dir}] %# "
 RPROMPT=
-
-# beep on ssh login
-if [[ -n "$(command -v beep)" && -n "$SSH_CONNECTION" && ! -x "$HOME/.quickly_and_quietly" ]] ; then
-	beep -f 261.63 -l 100
-	beep -f 392 -l 400
-fi

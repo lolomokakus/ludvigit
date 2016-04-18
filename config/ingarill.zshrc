@@ -7,6 +7,7 @@ setopt auto_cd
 setopt auto_menu
 setopt auto_pushd
 setopt cdable_vars
+setopt combining_chars
 setopt complete_aliases
 setopt complete_in_word
 setopt extended_history
@@ -18,16 +19,17 @@ setopt inc_append_history
 setopt interactive_comments
 setopt long_list_jobs
 setopt multios
+setopt no_flow_control
+setopt no_menu_complete
 setopt prompt_subst
 setopt pushd_ignore_dups
 setopt pushd_minus
 setopt share_history
 
-unsetopt menu_complete
-
 # completion
 zstyle ':completion:*' list-colors ''
 zstyle ':completion:*' menu select
+zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
 zstyle ':completion::complete:*' use-cache 1
 zstyle ':completion::complete:*' cache-path "$HOME/.zsh_cache"
 
@@ -38,6 +40,8 @@ zstyle ':completion::complete:*' cache-path "$HOME/.zsh_cache"
 HISTFILE="$HOME/.zsh_history"
 HISTSIZE=10000
 SAVEHIST=10000
+bindkey '\e[A' history-search-backward
+bindkey '\e[B' history-search-forward
 
 # pager
 export PAGER="less"

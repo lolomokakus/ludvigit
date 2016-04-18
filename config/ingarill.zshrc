@@ -97,6 +97,7 @@ alias l='ls -lFh'
 alias la='ls -lAFh'
 alias ldot='ls -lFhd .*'
 
+alias history='fc -il 1'
 alias edit='$EDITOR'
 alias sudoedit='sudo $EDITOR'
 alias say='espeak -v en'
@@ -112,7 +113,6 @@ alias mv='mv -i'
 alias srm='srm -d'
 alias pipes='pipes -t 3'
 alias grep='grep --color=auto'
-alias history='fc -il 1'
 
 function open() {
 	nohup xdg-open "$@" &>/dev/null

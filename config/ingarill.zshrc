@@ -127,10 +127,11 @@ function start() {
 }
 
 # prompt
-_prompt_errorcode='%(?..%{$fg[red]%B%}%?%{$reset_color%b%}|)'
-_prompt_user='%{$fg[cyan]%B%}%n%{$reset_color%b%}'
-_prompt_host='%{$fg[cyan]%B%}%m%{$reset_color%b%}'
-_prompt_dir='%{$fg[cyan]%}%~%{$reset_color%}'
+prompt_dir='%{$fg[cyan]%}%~%{$reset_color%}'
+prompt_errorcode='%(?..%{$fg[red]%B%}%?%{$reset_color%b%}|)'
+prompt_host='%{$fg[cyan]%B%}%m%{$reset_color%b%}'
+prompt_user='%{$fg[cyan]%B%}%n%{$reset_color%b%}'
 
 PROMPT="[${_prompt_errorcode}${_prompt_user}@${_prompt_host}:${_prompt_dir}] %# "
-RPROMPT=
+
+unset prompt_dir prompt_errorcode prompt_host prompt_user

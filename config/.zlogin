@@ -14,5 +14,5 @@ fi
 unset ART
 
 if [[ -n "$(command -v tone)" && -n "$SSH_CONNECTION" && ! -x "$HOME/.quickly_and_quietly" ]] ; then
-	tone c4 100 g4 100
+	tone c4 100 g4 400
 fi

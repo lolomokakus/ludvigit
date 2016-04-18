@@ -11,8 +11,7 @@ elif [[ "$ART" = "glados" ]] ; then
 	base64 -d <<<"H4sIAGt2B1cAA1VSMY4EIQzreUWkDBVM6EFIKWnS8/+XnBO4vVtWWgFjbMcJUSwupHeH39cy1kTiO9lEWzKzjoMqymdtIeWccFXndGw991aI3thli/MbEgD2hVPuk6Es+GZ1BK6VS5mpGoBi98yTaCqrzMM87e9+A9hVzZxIQtLkWuBfnBCQlr5qg38RfOunvnVwqrSrA/nf6n6qzbeDqLmuAvtFCMdMqKMq22jG5gpwl92h5PmhdByUDKyQbQBWI//nJyGDD+HjuDKOuFM3MkKIYO0JybGp14xcB973h1H5s5iEN/pZ8F4ibfooNwFXnoy2djNIy8vustPiVKrMkwrOTSmjEn+om7i+yN7bIsopqMpo7hVof1LL9ezVeFU3wxHlKrnNBWNnBHxAABuqw405EGmYQ2IONtXf2bJGrz9+0NcVtcRMZG97cMIRUgAR6BDILXcdGy1obqK1FDS60Zxv/R4EH9zWK0nZ4FrqtKH+zPQD9fFG+CMDAAA=" | gunzip
 	echo
 elif [[ "$ART" = "lenny" ]] ; then
-	base64 -d <<<"H4sIAFOzFFcAA51Uyw3FIAy7Z4qOm3MidcBOUtHHx8EBpIc4lNpxTAhc1zye257b4zRinQKkQgrBH6LfdPg2EChQZ8OCBDQTqP+lhys47FyNzjpICzSiDbHmwwEqU6akPy2DVFiN9pFkoxAfREkihg2P9Z62rhmKB+FYeOmh8QyyAUkW5OY+9bhUTRxTzs8oVeRkdI/+I5lvPEietx45pwJUbt4TxB4dMF2/XYCMLSx9t061eL9XfPRdFyfT3LPsp9uUDYnY+BoZPUV5S8dM+0Gqlnsqai+K0+1PiwUAAA==" | gunzip
-	echo
+	base64 -d <<<"H4sIAFO1FFcAA51UUQ7FIAj75xQel29IdsCd5MVNXbGoyTN+6FpKYWop07gvuy+P02bSMUBeRCH2AfSZDmuD+AoNNmxIQDOB9l16tIK/QdVobIC0QR/aEes2HKA6JeZ8pQwyYS/6IklGIf4RhQM+Ex6bPRWuGYp/wbHr0iNj/7MBORbk5j11uBRN/FLKapPacbK5R/9QzKtGxXPdkXOqvnHT00Dk799Pt24XIAXP+6rAXibe6hUfXLf1yTKfVbYzXMqaQ2R8gYyen/woh0T7QaKWW6piP6IMpt58BQAA" | gunzip
 unset ART
 
 if [[ -n "$(command -v tone)" && -n "$SSH_CONNECTION" && ! -x "$HOME/.quickly_and_quietly" ]] ; then

@@ -2,13 +2,14 @@
 autoload -U colors && colors
 autoload -U compinit && compinit
 
+zmodload -i zsh/complist
+
 setopt always_to_end
 setopt auto_cd
 setopt auto_menu
 setopt auto_pushd
 setopt cdable_vars
 setopt combining_chars
-setopt complete_aliases
 setopt complete_in_word
 setopt extended_history
 setopt hist_expire_dups_first

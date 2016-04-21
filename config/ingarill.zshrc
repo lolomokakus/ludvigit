@@ -123,10 +123,6 @@ function open() {
 	nohup xdg-open "$@" &>/dev/null
 }
 
-function start() {
-	nohup $@ &>/dev/null
-}
-
 # prompt
 prompt_dir='%{$fg[cyan]%}%~%{$reset_color%}'
 prompt_errorcode='%(?..%{$fg[red]%B%}%?%{$reset_color%b%}|)'

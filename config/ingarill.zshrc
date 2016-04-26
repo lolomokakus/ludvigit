@@ -116,7 +116,7 @@ alias cp='cp -i'
 alias mv='mv -i'
 alias srm='srm -d'
 alias pipes='pipes -t 3'
-alias grep='grep --color=auto'
+alias grep='grep --color=auto -n'
 
 function open() {
 	nohup xdg-open "$@" &>/dev/null

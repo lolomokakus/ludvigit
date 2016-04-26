@@ -41,8 +41,8 @@ zstyle ':completion::complete:*' cache-path "$HOME/.zsh_cache"
 HISTFILE="$HOME/.zsh_history"
 HISTSIZE=10000
 SAVEHIST=10000
-bindkey '\e[A' history-incremental-search-backward
-bindkey '\e[B' history-incremental-search-forward
+bindkey '\e[A' up-line-or-history
+bindkey '\e[B' down-line-or-history
 
 # pager
 export PAGER="less"

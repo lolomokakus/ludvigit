@@ -62,8 +62,6 @@ fi
 # keybindings
 bindkey '\e[A' up-line-or-beginning-search
 bindkey '\e[B' down-line-or-beginning-search
-bindkey '\e[H' beginning-of-line
-bindkey '\e[F' end-of-line
 
 # aliases and functions
 alias sudo='sudo ' # this makes aliases work when run with sudo

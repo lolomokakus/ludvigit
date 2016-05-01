@@ -1,6 +1,11 @@
-# autoloads and setopts
+# load things
 autoload -U colors && colors
 autoload -U compinit && compinit
+autoload -U up-line-or-beginning-search
+autoload -U down-line-or-beginning-search
+
+zle -N up-line-or-beginning-search
+zle -N down-line-or-beginning-search
 
 zmodload -i zsh/complist
 
@@ -35,14 +40,12 @@ zstyle ':completion::complete:*' use-cache 1
 zstyle ':completion::complete:*' cache-path "$HOME/.zsh_cache"
 
 # pkgfile integration
-[[ -e /usr/share/doc/pkgfile/command-not-found.zsh ]] && source /usr/share/doc/pkgfile/command-not-found.zsh
+source /usr/share/doc/pkgfile/command-not-found.zsh
 
 # history
 HISTFILE="$HOME/.zsh_history"
 HISTSIZE=10000
 SAVEHIST=10000
-bindkey '\e[A' history-beginning-search-backward
-bindkey '\e[B' history-beginning-search-forward
 
 # pager
 export PAGER="less"
@@ -54,6 +57,12 @@ if [[ -n "$SSH_CONNECTION" || -z "$DISPLAY" ]] ; then
 else
 	export EDITOR='atom'
 fi
+
+# keybindings
+bindkey '\e[A' up-line-or-beginning-search
+bindkey '\e[B' down-line-or-beginning-search
+bindkey '\e[H' beginning-of-line
+bindkey '\e[F' end-of-line
 
 # aliases and functions
 alias sudo='sudo ' # this makes aliases work when run with sudo

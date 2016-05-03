@@ -118,6 +118,7 @@ alias path='echo $PATH'
 alias x='exit'
 alias cmd='wine ~/.wine/drive_c/windows/system32/cmd.exe'
 alias cputemp='sensors coretemp-isa-0000'
+alias matrix='cmatrix -bC cyan'
 
 alias rm='rm -i'
 alias cp='cp -i'

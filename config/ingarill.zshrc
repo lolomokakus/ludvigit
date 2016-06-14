@@ -126,6 +126,15 @@ alias mv='mv -i'
 alias srm='srm -d'
 alias pipes='pipes -t 3'
 alias grep='grep --color=auto -n'
+alias tty-clock='tty-clock -cC 7'
+
+if [[ -n "$DISPLAY" ]] ; then
+	alias xflogout='xfce4-session-logout --logout'
+	alias xfreboot='xfce4-session-logout --reboot'
+	alias xfshutdown='xfce4-session-logout --halt'
+	alias xfsuspend='xfce4-session-logout --suspend'
+	alias xfhibernate='xfce4-session-logout --hibernate'
+fi
 
 function open() {
 	nohup xdg-open "$@" &>/dev/null

@@ -124,11 +124,11 @@ alias cputemp='sensors coretemp-isa-0000'
 alias matrix='cmatrix -bC cyan'
 
 if [[ -n "$DISPLAY" ]] ; then
-	alias xflogout='xfce4-session-logout --logout'
-	alias xfreboot='xfce4-session-logout --reboot'
-	alias xfshutdown='xfce4-session-logout --halt'
-	alias xfsuspend='xfce4-session-logout --suspend'
-	alias xfhibernate='xfce4-session-logout --hibernate'
+	alias xflogout='xfce4-session-logout --fast --logout'
+	alias xfreboot='xfce4-session-logout --fast --reboot'
+	alias xfshutdown='xfce4-session-logout --fast --halt'
+	alias xfsuspend='xfce4-session-logout --fast --suspend'
+	alias xfhibernate='xfce4-session-logout --fast --hibernate'
 fi
 
 function open() {

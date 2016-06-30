@@ -1,0 +1,39 @@
+#!/usr/bin/env bash
+# needs to be owned by root and have the setuid bit set! (or just be run as root)
+# store initial led states
+NUM_STATE_INITIAL=$(cat /sys/class/leds/input0::numlock/brightness)
+CAPS_STATE_INITIAL=$(cat /sys/class/leds/input0::capslock/brightness)
+SCROLL_STATE_INITIAL=$(cat /sys/class/leds/input0::scrolllock/brightness)
+# i'm not sure if these files differ depending on what keyboard you have, but
+# it works on my machine (tm)
+
+function leds_off() {
+  # this function turns off the leds...
+  echo 0 > /sys/class/leds/input0::numlock/brightness
+  echo 0 > /sys/class/leds/input0::capslock/brightness
+  echo 0 > /sys/class/leds/input0::scrolllock/brightness
+}
+
+function leds_on() {
+  # ...this one turns them on...
+  echo 1 > /sys/class/leds/input0::numlock/brightness
+  echo 1 > /sys/class/leds/input0::capslock/brightness
+  echo 1 > /sys/class/leds/input0::scrolllock/brightness
+}
+
+function leds_restore() {
+  # ...and this one restores the stored states.
+  echo $NUM_STATE_INITIAL > /sys/class/leds/input0::numlock/brightness
+  echo $CAPS_STATE_INITIAL > /sys/class/leds/input0::capslock/brightness
+  echo $SCROLL_STATE_INITIAL > /sys/class/leds/input0::scrolllock/brightness
+}
+
+# restore stored states on exit
+trap "leds_restore ; exit" SIGINT SIGTERM
+
+while true ; do
+  leds_on
+  sleep .5
+  leds_off
+  sleep .5
+done

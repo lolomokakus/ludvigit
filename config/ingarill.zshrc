@@ -101,7 +101,7 @@ alias suspend='systemctl suspend'
 alias hibernate='systemctl hibernate'
 alias emergency='systemctl emergency'
 
-alias ls='ls --color=auto'
+alias ls='ls --color=auto --group-directories-first'
 alias l='ls -lFh'
 alias la='ls -lAFh'
 alias ldot='ls -lFhd .*'

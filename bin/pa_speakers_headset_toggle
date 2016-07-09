@@ -4,5 +4,5 @@ if pacmd list-cards | grep "active profile: <output:analog-stereo+input:analog-s
   notify-send "Audio profile changed" "Output switched to speakers" --icon="audio-card"
 elif pacmd list-cards | grep "active profile: <output:iec958-stereo+input:analog-stereo>" >/dev/null ; then
   pacmd set-card-profile 1 output:analog-stereo+input:analog-stereo
-  notify-send "Audio profile changed" "Output switched to headphones" --icon="audio-card"
+  notify-send "Audio profile changed" "Output switched to headset" --icon="audio-card"
 fi

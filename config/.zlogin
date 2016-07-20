@@ -4,6 +4,7 @@ if [[ -e "$HOME/.login_art" ]] ; then
 	source "$HOME/.login_art"
 	base64 -d <<<$ART | gunzip
 	unset ART
+	echo
 fi
 
 if [[ -n "$(command -v tone)" && -n "$SSH_CONNECTION" && ! -x "$HOME/.quickly_and_quietly" ]] ; then

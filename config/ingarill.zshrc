@@ -50,7 +50,7 @@ SAVEHIST=10000
 
 # pager
 export PAGER="less"
-export LESS="-R"
+export LESS="-RFXK"
 
 # editor
 if [[ -n "$SSH_CONNECTION" || -z "$DISPLAY" ]] ; then

@@ -132,7 +132,12 @@ if [[ -n "$DISPLAY" ]] ; then
 fi
 
 function open() {
-	nohup xdg-open "$@" &>/dev/null
+	if [[ -z "$@" ]] ; then
+		file="."
+	else
+		file="$@"
+	fi
+	nohup xdg-open "$file" &>/dev/null
 }
 
 function path() {

@@ -117,7 +117,7 @@ alias history='fc -il 1'
 alias edit='$EDITOR'
 alias say='espeak -v en'
 alias säg='espeak -v sv'
-alias path='echo $PATH'
+alias su='sudo -i'
 alias x='exit'
 alias cmd='wine ~/.wine/drive_c/windows/system32/cmd.exe'
 alias cputemp='sensors coretemp-isa-0000'
@@ -133,6 +133,14 @@ fi
 
 function open() {
 	nohup xdg-open "$@" &>/dev/null
+}
+
+function path() {
+	if [[ -z "$@" ]] ; then
+		echo $PATH
+	else
+		export PATH="$@"
+	fi
 }
 
 # prompt

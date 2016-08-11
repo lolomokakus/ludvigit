@@ -29,7 +29,7 @@ while getopts ":hocs" opt ; do
 			exit 0
 			;;
 		o)
-			if mount | grep /dev/mapper/vault >/dev/null 2>&1 ; then # exit with error if vault is already open
+			if mount | grep -q /dev/mapper/vault ; then # exit with error if vault is already open
 				echo "Error: Vault already opened" >&2
 				exit 3
 			fi
@@ -43,7 +43,7 @@ while getopts ":hocs" opt ; do
 			fi
 			;;
 		c)
-			if ! mount | grep /dev/mapper/vault >/dev/null 2>&1 ; then # exit with error if vault is already closed
+			if ! mount | grep -q /dev/mapper/vault ; then # exit with error if vault is already closed
 				echo "Error: Vault already closed" >&2
 				exit 4
 			fi
@@ -57,7 +57,7 @@ while getopts ":hocs" opt ; do
 			fi
 			;;
 		s)
-			if mount | grep /dev/mapper/vault >/dev/null 2>&1 ; then # check whether vault is open or closed, then echo the result
+			if mount | grep -q /dev/mapper/vault ; then # check whether vault is open or closed, then echo the result
 				echo "Vault is open"
 			else
 				echo "Vault is closed"

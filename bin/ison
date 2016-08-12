@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+# this is ison, a script that checks if the machine is on.
+# if you were looking for information about Apple Inc.'s venture
+# into the ultra-realistic male infant doll market, see iSon.
+#
+# inspired by Brendan D. Gregg's absurd collection of free
+# sysadmin tools: http://www.brendangregg.com/specials.html
+
+# run a basic arithmetic test to see if the cpu is active and working
+if [[ "$(( 1 + 1 ))" = "2" ]] ; then
+  echo "Machine is on."
+  exit
+else
+  echo "Machine is off!" >&2
+  echo "Please power the machine on before attempting to use it." >&2
+  exit 1
+fi

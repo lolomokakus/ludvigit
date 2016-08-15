@@ -112,6 +112,7 @@ alias srm='srm -ri'
 alias pipes='pipes -t 3'
 alias grep='grep --color=auto -n'
 alias tty-clock='tty-clock -cC 7'
+alias pkgfiles='pkgfile -l'
 
 alias history='fc -il 1'
 alias edit='$EDITOR'

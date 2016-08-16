@@ -54,9 +54,9 @@ export LESS="-RFXK"
 
 # editor
 if [[ -n "$SSH_CONNECTION" || -z "$DISPLAY" ]] ; then
-	export EDITOR='nano'
+	export EDITOR="nano"
 else
-	export EDITOR='atom --foreground'
+	export EDITOR="atom --foreground"
 fi
 
 # keybindings
@@ -112,7 +112,7 @@ alias grep='grep --color=auto -n'
 alias tty-clock='tty-clock -cC 7'
 
 alias history='fc -il 1'
-alias edit=$EDITOR
+alias edit="$EDITOR"
 alias say='espeak -v en'
 alias säg='espeak -v sv'
 alias su='sudo -i'

@@ -1,4 +1,4 @@
-#/usr/bin/env bash
+#!/usr/bin/env bash
 if [[ -n $1 && $1 =~ ^[0-9]+$ ]] ; then # check if user has specified a positive integer
   number=$1 # if so, use it
 else

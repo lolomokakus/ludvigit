@@ -56,7 +56,7 @@ export LESS="-RFXK"
 if [[ -n "$SSH_CONNECTION" || -z "$DISPLAY" ]] ; then
 	export EDITOR='nano'
 else
-	export EDITOR='atom'
+	export EDITOR='atom --foreground'
 fi
 
 # keybindings
@@ -86,10 +86,8 @@ alias pcs='pacaur -Ss'
 alias g='git'
 alias ga='git add'
 alias gaa='git add --all'
-alias gc='git commit -v'
-alias gca='git commit -v -a'
 alias gcl='git clone --recursive'
-alias gcmsg='git commit -v -m'
+alias gcm='git commit -v -m'
 alias gf='git fetch'
 alias gl='git pull'
 alias gp='git push'

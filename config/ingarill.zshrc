@@ -146,10 +146,18 @@ function path() {
 }
 
 function say() {
+	if [[ -z "$@" ]] ; then
+		echo "Say what?" >&2
+		exit 1
+	fi
 	espeak -v en --stdout "$@" | paplay
 }
 
 function säg() {
+	if [[ -z "$@" ]] ; then
+		echo "Säg vadå?" >&2
+		exit 1
+	fi
 	espeak -v sv --stdout "$@" | paplay
 }
 

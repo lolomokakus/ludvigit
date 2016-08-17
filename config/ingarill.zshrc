@@ -78,7 +78,7 @@ alias 9='cd -9'
 
 alias pc='pacaur'
 alias pci='pacaur -S'
-alias pcr='pacaur -Rs'
+alias pcr='pacaur -Rsc'
 alias pcu='pacaur -Syu'
 alias pcud='pacaur -Syu --devel'
 alias pcs='pacaur -Ss'
@@ -113,8 +113,6 @@ alias tty-clock='tty-clock -cC 7'
 
 alias history='fc -il 1'
 alias edit="$EDITOR"
-alias say='espeak -v en'
-alias säg='espeak -v sv'
 alias su='sudo -i'
 alias x='exit'
 alias cmd='wine ~/.wine/drive_c/windows/system32/cmd.exe'
@@ -145,6 +143,14 @@ function path() {
 	else
 		export PATH="$@"
 	fi
+}
+
+function say() {
+	espeak -v en --stdout "$@" | paplay
+}
+
+function säg() {
+	espeak -v sv --stdout "$@" | paplay
 }
 
 # prompt

@@ -128,7 +128,7 @@ if [[ -n "$DISPLAY" ]] ; then
 	alias xfhibernate='xfce4-session-logout --fast --hibernate'
 fi
 
-function open() {
+function open {
 	if [[ -z "$@" ]] ; then
 		file="."
 	else
@@ -137,7 +137,7 @@ function open() {
 	nohup xdg-open "$file" &>/dev/null
 }
 
-function path() {
+function path {
 	if [[ -z "$@" ]] ; then
 		echo $PATH
 	else
@@ -145,7 +145,7 @@ function path() {
 	fi
 }
 
-function say() {
+function say {
 	if [[ -z "$@" ]] ; then
 		echo "Say what?" >&2
 		return 1
@@ -153,7 +153,7 @@ function say() {
 	espeak -v en --stdout "$@" | paplay
 }
 
-function säg() {
+function säg {
 	if [[ -z "$@" ]] ; then
 		echo "Säg vadå?" >&2
 		return 1

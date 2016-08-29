@@ -1,4 +1,4 @@
-export PATH="$HOME/bin:$PATH:."
+export PATH="$HOME/.local/bin:$PATH:."
 
 if [[ -e "$HOME/.login_art" ]] ; then
 	source "$HOME/.login_art"

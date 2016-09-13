@@ -120,14 +120,6 @@ alias cputemp='sensors coretemp-isa-0000'
 alias matrix='cmatrix -bC cyan'
 alias pkgfiles='pkgfile -l'
 
-if [[ -n "$DISPLAY" ]] ; then
-	alias xflogout='xfce4-session-logout --fast --logout'
-	alias xfreboot='xfce4-session-logout --fast --reboot'
-	alias xfshutdown='xfce4-session-logout --fast --halt'
-	alias xfsuspend='xfce4-session-logout --fast --suspend'
-	alias xfhibernate='xfce4-session-logout --fast --hibernate'
-fi
-
 function open {
 	if [[ -z "$@" ]] ; then
 		file="."

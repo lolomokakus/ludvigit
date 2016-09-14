@@ -56,7 +56,7 @@ export LESS="-RFXK"
 if [[ -n "$SSH_CONNECTION" || -z "$DISPLAY" ]] ; then
 	export EDITOR="nano"
 else
-	export EDITOR="atom --foreground"
+	export EDITOR="mousepad"
 fi
 
 # keybindings
@@ -107,7 +107,6 @@ alias rm='rm -ri'
 alias cp='cp -ri'
 alias mv='mv -i'
 alias srm='srm -ri'
-alias sx='startx'
 alias pipes='pipes -t 3'
 alias grep='grep --color=auto -n'
 alias tty-clock='tty-clock -cC 7'
@@ -120,6 +119,10 @@ alias cmd='wine ~/.wine/drive_c/windows/system32/cmd.exe'
 alias cputemp='sensors coretemp-isa-0000'
 alias matrix='cmatrix -bC cyan'
 alias pkgfiles='pkgfile -l'
+
+if [[ -z "$DISPLAY" ]] ; then
+	alias sx='startx'
+fi
 
 function open {
 	if [[ -z "$@" ]] ; then

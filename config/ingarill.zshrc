@@ -120,7 +120,7 @@ alias cputemp='sensors coretemp-isa-0000'
 alias matrix='cmatrix -bC cyan'
 alias pkgfiles='pkgfile -l'
 
-if [[ -n "$SSH_CONNECTION" || -z "$DISPLAY" ]] ; then
+if [[ -z "$SSH_CONNECTION" && -z "$DISPLAY" ]] ; then
 	alias sx='startx'
 fi
 

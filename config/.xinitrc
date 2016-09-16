@@ -14,6 +14,7 @@ start-pulseaudio-x11 &
 /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 xfsettingsd &
 pcmanfm -d &
+nm-applet &
 pasystray -n &
 
 pactl upload-sample "$HOME/.local/share/sounds/sosumi.wav" x11-bell

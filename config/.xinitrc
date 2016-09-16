@@ -10,8 +10,11 @@ fi
 feh --bg-fill /usr/share/backgrounds/space.png
 
 compton &
+start-pulseaudio-x11 &
+/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
+xfsettingsd &
 pcmanfm -d &
-tilda &
+pasystray -n &
 
 pactl upload-sample "$HOME/.local/share/sounds/sosumi.wav" x11-bell
 pactl load-module module-x11-bell sample=x11-bell display=$DISPLAY

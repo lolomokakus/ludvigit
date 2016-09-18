@@ -52,11 +52,13 @@ SAVEHIST=10000
 export PAGER="less"
 export LESS="-RFXK"
 
-# editor
+# editor and browser
 if [[ -n "$SSH_CONNECTION" || -z "$DISPLAY" ]] ; then
 	export EDITOR="nano"
+	export BROWSER="w3m"
 else
 	export EDITOR="mousepad"
+	export BROWSER="firefox"
 fi
 
 # keybindings
@@ -107,6 +109,7 @@ alias rm='rm -ri'
 alias cp='cp -ri'
 alias mv='mv -i'
 alias srm='srm -ri'
+alias manh='man -H'
 alias pipes='pipes -t 3'
 alias grep='grep --color=auto -n'
 alias tty-clock='tty-clock -cC 7'

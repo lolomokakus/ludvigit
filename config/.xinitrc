@@ -13,6 +13,7 @@ compton &
 start-pulseaudio-x11 &
 /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 xfsettingsd &
+numlockx on &
 conky &
 pcmanfm -d &
 nm-applet &

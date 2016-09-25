@@ -3,7 +3,7 @@
 DEPS="translate-shell"
 
 for dep in $DEPS ; do
-  if [[ ! -e `which $dep` ]] ; then
+  if which $dep | grep "not found" >/dev/null 2>&1 ; then
     echo "Missing dependency: $dep" >&2
     exit 1
   fi

@@ -1,32 +1,32 @@
 #!/usr/bin/env bash
 
-DEPS="translate-shell"
-
-for dep in $DEPS ; do
-  if which $dep | grep "not found" >/dev/null 2>&1 ; then
-    echo "Missing dependency: $dep" >&2
-    exit 1
-  fi
-done
-
-LANGUAGES=(da de el es fi fr is it ja ko nl no pl ru sv zh-CN)
+LANGUAGES=(da de el en es fi fr is it ja ko nl no pl ru sv zh-CN)
+DEFAULTLANG=en
+PASSES=30
 
 if [[ -z "$1" ]] ; then
   STRING="Please enter a string to make nonsense out of."
-  echo "$STRING"
 else
   STRING="$1"
 fi
 
-for pass in {1..25} ; do
+echo "$STRING"
+
+if [[ -z "$2" ]] ; then
+	originalLanguage=$DEFAULTLANG
+else
+	originalLanguage="$2"
+fi
+
+for pass in `seq $PASSES` ; do
   echo -n "."
   selectedLanguage=$(($RANDOM % ${#LANGUAGES[@]} - 1))
   if [[ $pass == 1 ]] ; then
-    STRING=`trans -b en:${LANGUAGES[$selectedLanguage]} "$STRING"`
-  elif [[ $pass == 25 ]] ; then
-    STRING=`trans -b ${LANGUAGES[$previousLanguage]}:en "$STRING"`
+    STRING=`trans -b "$originalLanguage":${LANGUAGES[$selectedLanguage]} -- "$STRING"`
+  elif [[ $pass == $PASSES ]] ; then
+    STRING=`trans -b ${LANGUAGES[$previousLanguage]}:"$originalLanguage" -- "$STRING"`
   else
-    STRING=`trans -b ${LANGUAGES[$previousLanguage]}:${LANGUAGES[$selectedLanguage]} "$STRING"`
+    STRING=`trans -b ${LANGUAGES[$previousLanguage]}:${LANGUAGES[$selectedLanguage]} -- "$STRING"`
   fi
   previousLanguage=$selectedLanguage
 done

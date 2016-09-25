@@ -4,17 +4,18 @@ DEPS="translate-shell"
 
 for dep in $DEPS ; do
   if [[ ! -e `which $dep` ]] ; then
-    echo "Missing dependency: $dep"
+    echo "Missing dependency: $dep" >&2
+    exit 1
   fi
 done
 
 LANGUAGES=(da de el es fi fr is it ja ko nl no pl ru sv zh-CN)
 
-STRING="$1"
-
-if [[ -z "$STRING" ]] ; then
+if [[ -z "$1" ]] ; then
   STRING="Please enter a string to make nonsense out of."
   echo "$STRING"
+else
+  STRING="$1"
 fi
 
 for pass in {1..25} ; do

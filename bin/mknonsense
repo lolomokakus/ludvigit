@@ -10,17 +10,19 @@ done
 
 LANGUAGES=(da de el es fi fr is it ja ko nl no pl ru sv zh-CN)
 
-INPUT="$1"
-OUTPUT="$INPUT"
+STRING="$1"
 
 for pass in {1..25} ; do
   selectedLanguage=$(($RANDOM % ${#LANGUAGES[@]} - 1))
   if [[ $pass == 1 ]] ; then
-    OUTPUT=`trans -b en:${LANGUAGES[$selectedLanguage]} "$OUTPUT"`
+    STRING=`trans -b en:${LANGUAGES[$selectedLanguage]} "$STRING"`
   elif [[ $pass == 25 ]] ; then
-    OUTPUT=`trans -b ${LANGUAGES[$previousLanguage]}:en "$OUTPUT"`
+    STRING=`trans -b ${LANGUAGES[$previousLanguage]}:en "$STRING"`
   else
-    OUTPUT=`trans -b ${LANGUAGES[$previousLanguage]}:${LANGUAGES[$selectedLanguage]} "$OUTPUT"`
+    STRING=`trans -b ${LANGUAGES[$previousLanguage]}:${LANGUAGES[$selectedLanguage]} "$STRING"`
   fi
   previousLanguage=$selectedLanguage
 done
+
+echo "$STRING"
+exit 0

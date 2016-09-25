@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+
+DEPS="translate-shell"
+
+for dep in $DEPS ; do
+  if [[ ! -e `which $dep` ]] ; then
+    echo "Missing dependency: $dep"
+  fi
+done
+
+LANGUAGES=(da de el es fi fr is it ja ko nl no pl ru sv zh-CN)
+
+INPUT="$1"
+OUTPUT="$INPUT"
+
+for pass in {1..25} ; do
+  selectedLanguage=$(($RANDOM % ${#LANGUAGES[@]} - 1))
+  if [[ $pass == 1 ]] ; then
+    OUTPUT=`trans -b en:${LANGUAGES[$selectedLanguage]} "$OUTPUT"`
+  elif [[ $pass == 25 ]] ; then
+    OUTPUT=`trans -b ${LANGUAGES[$previousLanguage]}:en "$OUTPUT"`
+  else
+    OUTPUT=`trans -b ${LANGUAGES[$previousLanguage]}:${LANGUAGES[$selectedLanguage]} "$OUTPUT"`
+  fi
+  previousLanguage=$selectedLanguage
+done

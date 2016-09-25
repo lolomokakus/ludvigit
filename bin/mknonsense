@@ -12,6 +12,11 @@ LANGUAGES=(da de el es fi fr is it ja ko nl no pl ru sv zh-CN)
 
 STRING="$1"
 
+if [[ -z "$STRING" ]] ; then
+  STRING="Please enter a string to make nonsense out of."
+  echo "$STRING"
+fi
+
 for pass in {1..25} ; do
   selectedLanguage=$(($RANDOM % ${#LANGUAGES[@]} - 1))
   if [[ $pass == 1 ]] ; then

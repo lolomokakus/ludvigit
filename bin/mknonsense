@@ -19,6 +19,7 @@ else
 fi
 
 for pass in {1..25} ; do
+  echo -n "."
   selectedLanguage=$(($RANDOM % ${#LANGUAGES[@]} - 1))
   if [[ $pass == 1 ]] ; then
     STRING=`trans -b en:${LANGUAGES[$selectedLanguage]} "$STRING"`
@@ -30,5 +31,6 @@ for pass in {1..25} ; do
   previousLanguage=$selectedLanguage
 done
 
+echo
 echo "$STRING"
 exit 0

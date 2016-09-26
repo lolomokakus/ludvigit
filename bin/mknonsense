@@ -3,6 +3,7 @@
 LANGUAGES=(da de el en es fi fr is it ja ko nl no pl ru sv zh-CN)
 DEFAULTLANG=en
 PASSES=30
+DELAY=2
 
 if [[ -z "$1" ]] ; then
   STRING="Please enter a string to make nonsense out of."
@@ -29,6 +30,7 @@ for pass in `seq $PASSES` ; do
     STRING=`trans -b ${LANGUAGES[$previousLanguage]}:${LANGUAGES[$selectedLanguage]} -- "$STRING"`
   fi
   previousLanguage=$selectedLanguage
+  sleep $DELAY
 done
 
 echo

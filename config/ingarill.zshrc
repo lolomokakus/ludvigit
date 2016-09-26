@@ -41,7 +41,7 @@ zstyle ':completion::complete:*' use-cache 1
 zstyle ':completion::complete:*' cache-path "$HOME/.zsh_cache"
 
 # pkgfile integration
-source /usr/share/doc/pkgfile/command-not-found.zsh
+. /usr/share/doc/pkgfile/command-not-found.zsh
 
 # history
 HISTFILE="$HOME/.zsh_history"

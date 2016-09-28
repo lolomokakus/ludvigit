@@ -57,7 +57,7 @@ if [[ -n "$SSH_CONNECTION" || -z "$DISPLAY" ]] ; then
 	export EDITOR="nano"
 	export BROWSER="w3m"
 else
-	export EDITOR="mousepad"
+	export EDITOR="gedit"
 	export BROWSER="firefox"
 fi
 

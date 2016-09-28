@@ -114,7 +114,6 @@ alias grep='grep --color=auto -n'
 alias tty-clock='tty-clock -cC 7'
 
 alias history='fc -il 1'
-alias edit="$EDITOR"
 alias su='sudo -i'
 alias manh='man -H'
 alias x='exit'

@@ -109,17 +109,13 @@ alias rm='rm -ri'
 alias cp='cp -ri'
 alias mv='mv -i'
 alias srm='srm -ri'
-alias pipes='pipes -t 3'
 alias grep='grep --color=auto -n'
-alias tty-clock='tty-clock -cC 7'
 
 alias history='fc -il 1'
 alias su='sudo -i'
 alias manh='man -H'
 alias x='exit'
 alias cmd="wine $HOME/.wine/drive_c/windows/system32/cmd.exe"
-alias cputemp='sensors coretemp-isa-0000'
-alias matrix='cmatrix -bC cyan'
 alias pkgfiles='pkgfile -l'
 
 if [[ -z "$SSH_CONNECTION" && -z "$DISPLAY" ]] ; then

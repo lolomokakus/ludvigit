@@ -162,8 +162,9 @@ prompt_dir='%{$fg_no_bold[cyan]%}%~%{$reset_color%}'
 prompt_emoji='%(?.%{$fg_no_bold[green]%}👌%{$reset_color%}.%{$fg_bold[red]%}%?%{$fg_no_bold[red]%}👋%{$reset_color%})'
 prompt_host='%{$fg_bold[cyan]%}%m%{$reset_color%}'
 prompt_user='%{$fg_bold[cyan]%}%n%{$reset_color%}'
+prompt_tail='%{$fg_bold[white]%}»%{$reset_color%}'
 
-PROMPT="${prompt_user}@${prompt_host} ${prompt_dir} » "
+PROMPT="${prompt_user}@${prompt_host} ${prompt_dir} ${prompt_tail} "
 RPROMPT="${prompt_emoji}"
 
-unset prompt_dir prompt_emoji prompt_host prompt_user
+unset prompt_dir prompt_emoji prompt_host prompt_user prompt_tail

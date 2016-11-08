@@ -111,7 +111,7 @@ alias mv='mv -i'
 alias srm='srm -ri'
 alias grep='grep --color=auto -n'
 
-alias history='fc -il 1'
+alias history='fc -il 1 | less'
 alias su='sudo -i'
 alias manh='man -H'
 alias x='exit'
@@ -158,10 +158,10 @@ function säg {
 }
 
 # prompt
-prompt_dir='%{$fg[cyan]%}%~%{$reset_color%}'
-prompt_emoji='%(?.%{$fg[green]%}👌%{$reset_color%}.%{$fg[red]%B%}%?%{%b%}👋%{$reset_color%})'
-prompt_host='%{$fg[cyan]%B%}%m%{$reset_color%b%}'
-prompt_user='%{$fg[cyan]%B%}%n%{$reset_color%b%}'
+prompt_dir='%{$fg_no_bold[cyan]%}%~%{$reset_color%}'
+prompt_emoji='%(?.%{$fg_no_bold[green]%}👌%{$reset_color%}.%{$fg_bold[red]%}%?%{$fg_no_bold[red]%}👋%{$reset_color%})'
+prompt_host='%{$fg_bold[cyan]%}%m%{$reset_color%}'
+prompt_user='%{$fg_bold[cyan]%}%n%{$reset_color%}'
 
 PROMPT="${prompt_user}@${prompt_host} ${prompt_dir} » "
 RPROMPT="${prompt_emoji}"

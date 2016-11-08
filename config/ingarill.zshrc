@@ -159,10 +159,10 @@ function säg {
 
 # prompt
 prompt_dir='%{$fg[cyan]%}%~%{$reset_color%}'
-prompt_errorcode='%(?..%{$fg[red]%B%}%?%{$reset_color%b%}|)'
+prompt_emoji='%(?.%{$fg[green]%}👌%{$reset_color%}.%{$fg[red]%}👋%{%B%}%?%{$reset_color%b%})'
 prompt_host='%{$fg[cyan]%B%}%m%{$reset_color%b%}'
 prompt_user='%{$fg[cyan]%B%}%n%{$reset_color%b%}'
 
-PROMPT="[${prompt_errorcode}${prompt_user}@${prompt_host}:${prompt_dir}] %# "
+PROMPT="[${prompt_emoji}|${prompt_user}@${prompt_host}:${prompt_dir}] %# "
 
 unset prompt_dir prompt_errorcode prompt_host prompt_user

@@ -115,7 +115,7 @@ alias history='fc -il 1 | less +G'
 alias su='sudo -i'
 alias manh='man -H'
 alias x='exit'
-alias cmd="wine $HOME/.wine/drive_c/windows/system32/cmd.exe"
+alias cmd="wine cmd"
 alias pkgfiles='pkgfile -l'
 
 if [[ -z "$SSH_CONNECTION" && -z "$DISPLAY" ]] ; then

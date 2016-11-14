@@ -50,7 +50,7 @@ SAVEHIST=10000
 
 # pager
 export PAGER="less"
-export LESS="-RFXK"
+export LESS="-FKMRX"
 
 # editor and browser
 if [[ -n "$SSH_CONNECTION" || -z "$DISPLAY" ]] ; then
@@ -111,7 +111,7 @@ alias mv='mv -i'
 alias srm='srm -ri'
 alias grep='grep --color=auto -n'
 
-alias history='fc -il 1 | less'
+alias history='fc -il 1 | less +G'
 alias su='sudo -i'
 alias manh='man -H'
 alias x='exit'

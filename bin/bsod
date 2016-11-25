@@ -21,7 +21,7 @@ def randomError(): # Generates a random stop error
     return random.choice(errors)
 
 def randomHex(): # Generates a random hex number (0 to ffffffff)
-    return "{:08x}".format(random.randint(1, 4294967295))
+    return "{:08x}".format(random.randint(1, 4294967295)).upper()
 
 def main(stdscr):
     random.seed() # Seed the RNG

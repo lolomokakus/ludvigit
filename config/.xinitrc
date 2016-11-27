@@ -10,7 +10,6 @@ fi
 feh --no-fehbg --bg-fill /usr/share/backgrounds/space.png
 
 compton &
-start-pulseaudio-x11 &
 /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 xfsettingsd &
 numlockx on &

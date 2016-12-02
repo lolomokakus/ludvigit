@@ -146,7 +146,11 @@ function say {
 		echo "Say what?" >&2
 		return 1
 	fi
-	espeak -v en --stdout "$@" | paplay
+	if [[ -t 1 ]] ; then
+		espeak -v en --stdout "$@" | paplay
+	else
+		espeak -v en --stdout "$@"
+	fi
 }
 
 function säg {
@@ -154,7 +158,11 @@ function säg {
 		echo "Säg vadå?" >&2
 		return 1
 	fi
-	espeak -v sv --stdout "$@" | paplay
+	if [[ -t 1 ]] ; then
+		espeak -v sv --stdout "$@" | paplay
+	else
+		espeak -v sv --stdout "$@"
+	fi
 }
 
 # prompt

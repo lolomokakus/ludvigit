@@ -23,11 +23,11 @@ for pass in `seq $PASSES` ; do
   echo -n "."
   selectedLanguage=$(($RANDOM % ${#LANGUAGES[@]} - 1))
   if [[ $pass == 1 ]] ; then
-    STRING=`trans -b "$originalLanguage":${LANGUAGES[$selectedLanguage]} -- "$STRING"`
+    STRING=`trans -brief -no-auto "$originalLanguage":${LANGUAGES[$selectedLanguage]} -- "$STRING"`
   elif [[ $pass == $PASSES ]] ; then
-    STRING=`trans -b ${LANGUAGES[$previousLanguage]}:"$originalLanguage" -- "$STRING"`
+    STRING=`trans -brief -no-auto ${LANGUAGES[$previousLanguage]}:"$originalLanguage" -- "$STRING"`
   else
-    STRING=`trans -b ${LANGUAGES[$previousLanguage]}:${LANGUAGES[$selectedLanguage]} -- "$STRING"`
+    STRING=`trans -brief -no-auto ${LANGUAGES[$previousLanguage]}:${LANGUAGES[$selectedLanguage]} -- "$STRING"`
   fi
   previousLanguage=$selectedLanguage
   sleep $DELAY

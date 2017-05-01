@@ -167,7 +167,7 @@ function säg {
 
 # prompt
 prompt_dir='%{$fg_no_bold[cyan]%}%~%{$reset_color%}'
-prompt_exit='%(?.%{$fg_bold[green]%}%?«%{$reset_color%}.%{$fg_bold[red]%}%?«%{$reset_color%})'
+prompt_exit='%(?.%{$fg_bold[green]%}OK«%{$reset_color%}.%{$fg_bold[red]%}%?«%{$reset_color%})'
 prompt_host='%{$fg_bold[cyan]%}%m%{$reset_color%}'
 prompt_user='%{$fg_bold[cyan]%}%n%{$reset_color%}'
 prompt_tail='%{$fg_bold[white]%}»%{$reset_color%}'

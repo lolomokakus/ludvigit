@@ -124,15 +124,6 @@ else
 	alias sx='false'
 fi
 
-function open {
-	if [[ -z "$@" ]] ; then
-		file="."
-	else
-		file="$@"
-	fi
-	nohup xdg-open "$file" &>/dev/null
-}
-
 function path {
 	if [[ -z "$@" ]] ; then
 		echo $PATH

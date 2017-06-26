@@ -9,7 +9,6 @@ zle -N up-line-or-beginning-search
 zle -N down-line-or-beginning-search
 
 source /usr/share/doc/pkgfile/command-not-found.zsh
-source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # options
 setopt always_to_end
@@ -35,15 +34,15 @@ setopt pushd_minus
 setopt pushd_to_home
 setopt share_history
 
-# completion
-zstyle ':completion:*' menu select
-zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
-zstyle ':completion:*' rehash true
-zstyle ':completion:*' use-cache 1
-zstyle ':completion:*' cache-path "$HOME/.zsh_cache"
+# freeze tty
+ttyctl -f
 
-# syntax highlighting
-typeset -A ZSH_HIGHLIGHT_STYLES
+# completion
+zstyle ':completion:*' cache-path "$HOME/.zsh_cache"
+zstyle ':completion:*' menu select
+zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
+zstyle ':completion:*' rehash true
+zstyle ':completion:*' use-cache true
 
 # history
 HISTFILE="$HOME/.zsh_history"
@@ -70,7 +69,6 @@ bindkey '\e[B' down-line-or-beginning-search
 # aliases and functions
 alias sudo='sudo ' # this makes aliases work when run with sudo
 
-alias d='dirs -v'
 alias 1='cd -1'
 alias 2='cd -2'
 alias 3='cd -3'
@@ -80,6 +78,7 @@ alias 6='cd -6'
 alias 7='cd -7'
 alias 8='cd -8'
 alias 9='cd -9'
+alias d='dirs -v'
 
 alias j='jobs -l'
 alias jr='j -r'

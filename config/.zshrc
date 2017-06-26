@@ -1,6 +1,6 @@
 # load things
 autoload -U colors && colors
-autoload -U compinit && compinit
+autoload -U compinit
 autoload -U up-line-or-beginning-search
 autoload -U down-line-or-beginning-search
 
@@ -79,6 +79,7 @@ alias 8='cd -8'
 alias 9='cd -9'
 
 alias pc='pacaur'
+alias pcc='pacaur -Scc'
 alias pci='pacaur -S'
 alias pcr='pacaur -Rsc'
 alias pcu='pacaur -Syu'

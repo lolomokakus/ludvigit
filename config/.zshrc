@@ -12,23 +12,20 @@ source /usr/share/doc/pkgfile/command-not-found.zsh
 
 # options
 setopt always_to_end
-setopt append_history
 setopt auto_cd
-setopt auto_menu
 setopt auto_pushd
 setopt cdable_vars
+unsetopt check_jobs
 setopt combining_chars
 setopt complete_in_word
+setopt extended_glob
 setopt extended_history
+unsetopt flow_control
 setopt hist_ignore_space
 setopt hist_verify
+unsetopt hup
 setopt interactive_comments
 setopt long_list_jobs
-setopt multios
-setopt no_check_jobs
-setopt no_flow_control
-setopt no_hup
-setopt no_menu_complete
 setopt prompt_subst
 setopt pushd_minus
 setopt pushd_to_home
@@ -39,6 +36,7 @@ ttyctl -f
 
 # completion
 zstyle ':completion:*' cache-path "$HOME/.zsh_cache"
+zstyle ':completion:*' list-colors '=*=35'
 zstyle ':completion:*' menu select
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
 zstyle ':completion:*' rehash true

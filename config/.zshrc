@@ -44,15 +44,15 @@ zstyle ':completion:*' rehash true
 zstyle ':completion:*' use-cache true
 
 # syntax highlighting
-ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern)
+ZSH_HIGHLIGHT_HIGHLIGHTERS=(main)
 
 typeset -A ZSH_HIGHLIGHT_STYLES
 ZSH_HIGHLIGHT_STYLES[alias]='none'
 ZSH_HIGHLIGHT_STYLES[arg0]='none'
+ZSH_HIGHLIGHT_STYLES[assign]='none'
 ZSH_HIGHLIGHT_STYLES[back-dollar-quoted-argument]='none'
 ZSH_HIGHLIGHT_STYLES[back-double-quoted-argument]='none'
 ZSH_HIGHLIGHT_STYLES[back-quoted-argument]='none'
-ZSH_HIGHLIGHT_STYLES[bracket-level-1]='none'
 ZSH_HIGHLIGHT_STYLES[builtin]='none'
 ZSH_HIGHLIGHT_STYLES[command]='none'
 ZSH_HIGHLIGHT_STYLES[default]='none'
@@ -61,6 +61,7 @@ ZSH_HIGHLIGHT_STYLES[dollar-quoted-argument]='none'
 ZSH_HIGHLIGHT_STYLES[double-hyphen-option]='none'
 ZSH_HIGHLIGHT_STYLES[double-quoted-argument]='none'
 ZSH_HIGHLIGHT_STYLES[function]='none'
+ZSH_HIGHLIGHT_STYLES[globbing]='none'
 ZSH_HIGHLIGHT_STYLES[hashed-command]='none'
 ZSH_HIGHLIGHT_STYLES[history-expansion]='none'
 ZSH_HIGHLIGHT_STYLES[path_prefix]='none'
@@ -72,17 +73,9 @@ ZSH_HIGHLIGHT_STYLES[single-quoted-argument]='none'
 ZSH_HIGHLIGHT_STYLES[suffix-alias]='none'
 ZSH_HIGHLIGHT_STYLES[unknown-token]='none'
 
-ZSH_HIGHLIGHT_STYLES[assign]='fg=blue'
-ZSH_HIGHLIGHT_STYLES[bracket-error]='fg=red,bold,standout'
 ZSH_HIGHLIGHT_STYLES[commandseparator]='fg=green'
-ZSH_HIGHLIGHT_STYLES[comment]='fg=yellow,underline'
-ZSH_HIGHLIGHT_STYLES[cursor-matchingbracket]='standout'
-ZSH_HIGHLIGHT_STYLES[globbing]='fg=red'
+ZSH_HIGHLIGHT_STYLES[comment]='fg=yellow'
 ZSH_HIGHLIGHT_STYLES[redirection]='fg=green'
-
-
-typeset -A ZSH_HIGHLIGHT_PATTERNS
-ZSH_HIGHLIGHT_PATTERNS+=('$* ' 'fg=blue')
 
 # history
 HISTFILE="$HOME/.zsh_history"

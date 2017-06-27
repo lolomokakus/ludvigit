@@ -3,11 +3,9 @@ autoload -Uz colors && colors
 autoload -Uz compinit && compinit
 zmodload zsh/complist
 autoload -Uz up-line-or-beginning-search
-autoload -Uz down-line-or-beginning-search
-
 zle -N up-line-or-beginning-search
+autoload -Uz down-line-or-beginning-search
 zle -N down-line-or-beginning-search
-
 source /usr/share/doc/pkgfile/command-not-found.zsh
 
 # options
@@ -19,8 +17,8 @@ unsetopt check_jobs
 setopt combining_chars
 setopt complete_in_word
 setopt extended_glob
-setopt extended_history
 unsetopt flow_control
+setopt hist_ignore_all_dups
 setopt hist_ignore_space
 setopt hist_verify
 unsetopt hup
@@ -36,8 +34,8 @@ ttyctl -f
 
 # completion
 zstyle ':completion:*' cache-path "$HOME/.zsh_cache"
-zstyle ':completion:*' list-colors '=*=35'
-zstyle ':completion:*' menu select
+zstyle ':completion:*' list-colors '=*=35' 'ma=47;45'
+zstyle ':completion:*' menu select=2
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
 zstyle ':completion:*' rehash true
 zstyle ':completion:*' use-cache true

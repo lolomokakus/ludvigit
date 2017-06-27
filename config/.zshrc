@@ -1,6 +1,8 @@
 # load things
-autoload -Uz colors && colors
-autoload -Uz compinit && compinit
+autoload -Uz colors
+colors
+autoload -Uz compinit
+compinit
 zmodload zsh/complist
 autoload -Uz up-line-or-beginning-search
 zle -N up-line-or-beginning-search
@@ -119,8 +121,8 @@ alias rm='rm -ri'
 alias srm='srm -ri'
 
 alias grep='grep --color=auto -n'
-alias G='grep'
-alias L='less'
+alias -g G='| grep'
+alias -g L='| less'
 
 alias cmd="wine cmd"
 alias history='fc -il 1 | L +G'

@@ -9,7 +9,7 @@ zle -N up-line-or-beginning-search
 autoload -Uz down-line-or-beginning-search
 zle -N down-line-or-beginning-search
 source /usr/share/doc/pkgfile/command-not-found.zsh
-source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+#source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # options
 setopt always_to_end
@@ -44,8 +44,6 @@ zstyle ':completion:*' rehash true
 zstyle ':completion:*' use-cache true
 
 # syntax highlighting
-ZSH_HIGHLIGHT_HIGHLIGHTERS=(main)
-
 typeset -A ZSH_HIGHLIGHT_STYLES
 ZSH_HIGHLIGHT_STYLES[alias]='none'
 ZSH_HIGHLIGHT_STYLES[arg0]='none'
@@ -73,18 +71,19 @@ ZSH_HIGHLIGHT_STYLES[single-quoted-argument]='none'
 ZSH_HIGHLIGHT_STYLES[suffix-alias]='none'
 ZSH_HIGHLIGHT_STYLES[unknown-token]='none'
 
-ZSH_HIGHLIGHT_STYLES[commandseparator]='fg=green'
-ZSH_HIGHLIGHT_STYLES[comment]='fg=yellow'
-ZSH_HIGHLIGHT_STYLES[redirection]='fg=green'
+ZSH_HIGHLIGHT_STYLES[commandseparator]='fg=cyan'
+ZSH_HIGHLIGHT_STYLES[comment]='fg=black,bold'
+ZSH_HIGHLIGHT_STYLES[redirection]='fg=cyan'
 
 # history
 HISTFILE="$HOME/.zsh_history"
 HISTSIZE=10000
 SAVEHIST=10000
 
-# pager
+# less and grep
 export PAGER='less'
 export LESS='-FKMRX'
+export GREP_OPTIONS='--color=auto -n'
 
 # editor and browser
 if [[ -n "$SSH_CONNECTION" || -z "$DISPLAY" ]] ; then
@@ -155,7 +154,6 @@ alias mv='mv -i'
 alias rm='rm -ri'
 alias srm='srm -ri'
 
-alias grep='grep --color=auto -n'
 alias -g G='| grep'
 alias -g L='| less'
 

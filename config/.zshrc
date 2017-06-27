@@ -9,6 +9,7 @@ zle -N up-line-or-beginning-search
 autoload -Uz down-line-or-beginning-search
 zle -N down-line-or-beginning-search
 source /usr/share/doc/pkgfile/command-not-found.zsh
+source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # options
 setopt always_to_end
@@ -42,22 +43,63 @@ zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
 zstyle ':completion:*' rehash true
 zstyle ':completion:*' use-cache true
 
+# syntax highlighting
+ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern)
+
+typeset -A ZSH_HIGHLIGHT_STYLES
+ZSH_HIGHLIGHT_STYLES[alias]='none'
+ZSH_HIGHLIGHT_STYLES[arg0]='none'
+ZSH_HIGHLIGHT_STYLES[back-dollar-quoted-argument]='none'
+ZSH_HIGHLIGHT_STYLES[back-double-quoted-argument]='none'
+ZSH_HIGHLIGHT_STYLES[back-quoted-argument]='none'
+ZSH_HIGHLIGHT_STYLES[bracket-level-1]='none'
+ZSH_HIGHLIGHT_STYLES[builtin]='none'
+ZSH_HIGHLIGHT_STYLES[command]='none'
+ZSH_HIGHLIGHT_STYLES[default]='none'
+ZSH_HIGHLIGHT_STYLES[dollar-double-quoted-argument]='none'
+ZSH_HIGHLIGHT_STYLES[dollar-quoted-argument]='none'
+ZSH_HIGHLIGHT_STYLES[double-hyphen-option]='none'
+ZSH_HIGHLIGHT_STYLES[double-quoted-argument]='none'
+ZSH_HIGHLIGHT_STYLES[function]='none'
+ZSH_HIGHLIGHT_STYLES[hashed-command]='none'
+ZSH_HIGHLIGHT_STYLES[history-expansion]='none'
+ZSH_HIGHLIGHT_STYLES[path_prefix]='none'
+ZSH_HIGHLIGHT_STYLES[path]='none'
+ZSH_HIGHLIGHT_STYLES[precommand]='none'
+ZSH_HIGHLIGHT_STYLES[reserved-word]='none'
+ZSH_HIGHLIGHT_STYLES[single-hyphen-option]='none'
+ZSH_HIGHLIGHT_STYLES[single-quoted-argument]='none'
+ZSH_HIGHLIGHT_STYLES[suffix-alias]='none'
+ZSH_HIGHLIGHT_STYLES[unknown-token]='none'
+
+ZSH_HIGHLIGHT_STYLES[assign]='fg=blue'
+ZSH_HIGHLIGHT_STYLES[bracket-error]='fg=red,bold,standout'
+ZSH_HIGHLIGHT_STYLES[commandseparator]='fg=green'
+ZSH_HIGHLIGHT_STYLES[comment]='fg=yellow,underline'
+ZSH_HIGHLIGHT_STYLES[cursor-matchingbracket]='standout'
+ZSH_HIGHLIGHT_STYLES[globbing]='fg=red'
+ZSH_HIGHLIGHT_STYLES[redirection]='fg=green'
+
+
+typeset -A ZSH_HIGHLIGHT_PATTERNS
+ZSH_HIGHLIGHT_PATTERNS+=('$* ' 'fg=blue')
+
 # history
 HISTFILE="$HOME/.zsh_history"
 HISTSIZE=10000
 SAVEHIST=10000
 
 # pager
-export PAGER="less"
-export LESS="-FKMRX"
+export PAGER='less'
+export LESS='-FKMRX'
 
 # editor and browser
 if [[ -n "$SSH_CONNECTION" || -z "$DISPLAY" ]] ; then
-	export EDITOR="nano"
-	export BROWSER="w3m"
+	export EDITOR='nano'
+	export BROWSER='w3m'
 else
-	export EDITOR="gedit"
-	export BROWSER="firefox"
+	export EDITOR='gedit'
+	export BROWSER='firefox'
 fi
 
 # keybindings

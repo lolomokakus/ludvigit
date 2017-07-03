@@ -80,10 +80,9 @@ HISTFILE="$HOME/.zsh_history"
 HISTSIZE=10000
 SAVEHIST=10000
 
-# less and grep
+# pager
 export PAGER='less'
 export LESS='-FKMRX'
-export GREP_OPTIONS='--color=auto -n'
 
 # editor and browser
 if [[ -n "$SSH_CONNECTION" || -z "$DISPLAY" ]] ; then
@@ -154,6 +153,7 @@ alias mv='mv -i'
 alias rm='rm -ri'
 alias srm='srm -ri'
 
+alias grep='--color=auto -n'
 alias -g G='| grep'
 alias -g L='| less'
 

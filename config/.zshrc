@@ -1,16 +1,3 @@
-# load things
-autoload -Uz colors
-colors
-autoload -Uz compinit
-compinit
-zmodload zsh/complist
-autoload -Uz up-line-or-beginning-search
-zle -N up-line-or-beginning-search
-autoload -Uz down-line-or-beginning-search
-zle -N down-line-or-beginning-search
-source /usr/share/doc/pkgfile/command-not-found.zsh
-#source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-
 # options
 setopt always_to_end
 setopt auto_cd
@@ -31,6 +18,38 @@ setopt prompt_subst
 setopt pushd_minus
 setopt pushd_to_home
 setopt share_history
+
+# load things
+autoload -Uz colors
+colors
+autoload -Uz compinit
+compinit
+zmodload zsh/complist
+source /usr/share/doc/pkgfile/command-not-found.zsh
+
+# define and declare widgets
+autoload -Uz up-line-or-beginning-search
+zle -N up-line-or-beginning-search
+
+autoload -Uz down-line-or-beginning-search
+zle -N down-line-or-beginning-search
+
+function accept-line-l-on-empty-buffer {
+	if [[ ${#BUFFER} -eq 0 ]] ; then
+		echo
+		l
+	fi
+	zle accept-line
+}
+zle -N accept-line-l-on-empty-buffer
+
+# syntax highlighting has to be loaded after widgets are declared
+#source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+# keybindings
+bindkey '^[[A' up-line-or-beginning-search
+bindkey '^[[B' down-line-or-beginning-search
+#bindkey '^M' accept-line-l-on-empty-buffer
 
 # freeze tty
 ttyctl -f
@@ -92,10 +111,6 @@ else
 	export EDITOR='gedit'
 	export BROWSER='firefox'
 fi
-
-# keybindings
-bindkey '\e[A' up-line-or-beginning-search
-bindkey '\e[B' down-line-or-beginning-search
 
 # aliases and functions
 alias sudo='sudo ' # this makes aliases work when run with sudo

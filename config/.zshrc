@@ -37,7 +37,8 @@ zle -N down-line-or-beginning-search
 function accept-line-l-on-empty-buffer {
 	if [[ ${#BUFFER} -eq 0 ]] ; then
 		echo
-		l
+		# can't use the l alias here before it's defined
+		ls --color=auto --group-directories-first -FGhlN
 		zle redisplay
 	else
 		zle accept-line

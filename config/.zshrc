@@ -38,8 +38,10 @@ function accept-line-l-on-empty-buffer {
 	if [[ ${#BUFFER} -eq 0 ]] ; then
 		echo
 		l
+		zle redisplay
+	else
+		zle accept-line
 	fi
-	zle accept-line
 }
 zle -N accept-line-l-on-empty-buffer
 
@@ -49,7 +51,7 @@ zle -N accept-line-l-on-empty-buffer
 # keybindings
 bindkey '^[[A' up-line-or-beginning-search
 bindkey '^[[B' down-line-or-beginning-search
-#bindkey '^M' accept-line-l-on-empty-buffer
+bindkey '^M' accept-line-l-on-empty-buffer
 
 # freeze tty
 ttyctl -f
@@ -159,7 +161,7 @@ alias hibernate='systemctl hibernate'
 alias emergency='systemctl emergency'
 
 alias ls='ls --color=auto --group-directories-first'
-alias l='ls -lNFh'
+alias l='ls -FGhlN'
 alias la='l -A'
 alias ldot='l -d .*'
 
@@ -173,7 +175,7 @@ alias -g G='| grep'
 alias -g L='| less'
 
 alias cmd="wine cmd"
-alias history='fc -il 1 | L +G'
+alias history='fc -il 1 L +G'
 alias manh='man -H'
 alias pkgfiles='pkgfile -l'
 alias su='sudo -i'

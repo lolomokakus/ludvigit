@@ -34,18 +34,22 @@ zle -N up-line-or-beginning-search
 autoload -Uz down-line-or-beginning-search
 zle -N down-line-or-beginning-search
 
-function accept-line-p-l-on-empty-buffer {
+function intelligent-return-key {
 	if [[ ${#BUFFER} -eq 0 ]] ; then
 		echo
-		# can't use the aliases here before they're defined
-		pwd # p
-		ls --color=auto --group-directories-first -FhoN # l
+		pwd
+		if [[ $(ls -1 | wc -l) > 20 ]] ; then
+			echo "The current directory contains more than 20 entries."
+			echo "Please list them manually."
+		else
+			ls --color=auto --group-directories-first -FhoN
+		fi
 		zle redisplay
 	else
 		zle accept-line
 	fi
 }
-zle -N accept-line-p-l-on-empty-buffer
+zle -N intelligent-return-key
 
 # syntax highlighting has to be loaded after widgets are declared
 #source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
@@ -53,7 +57,7 @@ zle -N accept-line-p-l-on-empty-buffer
 # keybindings
 bindkey '^[[A' up-line-or-beginning-search
 bindkey '^[[B' down-line-or-beginning-search
-bindkey '^M' accept-line-p-l-on-empty-buffer
+bindkey '^M' intelligent-return-key
 
 # freeze tty
 ttyctl -f
@@ -116,7 +120,39 @@ else
 	export BROWSER='firefox'
 fi
 
-# aliases and functions
+# functions and aliases
+function path {
+	if [[ -z "$@" ]] ; then
+		echo $PATH
+	else
+		export PATH="$@"
+	fi
+}
+
+function say {
+	if [[ -z "$@" ]] ; then
+		echo "Say what?" >&2
+		return 1
+	fi
+	if [[ -t 1 ]] ; then
+		espeak -v en --stdout "$@" | paplay
+	else
+		espeak -v en --stdout "$@"
+	fi
+}
+
+function säg {
+	if [[ -z "$@" ]] ; then
+		echo "Säg vadå?" >&2
+		return 1
+	fi
+	if [[ -t 1 ]] ; then
+		espeak -v sv --stdout "$@" | paplay
+	else
+		espeak -v sv --stdout "$@"
+	fi
+}
+
 alias sudo='sudo ' # this makes aliases work when run with sudo
 
 alias 1='cd -1'
@@ -183,38 +219,6 @@ alias manh='man -H'
 alias pkgfiles='pkgfile -l'
 alias su='sudo -i'
 alias x='exit'
-
-function path {
-	if [[ -z "$@" ]] ; then
-		echo $PATH
-	else
-		export PATH="$@"
-	fi
-}
-
-function say {
-	if [[ -z "$@" ]] ; then
-		echo "Say what?" >&2
-		return 1
-	fi
-	if [[ -t 1 ]] ; then
-		espeak -v en --stdout "$@" | paplay
-	else
-		espeak -v en --stdout "$@"
-	fi
-}
-
-function säg {
-	if [[ -z "$@" ]] ; then
-		echo "Säg vadå?" >&2
-		return 1
-	fi
-	if [[ -t 1 ]] ; then
-		espeak -v sv --stdout "$@" | paplay
-	else
-		espeak -v sv --stdout "$@"
-	fi
-}
 
 # prompt
 prompt_dir='%{$fg_no_bold[cyan]%}%1d%{$reset_color%}'

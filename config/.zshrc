@@ -38,9 +38,8 @@ function intelligent-return-key {
 	if [[ ${#BUFFER} -eq 0 ]] ; then
 		echo
 		pwd
-		if [[ $(ls -1 | wc -l) > 20 ]] ; then
-			echo "The current directory contains more than 20 entries."
-			echo "Please list them manually."
+		if [[ $(ls -1 | wc -l) -gt $((LINES - 3)) ]] ; then
+			echo "The current directory contains too many entries to list."
 		else
 			ls --color=auto --group-directories-first -FhoN
 		fi
@@ -225,13 +224,11 @@ prompt_dir='%{$fg_no_bold[cyan]%}%1d%{$reset_color%}'
 prompt_exit='(%(?.%{$fg_bold[green]%}.%{$fg_bold[red]%})%?%{$reset_color%}%)'
 prompt_host='%{$fg_bold[cyan]%}%m%{$reset_color%}'
 prompt_user='%{$fg_bold[cyan]%}%n%{$reset_color%}'
-prompt_tail='%{$fg_bold[white]%}Σ%{$reset_color%}'
 
-PROMPT="${prompt_user}@${prompt_host} ${prompt_dir} ${prompt_tail} "
+PROMPT="${prompt_user}@${prompt_host} ${prompt_dir} Σ "
 RPROMPT="${prompt_exit}"
 
 unset prompt_dir
 unset prompt_exit
 unset prompt_host
 unset prompt_user
-unset prompt_tail

@@ -199,17 +199,17 @@ alias hibernate='systemctl hibernate'
 alias emergency='systemctl emergency'
 
 alias ls='ls --color=auto --group-directories-first'
-alias l='ls --color=auto --group-directories-first -FhoN'
-alias la='ls --color=auto --group-directories-first -AFhoN'
-alias ldot='ls --color=auto --group-directories-first -dFhoN .*'
+alias l='ls -FhoN'
+alias la='ls -AFhoN'
+alias ldot='ls -dFhoN .*'
 
 alias cp='cp -ri'
 alias mv='mv -i'
 alias rm='rm -ri'
 alias srm='srm -ri'
 
-alias grep='--color=auto -n'
-alias -g G='| grep --color=auto -n'
+alias grep='grep --color=auto -n'
+alias -g G='| grep'
 alias -g L='| less'
 
 alias cmd="wine cmd"

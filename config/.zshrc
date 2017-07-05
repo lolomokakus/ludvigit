@@ -218,10 +218,10 @@ function säg {
 
 # prompt
 prompt_dir='%{$fg_no_bold[cyan]%}%1d%{$reset_color%}'
-prompt_exit='{%(?.%{$fg_bold[green]%}.%{$fg_bold[red]%})%?%{$reset_color%}}'
+prompt_exit='(%(?.%{$fg_bold[green]%}.%{$fg_bold[red]%})%?%{$reset_color%}%)'
 prompt_host='%{$fg_bold[cyan]%}%m%{$reset_color%}'
 prompt_user='%{$fg_bold[cyan]%}%n%{$reset_color%}'
-prompt_tail='%{$fg_bold[white]%}þ%{$reset_color%}'
+prompt_tail='%{$fg_bold[white]%}Σ%{$reset_color%}'
 
 PROMPT="${prompt_user}@${prompt_host} ${prompt_dir} ${prompt_tail} "
 RPROMPT="${prompt_exit}"

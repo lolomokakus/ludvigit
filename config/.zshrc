@@ -53,7 +53,7 @@ zle -N accept-line-p-l-on-empty-buffer
 # keybindings
 bindkey '^[[A' up-line-or-beginning-search
 bindkey '^[[B' down-line-or-beginning-search
-bindkey '^M' accept-line-l-on-empty-buffer
+bindkey '^M' accept-line-p-l-on-empty-buffer
 
 # freeze tty
 ttyctl -f

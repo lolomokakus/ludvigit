@@ -39,7 +39,7 @@ function intelligent-return-key {
 		echo
 		pwd
 		if [[ $(ls -1 | wc -l) -gt $((LINES - 3)) ]] ; then
-			echo "The current directory contains too many entries to list."
+			echo "Too many entries to list."
 		else
 			ls --color=auto --group-directories-first -FhoN
 		fi

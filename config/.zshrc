@@ -34,17 +34,18 @@ zle -N up-line-or-beginning-search
 autoload -Uz down-line-or-beginning-search
 zle -N down-line-or-beginning-search
 
-function accept-line-l-on-empty-buffer {
+function accept-line-p-l-on-empty-buffer {
 	if [[ ${#BUFFER} -eq 0 ]] ; then
 		echo
-		# can't use the l alias here before it's defined
-		ls --color=auto --group-directories-first -FhoN
+		# can't use the aliases here before they're defined
+		pwd # p
+		ls --color=auto --group-directories-first -FhoN # l
 		zle redisplay
 	else
 		zle accept-line
 	fi
 }
-zle -N accept-line-l-on-empty-buffer
+zle -N accept-line-p-l-on-empty-buffer
 
 # syntax highlighting has to be loaded after widgets are declared
 #source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
@@ -128,6 +129,7 @@ alias 7='cd -7'
 alias 8='cd -8'
 alias 9='cd -9'
 alias d='dirs -v'
+alias p='pwd'
 
 alias j='jobs -l'
 alias jr='jobs -lr'

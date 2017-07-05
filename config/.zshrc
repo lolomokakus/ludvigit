@@ -58,7 +58,7 @@ bindkey '^M' accept-line-l-on-empty-buffer
 ttyctl -f
 
 # completion
-zstyle ':completion:*' cache-path "$HOME/.zsh_cache"
+zstyle ':completion:*' cache-path "~/.zsh_cache"
 zstyle ':completion:*' list-colors '=*=35' 'ma=37;45'
 zstyle ':completion:*' menu select=2
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
@@ -98,7 +98,7 @@ ZSH_HIGHLIGHT_STYLES[comment]='fg=black,bold'
 ZSH_HIGHLIGHT_STYLES[redirection]='fg=cyan'
 
 # history
-HISTFILE="$HOME/.zsh_history"
+HISTFILE="~/.zsh_history"
 HISTSIZE=10000
 SAVEHIST=10000
 
@@ -130,30 +130,30 @@ alias 9='cd -9'
 alias d='dirs -v'
 
 alias j='jobs -l'
-alias jr='j -r'
-alias js='j -s'
+alias jr='jobs -lr'
+alias js='jobs -ls'
 
 alias k='kill'
-alias c='k -CONT'
-alias s='k -TSTP'
+alias c='kill -CONT'
+alias s='kill -TSTP'
 
 alias pc='pacaur'
-alias pcc='pc -Scc'
-alias pci='pc -S'
-alias pcr='pc -Rsc'
-alias pcs='pc -Ss'
-alias pcu='pc -Syu'
-alias pcud='pcu --devel'
+alias pcc='pacaur -Scc'
+alias pci='pacaur -S'
+alias pcr='pacaur -Rsc'
+alias pcs='pacaur -Ss'
+alias pcu='pacaur -Syu'
+alias pcud='pacaur -Syu --devel'
 
 alias g='git'
-alias ga='g add'
-alias gaa='ga --all'
-alias gcl='g clone --recursive'
-alias gcm='g commit -vm'
-alias gf='g fetch'
-alias gl='g pull'
-alias gp='g push'
-alias gst='g status'
+alias ga='git add'
+alias gaa='git add --all'
+alias gcl='git clone --recursive'
+alias gcm='git commit -vm'
+alias gf='git fetch'
+alias gl='git pull'
+alias gp='git push'
+alias gst='git status'
 
 alias shutdown='systemctl poweroff'
 alias reboot='systemctl reboot'
@@ -162,9 +162,9 @@ alias hibernate='systemctl hibernate'
 alias emergency='systemctl emergency'
 
 alias ls='ls --color=auto --group-directories-first'
-alias l='ls -FhoN'
-alias la='l -A'
-alias ldot='l -d .*'
+alias l='ls --color=auto --group-directories-first -FhoN'
+alias la='ls --color=auto --group-directories-first -AFhoN'
+alias ldot='ls --color=auto --group-directories-first -dFhoN .*'
 
 alias cp='cp -ri'
 alias mv='mv -i'
@@ -172,11 +172,11 @@ alias rm='rm -ri'
 alias srm='srm -ri'
 
 alias grep='--color=auto -n'
-alias -g G='| grep'
+alias -g G='| grep --color=auto -n'
 alias -g L='| less'
 
 alias cmd="wine cmd"
-alias history='fc -il 1 L +G'
+alias history='fc -il 1 | less +G'
 alias manh='man -H'
 alias pkgfiles='pkgfile -l'
 alias su='sudo -i'
@@ -215,13 +215,13 @@ function säg {
 }
 
 # prompt
-prompt_dir='%{$fg_no_bold[cyan]%}%~%{$reset_color%}'
-prompt_exit='%(?.%{$fg_bold[green]%}OK«%{$reset_color%}.%{$fg_bold[red]%}%?«%{$reset_color%})'
+prompt_dir='%{$fg_no_bold[cyan]%}%~-1%{$reset_color%}'
+prompt_exit='{%(?.%{$fg_bold[green]%}.%{$fg_bold[red]%})%?%{$reset_color%}}'
 prompt_host='%{$fg_bold[cyan]%}%m%{$reset_color%}'
 prompt_user='%{$fg_bold[cyan]%}%n%{$reset_color%}'
-prompt_tail='%{$fg_bold[white]%}»%{$reset_color%}'
+prompt_tail='%{$fg_bold[white]%}þ%{$reset_color%}'
 
-PROMPT="${prompt_user}@${prompt_host} ${prompt_dir} ${prompt_tail} "
+PROMPT="${prompt_user}@${prompt_host}:${prompt_dir} ${prompt_tail} "
 RPROMPT="${prompt_exit}"
 
 unset prompt_dir

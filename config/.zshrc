@@ -58,7 +58,7 @@ bindkey '^M' accept-line-l-on-empty-buffer
 ttyctl -f
 
 # completion
-zstyle ':completion:*' cache-path "~/.zsh_cache"
+zstyle ':completion:*' cache-path "$HOME/.zsh_cache"
 zstyle ':completion:*' list-colors '=*=35' 'ma=37;45'
 zstyle ':completion:*' menu select=2
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
@@ -98,7 +98,7 @@ ZSH_HIGHLIGHT_STYLES[comment]='fg=black,bold'
 ZSH_HIGHLIGHT_STYLES[redirection]='fg=cyan'
 
 # history
-HISTFILE="~/.zsh_history"
+HISTFILE="$HOME/.zsh_history"
 HISTSIZE=10000
 SAVEHIST=10000
 

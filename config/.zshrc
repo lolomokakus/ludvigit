@@ -192,11 +192,11 @@ alias gl='git pull'
 alias gp='git push'
 alias gst='git status'
 
-alias shutdown='systemctl poweroff'
-alias reboot='systemctl reboot'
-alias suspend='systemctl suspend'
-alias hibernate='systemctl hibernate'
 alias emergency='systemctl emergency'
+alias hibernate='systemctl hibernate'
+alias reboot='systemctl reboot'
+alias shutdown='systemctl poweroff'
+alias suspend='systemctl suspend'
 
 alias ls='ls --color=auto --group-directories-first'
 alias l='ls -FhoN'
@@ -224,11 +224,13 @@ prompt_dir='%{$fg_no_bold[cyan]%}%1d%{$reset_color%}'
 prompt_exit='(%(?.%{$fg_bold[green]%}.%{$fg_bold[red]%})%?%{$reset_color%}%)'
 prompt_host='%{$fg_bold[cyan]%}%m%{$reset_color%}'
 prompt_user='%{$fg_bold[cyan]%}%n%{$reset_color%}'
+prompt_tail='%{$reset_color%}Σ'
 
-PROMPT="${prompt_user}@${prompt_host} ${prompt_dir} Σ "
+PROMPT="${prompt_user}@${prompt_host} ${prompt_dir} ${prompt_tail} "
 RPROMPT="${prompt_exit}"
 
 unset prompt_dir
 unset prompt_exit
 unset prompt_host
 unset prompt_user
+unset prompt_tail

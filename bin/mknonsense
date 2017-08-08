@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 ENGINE=bing
-LANGUAGES=(af ar bg bn bs ca cs cy da de el en es et fa fi fj fr he hi hr ht hu id it ja ko lt lv mg ms mt nl no otq pl pt ro ru sk sl sm sr-Cyrl sv sw th tlh-Qaak to tr ty uk ur vi yua yue zh-TW)
+LANGUAGES=(af ar bg bn bs ca cs cy da de el en es et fa fi fj fr he hi hr ht hu id it ja ko lt lv mg ms mt nl no otq pl pt ro ru sk sl sm sr-Latn sv sw th tlh to tr ty uk ur vi yua yue zh-CN)
 DEFAULTLANG=en
 PASSES=20
 DELAY=2

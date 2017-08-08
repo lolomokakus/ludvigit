@@ -7,6 +7,15 @@ PASSES=30
 DELAY=2
 VERBOSE=false
 
+function stop_early() {
+  if [[ $VERBOSE != true ]] ; then
+    echo "$STRING"
+  fi
+  exit 1
+}
+
+trap stop_early SIGINT SIGTERM
+
 if [[ -z "$1" ]] ; then
   STRING="Please enter a string to make nonsense out of."
 else
@@ -39,7 +48,7 @@ while [[ $pass -lt $PASSES ]] ; do
   fi
 done
 
-if [[ $VERBOSE = false ]] ; then
+if [[ $VERBOSE != true ]] ; then
   echo
   echo "$STRING"
 fi

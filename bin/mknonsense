@@ -9,6 +9,7 @@ VERBOSE=false
 
 function stop_early() {
   if [[ $VERBOSE != true ]] ; then
+    echo
     echo "$STRING"
   fi
   exit 1

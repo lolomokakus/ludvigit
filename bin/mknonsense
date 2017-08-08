@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
-LANGUAGES=(da de el en es fi fr is it ja ko nl no pl ru sv zh-CN)
-DEFAULTLANG=en
 ENGINE=bing
+LANGUAGES=(af ar bg bn bs ca cs cy da de el en es et fa fi fj fr he hi hmn hr ht hu id it ja ko lt lv mg ms mt nl no otq pl pt ro ru sk sl sm sr-Cyrl sv sw th tl tlh-Qaak to tr ty uk ur vi yua yue zh-TW)
+DEFAULTLANG=en
 PASSES=30
 DELAY=2
 VERBOSE=false
@@ -24,6 +24,9 @@ fi
 pass=0
 while [[ $pass -lt $PASSES ]] ; do
   selectedLanguage=$((RANDOM % ${#LANGUAGES[@]} - 1))
+  while [[ ${LANGUAGES[$selectedLanguage]} = "$originalLanguage" ]] ; do
+    selectedLanguage=$((RANDOM % ${#LANGUAGES[@]} - 1))
+  done
   STRING=$(trans -engine $ENGINE -brief -no-autocorrect "$originalLanguage":${LANGUAGES[$selectedLanguage]} -- "$STRING")
   STRING=$(trans -engine $ENGINE -brief -no-autocorrect ${LANGUAGES[$selectedLanguage]}:"$originalLanguage" -- "$STRING")
   if [[ $VERBOSE = true ]] ; then

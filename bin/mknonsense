@@ -5,13 +5,7 @@ DEFAULTLANG=en
 ENGINE=bing
 PASSES=30
 DELAY=2
-
-function finish() {
-  echo
-  echo "$STRING"
-}
-
-trap finish EXIT
+VERBOSE=false
 
 if [[ -z "$1" ]] ; then
   STRING="Please enter a string to make nonsense out of."
@@ -27,18 +21,25 @@ else
 	originalLanguage="$2"
 fi
 
-for pass in $(seq $PASSES) ; do
-  echo -n "."
+pass=0
+while [[ $pass -lt $PASSES ]] ; do
   selectedLanguage=$((RANDOM % ${#LANGUAGES[@]} - 1))
-  if [[ $pass == 1 ]] ; then
-    STRING=$(trans -engine $ENGINE -brief -no-autocorrect "$originalLanguage":${LANGUAGES[$selectedLanguage]} -- "$STRING")
-  elif [[ $pass == $PASSES ]] ; then
-    STRING=$(trans -engine $ENGINE -brief -no-autocorrect ${LANGUAGES[$previousLanguage]}:"$originalLanguage" -- "$STRING")
+  STRING=$(trans -engine $ENGINE -brief -no-autocorrect "$originalLanguage":${LANGUAGES[$selectedLanguage]} -- "$STRING")
+  STRING=$(trans -engine $ENGINE -brief -no-autocorrect ${LANGUAGES[$selectedLanguage]}:"$originalLanguage" -- "$STRING")
+  if [[ $VERBOSE = true ]] ; then
+    echo "$STRING"
   else
-    STRING=$(trans -engine $ENGINE -brief -no-autocorrect ${LANGUAGES[$previousLanguage]}:${LANGUAGES[$selectedLanguage]} -- "$STRING")
+    echo -n "."
   fi
-  previousLanguage=$selectedLanguage
-  sleep $DELAY
+  ((pass++))
+  if [[ $pass -ne $PASSES ]] ; then
+    sleep $DELAY
+  fi
 done
+
+if [[ $VERBOSE = false ]] ; then
+  echo
+  echo "$STRING"
+fi
 
 exit 0

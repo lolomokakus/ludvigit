@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-CONFIGDIR="$( cd $(dirname $0)/../config && pwd)"
+CONFIGDIR="$(cd $(dirname $0)/../config && pwd)"
 rm "$HOME/.nanorc"
 ln -sv "$CONFIGDIR/.nanorc" "$HOME/.nanorc"
 rm "$HOME/.xinitrc"

@@ -7,22 +7,26 @@
 #include <string.h>
 #include <sys/ioctl.h>
 #include <time.h>
+#include <unistd.h>
 int main(int argc, char *argv[]) {
+	const long kdmktone_argument = (sysconf(_SC_CLK_TCK) / 200 << 16) + 1193;
 	bool sound = false;
 	int delayms = 50;
 	int console;
 	char character;
 	struct timespec delay;
 	delay.tv_sec = 0;
-	if(argc >= 3) {
-		if(strcmp(argv[2], "sound")) {
+	if(argc >= 3 && strcmp(argv[2], "sound")) {
+		sound = true;
+	}
+	if(argc >= 2) {
+		if(strcmp(argv[1], "sound")) {
 			sound = true;
+		} else {
+			delayms = atoi(argv[1]);
 		}
 	}
-	if(argc >= 2 && atoi(argv[1]) >= 5) {
-		delayms = atoi(argv[1]);
-	}
-	delay.tv_nsec = (delayms - 5) * 1000000;
+	delay.tv_nsec = delayms * 1000000;
 	if(sound) {
 		console = open("/dev/console", O_WRONLY);
 	}
@@ -30,9 +34,7 @@ int main(int argc, char *argv[]) {
 		putchar(character);
 		fflush(stdout);
 		if(!isspace(character) && sound) {
-			ioctl(console, KIOCSOUND, 1193);
-			nanosleep((const struct timespec[]){{0, 5000000}}, NULL);
-			ioctl(console, KIOCSOUND, 0);
+			ioctl(console, KDMKTONE, kdmktone_argument);
 		}
 		nanosleep(&delay, NULL);
 	}

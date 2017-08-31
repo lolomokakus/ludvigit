@@ -7,7 +7,6 @@
 #include <string.h>
 #include <sys/ioctl.h>
 #include <time.h>
-#include <unistd.h>
 int main(int argc, char *argv[]) {
 	int delayms = 50;
 	bool sound = false;
@@ -35,9 +34,6 @@ int main(int argc, char *argv[]) {
 			ioctl(console, KDMKTONE, 339612);
 		}
 		nanosleep(&delay, NULL);
-	}
-	if(sound) {
-		close(console);
 	}
 	return 0;
 }

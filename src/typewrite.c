@@ -9,13 +9,11 @@
 #include <time.h>
 #include <unistd.h>
 int main(int argc, char *argv[]) {
-	const long kdmktone_argument = (sysconf(_SC_CLK_TCK) / 200 << 16) + 1193;
-	bool sound = false;
 	int delayms = 50;
+	bool sound = false;
 	int console;
 	char character;
-	struct timespec delay;
-	delay.tv_sec = 0;
+	struct timespec delay = {0};
 	if(argc >= 3 && !strcmp(argv[2], "sound")) {
 		sound = true;
 	}
@@ -34,10 +32,12 @@ int main(int argc, char *argv[]) {
 		putchar(character);
 		fflush(stdout);
 		if(!isspace(character) && sound) {
-			ioctl(console, KDMKTONE, kdmktone_argument);
+			ioctl(console, KDMKTONE, 536220);
 		}
 		nanosleep(&delay, NULL);
 	}
-	close(console);
+	if(sound) {
+		close(console);
+	}
 	return 0;
 }

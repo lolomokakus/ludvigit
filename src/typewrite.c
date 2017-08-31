@@ -16,11 +16,11 @@ int main(int argc, char *argv[]) {
 	char character;
 	struct timespec delay;
 	delay.tv_sec = 0;
-	if(argc >= 3 && strcmp(argv[2], "sound") == 0) {
+	if(argc >= 3 && !strcmp(argv[2], "sound")) {
 		sound = true;
 	}
 	if(argc >= 2) {
-		if(strcmp(argv[1], "sound") == 0) {
+		if(!strcmp(argv[1], "sound")) {
 			sound = true;
 		} else {
 			delayms = atoi(argv[1]);

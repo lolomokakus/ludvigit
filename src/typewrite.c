@@ -16,11 +16,11 @@ int main(int argc, char *argv[]) {
 	char character;
 	struct timespec delay;
 	delay.tv_sec = 0;
-	if(argc >= 3 && strcmp(argv[2], "sound")) {
+	if(argc >= 3 && !strcmp(argv[2], "sound")) {
 		sound = true;
 	}
 	if(argc >= 2) {
-		if(strcmp(argv[1], "sound")) {
+		if(!strcmp(argv[1], "sound")) {
 			sound = true;
 		} else {
 			delayms = atoi(argv[1]);
@@ -28,7 +28,7 @@ int main(int argc, char *argv[]) {
 	}
 	delay.tv_nsec = delayms * 1000000;
 	if(sound) {
-		console = open("/dev/console", O_WRONLY);
+		console = open("/dev/tty0", O_WRONLY);
 	}
 	while(character = getchar(), character != EOF) {
 		putchar(character);
@@ -38,5 +38,6 @@ int main(int argc, char *argv[]) {
 		}
 		nanosleep(&delay, NULL);
 	}
+	close(console);
 	return 0;
 }

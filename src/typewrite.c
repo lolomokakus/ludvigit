@@ -32,7 +32,7 @@ int main(int argc, char *argv[]) {
 		putchar(character);
 		fflush(stdout);
 		if(!isspace(character) && sound) {
-			ioctl(console, KDMKTONE, 536220);
+			ioctl(console, KDMKTONE, 339612);
 		}
 		nanosleep(&delay, NULL);
 	}

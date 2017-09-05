@@ -1,5 +1,5 @@
 #include <fcntl.h> // For open()
-//#include <linux/kd.h> // For KIOCSOUND
+#include <linux/kd.h> // For KIOCSOUND
 #include <math.h> // For pow()
 #include <stdlib.h> // For atoi()
 #include <sys/ioctl.h> // For ioctl()

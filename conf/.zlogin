@@ -7,6 +7,7 @@ if [[ -e "$HOME/.login_art" ]] ; then
 	echo
 fi
 
-if [[ -n "$(command -v tone)" && -n "$SSH_CONNECTION" && ! -x "$HOME/.quickly_and_quietly" ]] ; then
-	tone c4 100 g4 400
+if [[ -n "$(command -v piano)" && -n "$SSH_CONNECTION" && ! -x "$HOME/.quickly_and_quietly" ]] ; then
+	piano 40 100
+	piano 47 400
 fi

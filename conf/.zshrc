@@ -214,6 +214,7 @@ alias -g L='| less'
 
 alias beep='setuid-beep'
 alias piano='setuid-piano'
+alias typewrite='setuid-typewrite'
 
 alias cmd='wine cmd'
 alias history='fc -il 1 | less +G'

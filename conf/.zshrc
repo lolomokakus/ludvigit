@@ -212,7 +212,10 @@ alias grep='grep --color=auto -n'
 alias -g G='| grep'
 alias -g L='| less'
 
-alias cmd="wine cmd"
+alias beep='setuid-beep'
+alias piano='setuid-piano'
+
+alias cmd='wine cmd'
 alias history='fc -il 1 | less +G'
 alias manh='man -H'
 alias pkgfiles='pkgfile -l'

@@ -37,8 +37,7 @@ zle -N down-line-or-beginning-search
 function intelligent-return-key {
 	if [[ ${#BUFFER} -eq 0 ]] ; then
 		echo
-		pwd
-		if [[ $(ls -1 | wc -l) -gt $((LINES - 3)) ]] ; then
+		if [[ $(ls -1 | wc -l) -gt $((LINES - 2)) ]] ; then
 			echo "Too many entries to list."
 		else
 			ls --color=auto --group-directories-first -FhoN
@@ -163,7 +162,7 @@ alias 6='cd -6'
 alias 7='cd -7'
 alias 8='cd -8'
 alias 9='cd -9'
-alias d='dirs -lv'
+alias d='dirs -v'
 alias p='pwd'
 
 alias j='jobs -l'
@@ -224,17 +223,4 @@ alias su='sudo -i'
 alias x='exit'
 
 # prompt
-prompt_dir='%{$fg_no_bold[cyan]%}%1d%{$reset_color%}'
-prompt_exit='(%(?.%{$fg_bold[green]%}.%{$fg_bold[red]%})%?%{$reset_color%}%)'
-prompt_host='%{$fg_bold[cyan]%}%m%{$reset_color%}'
-prompt_user='%{$fg_bold[cyan]%}%n%{$reset_color%}'
-prompt_tail='%{$reset_color%}Σ'
-
-PROMPT="${prompt_user}@${prompt_host} ${prompt_dir} ${prompt_tail} "
-RPROMPT="${prompt_exit}"
-
-unset prompt_dir
-unset prompt_exit
-unset prompt_host
-unset prompt_user
-unset prompt_tail
+PROMPT='%{$fg_bold[magenta]%}%? %{$fg_bold[cyan]%}%~ %{$fg_bold[white]%}»%{$reset_color%} '

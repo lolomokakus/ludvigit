@@ -62,7 +62,7 @@ ttyctl -f
 
 # completion
 zstyle ':completion:*' cache-path "$HOME/.zsh_cache"
-zstyle ':completion:*' list-colors '=*=35' 'ma=37;45'
+zstyle ':completion:*' list-colors '=*=31' 'ma=37;41'
 zstyle ':completion:*' menu select=2
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
 zstyle ':completion:*' rehash true

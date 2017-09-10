@@ -223,4 +223,4 @@ alias su='sudo -i'
 alias x='exit'
 
 # prompt
-PROMPT='%{$fg_bold[magenta]%}%? %{$fg_bold[cyan]%}%~ %{$fg_bold[white]%}»%{$reset_color%} '
+PROMPT='%{$fg_bold[magenta]%}%?%{$reset_color%} %{$fg_bold[cyan]%}%~%{$reset_color%} %{$fg_bold[white]%}»%{$reset_color%} '

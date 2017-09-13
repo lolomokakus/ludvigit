@@ -14,11 +14,21 @@ int main(int argc, char *argv[]) {
 		key = atoi(argv[1]);
 	}
 	if(argc >= 3) {
+		int temp_duration = atoi(argv[2]);
 		duration.tv_sec = 0;
-		duration.tv_nsec = atoi(argv[2]) * 1000000;
+		while(temp_duration >= 1000) {
+			duration.tv_sec++;
+			temp_duration -= 1000;
+		}
+		duration.tv_nsec = temp_duration * 1000000;
 	}
 	if(argc >= 4) {
-		delay.tv_nsec = atoi(argv[3]) * 1000000;
+		int temp_delay = atoi(argv[3]);
+		while(temp_delay >= 1000) {
+			delay.tv_sec++;
+			temp_delay -= 1000;
+		}
+		delay.tv_nsec = temp_delay * 1000000;
 	}
 	ioctl(console, KIOCSOUND, (int)(1193180 / (pow(2, (float)(key - 49) / 12) * a4)));
 	nanosleep(&duration, NULL);

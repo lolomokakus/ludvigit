@@ -21,9 +21,9 @@ int main(int argc, char *argv[]) {
 	if(argc >= 3) {
 		int temp_duration = atoi(argv[2]);
 		/*
-			timespecs have two attributes, tv_sec and tv_nsec. tv_sec holds an amount of time in seconds,
-			and tv_nsec holds an amount of nanoseconds to be added to that time. Since we take milliseconds,
-			we have to do some trickery to make the timers work.
+			timespecs have two attributes, tv_sec and tv_nsec. tv_sec holds an amount of time
+			in seconds, and tv_nsec holds an amount of nanoseconds to be added to that time.
+			Since we take milliseconds, we have to do some trickery to make the timers work.
 		*/
 		duration.tv_sec = floor(temp_duration / 1000);
 		temp_duration -= duration.tv_sec * 1000;

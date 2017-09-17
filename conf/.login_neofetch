@@ -3,11 +3,10 @@ print_info() {
 	info underline
 	info "OS" distro
 	info "Kernel" kernel
-	info "Packages" packages
-	info "Uptime" uptime
 	info "Shell" shell
 	info "CPU" cpu
 	info "GPU" gpu
+	info "Uptime" uptime
 	info "Memory" memory
 	info "Storage" disk
 }
@@ -17,6 +16,7 @@ disk_show=('/' '/fast' '/slow')
 image_backend="ascii"
 image_source="$HOME/.login_ascii"
 kernel_shorthand="off"
+os_arch="off"
 shell_path="off"
 shell_version="on"
 speed_shorthand="on"

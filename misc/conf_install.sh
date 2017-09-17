@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 CONFDIR="$(cd $(dirname $0)/../conf && pwd)"
+rm "$HOME/.login_ascii"
+ln -sv "$CONFDIR/.login_ascii" "$HOME/.login_ascii"
+rm "$HOME/.login_neofetch"
+ln -sv "$CONFDIR/.login_neofetch" "$HOME/.login_neofetch"
 rm "$HOME/.nanorc"
 ln -sv "$CONFDIR/.nanorc" "$HOME/.nanorc"
 rm "$HOME/.xinitrc"

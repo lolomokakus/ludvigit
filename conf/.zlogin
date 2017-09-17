@@ -1,7 +1,7 @@
 export PATH="$HOME/.local/bin:$PATH:."
 
-if [[ -e "$HOME/.aa" ]] ; then
-	cat "$HOME/.aa"
+if [[ -n "$(command -v neofetch)" && -e "$HOME/.login_neofetch" && -e "$HOME/.login_ascii" ]] ; then
+	neofetch --config "$HOME/.login_neofetch"
 fi
 
 if [[ -n "$(command -v setuid-piano)" && -n "$SSH_CONNECTION" && ! -x "$HOME/.quickly_and_quietly" ]] ; then

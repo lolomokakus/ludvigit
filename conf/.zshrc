@@ -60,9 +60,13 @@ bindkey '^M' intelligent-return-key
 # freeze tty
 ttyctl -f
 
+# ls colors
+export LS_COLORS="di=01;35:ln=01;36:so=01;32:pi=01;32:ex=01;31:bd=01;33:cd=01;33:su=01;31;47:sg=01;31;47:tw=01;35;44:ow=01;35;44:"
+
 # completion
 zstyle ':completion:*' cache-path "$HOME/.zsh_cache"
-zstyle ':completion:*' list-colors '=*=31' 'ma=37;41'
+zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS} 'ma=37;45'
+zstyle ':completion:*' list-dirs-first
 zstyle ':completion:*' menu select=2
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
 zstyle ':completion:*' rehash true
@@ -109,12 +113,13 @@ SAVEHIST=10000
 export PAGER='less'
 export LESS='-FKMRX'
 
-# editor and browser
+# editor
+export EDITOR='nano'
+
+# browser
 if [[ -n "$SSH_CONNECTION" || -z "$DISPLAY" ]] ; then
-	export EDITOR='nano'
 	export BROWSER='w3m'
 else
-	export EDITOR='atom'
 	export BROWSER='firefox'
 fi
 
@@ -218,6 +223,7 @@ alias typewrite='setuid-typewrite'
 alias cmd='wine cmd'
 alias history='fc -il 1 | less +G'
 alias manh='man -H'
+alias p0x='ping 0x4c.se'
 alias pkgfiles='pkgfile -l'
 alias su='sudo -i'
 alias x='exit'

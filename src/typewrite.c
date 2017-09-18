@@ -1,6 +1,7 @@
 #include <ctype.h> // For isspace()
 #include <fcntl.h> // For open()
 #include <linux/kd.h> // For KDMKTONE
+#include <math.h> // For floor()
 #include <stdbool.h> // For bool
 #include <stdio.h> // For getchar(), putchar() and fflush()
 #include <stdlib.h> // For atoi()
@@ -9,12 +10,11 @@
 #include <time.h> // For nanosleep()
 int main(int argc, char *argv[]) {
 	/* Defaults */
-	int delayms = 50; // 50ms
+	struct timespec delay = {0, 50000000}; // 50ms
 	bool sound = false;
 	/* Variables we'll need */
 	int console;
 	char character;
-	struct timespec delay = {0};
 	/* If there are two or mode arguments and the second one is "sound", turn on the sound */
 	if(argc >= 3 && !strcmp(argv[2], "sound")) {
 		sound = true;
@@ -25,15 +25,13 @@ int main(int argc, char *argv[]) {
 		if(!strcmp(argv[1], "sound")) {
 			sound = true;
 		} else {
-			delayms = atoi(argv[1]);
+			int temp_delay = atoi(argv[1]);
+			/* Convert milliseconds into seconds and nanoseconds */
+			delay.tv_sec = floor(temp_delay / 1000);
+			temp_delay -= delay.tv_sec * 1000;
+			delay.tv_nsec = temp_delay * 1000000;
 		}
 	}
-	/* If using the argument as the delay failed, fall back to the default */
-	if(!delayms) {
-		delayms = 50;
-	}
-	/* Convert the delay into nanoseconds for nanosleep() */
-	delay.tv_nsec = delayms * 1000000;
 	/* Open the current TTY for writing if sound is enabled */
 	if(sound) {
 		console = open("/dev/tty0", O_WRONLY);

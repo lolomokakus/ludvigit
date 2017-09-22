@@ -2,7 +2,7 @@ export PATH="$HOME/.local/bin:$PATH:."
 
 neofetch --config "$HOME/.login_neofetch"
 
-if ! lsmod | grep nvidia >/dev/null && uname -r | grep mainline >/dev/null ; then
+if [[ ! -v SSH_CONNECTION ]] && ! lsmod | grep nvidia >/dev/null && uname -r | grep mainline >/dev/null ; then
 	echo -e "\033[1;31mNOTE: THE NVIDIA DRIVER IS BROKEN ON MAINLINE AGAIN\033[0m"
 fi
 

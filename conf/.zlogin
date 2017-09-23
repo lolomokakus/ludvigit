@@ -8,13 +8,17 @@ if ! ls /var/lib/dkms/nvidia/*mainline* >/dev/null 2>&1 && uname -r | grep mainl
 fi
 setopt no_match
 
-if [[ -v SSH_CONNECTION && ! -x "$HOME/.quickly_and_quietly" ]] ; then
-	setuid-piano 59 170
-	setuid-piano 58 170
-	setuid-piano 55 170
-	setuid-piano 49 170
-	setuid-piano 48 170
-	setuid-piano 56 170
-	setuid-piano 60 170
-	setuid-piano 64 170
+if [[ -v SSH_CONNECTION ]] ; then
+	function login_sound {
+		setuid-piano 59 170
+		setuid-piano 58 170
+		setuid-piano 55 170
+		setuid-piano 49 170
+		setuid-piano 48 170
+		setuid-piano 56 170
+		setuid-piano 60 170
+		setuid-piano 64 170
+	}
+	login_sound &!
+	unfunction login_sound
 fi

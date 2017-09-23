@@ -27,6 +27,9 @@ compinit
 zmodload zsh/complist
 source /usr/share/doc/pkgfile/command-not-found.zsh
 
+# freeze tty
+ttyctl -f
+
 # define and declare widgets
 autoload -Uz up-line-or-beginning-search
 zle -N up-line-or-beginning-search
@@ -49,19 +52,10 @@ function intelligent-return-key {
 }
 zle -N intelligent-return-key
 
-# syntax highlighting has to be loaded after widgets are declared
-#source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-
 # keybindings
 bindkey '^[[A' up-line-or-beginning-search
 bindkey '^[[B' down-line-or-beginning-search
 bindkey '^M' intelligent-return-key
-
-# freeze tty
-ttyctl -f
-
-# ls colors
-export LS_COLORS="di=01;35:ln=01;36:so=01;32:pi=01;32:ex=01;31:bd=01;33:cd=01;33:su=01;31;47:sg=01;31;47:tw=01;35;44:ow=01;35;44:"
 
 # completion
 zstyle ':completion:*' cache-path "$HOME/.zsh_cache"
@@ -72,56 +66,10 @@ zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
 zstyle ':completion:*' rehash true
 zstyle ':completion:*' use-cache true
 
-# syntax highlighting
-typeset -A ZSH_HIGHLIGHT_STYLES
-ZSH_HIGHLIGHT_STYLES[alias]='none'
-ZSH_HIGHLIGHT_STYLES[arg0]='none'
-ZSH_HIGHLIGHT_STYLES[assign]='none'
-ZSH_HIGHLIGHT_STYLES[back-dollar-quoted-argument]='none'
-ZSH_HIGHLIGHT_STYLES[back-double-quoted-argument]='none'
-ZSH_HIGHLIGHT_STYLES[back-quoted-argument]='none'
-ZSH_HIGHLIGHT_STYLES[builtin]='none'
-ZSH_HIGHLIGHT_STYLES[command]='none'
-ZSH_HIGHLIGHT_STYLES[default]='none'
-ZSH_HIGHLIGHT_STYLES[dollar-double-quoted-argument]='none'
-ZSH_HIGHLIGHT_STYLES[dollar-quoted-argument]='none'
-ZSH_HIGHLIGHT_STYLES[double-hyphen-option]='none'
-ZSH_HIGHLIGHT_STYLES[double-quoted-argument]='none'
-ZSH_HIGHLIGHT_STYLES[function]='none'
-ZSH_HIGHLIGHT_STYLES[globbing]='none'
-ZSH_HIGHLIGHT_STYLES[hashed-command]='none'
-ZSH_HIGHLIGHT_STYLES[history-expansion]='none'
-ZSH_HIGHLIGHT_STYLES[path_prefix]='none'
-ZSH_HIGHLIGHT_STYLES[path]='none'
-ZSH_HIGHLIGHT_STYLES[precommand]='none'
-ZSH_HIGHLIGHT_STYLES[reserved-word]='none'
-ZSH_HIGHLIGHT_STYLES[single-hyphen-option]='none'
-ZSH_HIGHLIGHT_STYLES[single-quoted-argument]='none'
-ZSH_HIGHLIGHT_STYLES[suffix-alias]='none'
-ZSH_HIGHLIGHT_STYLES[unknown-token]='none'
-
-ZSH_HIGHLIGHT_STYLES[commandseparator]='fg=cyan'
-ZSH_HIGHLIGHT_STYLES[comment]='fg=black,bold'
-ZSH_HIGHLIGHT_STYLES[redirection]='fg=cyan'
-
 # history
 HISTFILE="$HOME/.zsh_history"
 HISTSIZE=10000
 SAVEHIST=10000
-
-# pager
-export PAGER='less'
-export LESS='-FKMRX'
-
-# editor
-export EDITOR='nano'
-
-# browser
-if [[ -n "$SSH_CONNECTION" || -z "$DISPLAY" ]] ; then
-	export BROWSER='w3m'
-else
-	export BROWSER='firefox'
-fi
 
 # functions and aliases
 function path {

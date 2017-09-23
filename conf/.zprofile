@@ -1,3 +1,5 @@
+export PATH="$HOME/.local/bin:$PATH:."
+
 if [[ -v SSH_CONNECTION ]] ; then
 	function login_sound {
 		setuid-piano 59 170
@@ -12,8 +14,6 @@ if [[ -v SSH_CONNECTION ]] ; then
 	login_sound &!
 	unfunction login_sound
 fi
-
-export PATH="$HOME/.local/bin:$PATH:."
 
 neofetch --config "$HOME/.login_neofetch"
 

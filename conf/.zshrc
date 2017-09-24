@@ -175,6 +175,7 @@ alias history='fc -il 1 | less +G'
 alias manh='man -H'
 alias p0x='ping 0x4c.se'
 alias su='sudo -i'
+alias wa='which -a'
 alias x='exit'
 
 # prompt

@@ -60,7 +60,7 @@ bindkey '^M' intelligent-return-key
 # completion
 zstyle ':completion:*' cache-path "$HOME/.zsh_cache"
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS} 'ma=37;45'
-zstyle ':completion:*' list-dirs-first
+#zstyle ':completion:*' list-dirs-first true
 zstyle ':completion:*' menu select=2
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
 zstyle ':completion:*' rehash true

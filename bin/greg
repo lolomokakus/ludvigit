@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 
 # find out what sed we're using
-if which sed >&- 2>&- && sed --version 2>&1 | grep GNU >&- 2>&- ; then
+if which sed >/dev/null 2>&1 && sed --version 2>&1 | grep GNU >/dev/null 2>&1 ; then
 	sed=sed
-elif which gsed >&- 2>&- ; then
+elif which gsed >/dev/null 2>&1 ; then
 	sed=gsed
 else
 	echo "missing dependency: GNU sed (gsed)"

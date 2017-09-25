@@ -2,7 +2,7 @@
 cd "$(dirname $0)" || exit # cd into script's directory
 for dir in */ ; do
 	cd $dir || exit # cd into every subdirectory
-	if ! git rev-parse --is-inside-work-tree >&- 2>&- ; then # is this a git repository?
+	if ! git rev-parse --is-inside-work-tree >/dev/null 2>&1 ; then # is this a git repository?
 		echo ${dir%/}: not a git repository
 		cd .. # go back to parent directory
 		continue

@@ -1,12 +1,35 @@
 #!/usr/bin/env bash
+cat <<'EOF'
+                     `-.`'.-'
+                  `-.        .-'.
+               `-.    -./\.-    .-'
+                   -.  /_|\  .-
+               `-.   `/____\'   .-'.
+            `-.    -./.-""-.\.-      '
+               `-.  /< (()) >\  .-'
+             -   .`/__`-..-'__\'   .-
+           ,...`-./___|____|___\.-'.,.
+              ,-'   ,` . . ',   `-,
+           ,-'   ________________  `-,
+              ,'/____|_____|_____\
+             / /__|_____|_____|___\
+            / /|_____|_____|_____|_\
+           ' /____|_____|_____|_____\
+         .' /__|_____|_____|_____|___\
+        ,' /|_____|_____|_____|_____|_\
+       /../____|_____|_____|_____|_____\
+      '../__|_____|_____|_____|_____|___\
+     '.:/|_____|_____|_____|_____|_____|_\
+   ,':./____|_____|_____|_____|_____|_____\
+  /:../__|_____|_____|_____|_____|_____|___\
+ /.../|_____|_____|_____|_____|_____|_____|_\
+'..:/____|_____|_____|_____|_____|_____|_____\
+\:./ _  _ ___  ____ ____ _    _ _ _ _ _  _ ___\
+\./  |\/| |__) |___ |___ |___ _X_ _X_  \/  _|_ \
+ """"""""""""""""""""""""""""""""""""""""""""""""
+EOF
 
-# really weird way of displaying the pyramid.
-# essentially, the ascii art is decoded and decompressed at runtime.
-# this was the only way i could make it display correctly without cat'ing another file.
-# using --decode instead of -d or -D makes the script work on both mac os and linux.
-base64 --decode <<<"H4sIAGV84FYAA5WSQW7EIAxF9zmFlY0nEtj7qOo5urBEDsLh+51AJgFmpgXFiuQH74MgGowtysYSeRq26i8AaYnSjqImsUCDXcgxTdkcGO+xacIwHomeFonzHKW4iDrXTuoXPR7LQt82yOMrxWVA0TyVVyqICNqeKKdSzFOF9gJC9NVhI8HksCcIUwekZnSYk6zVVavdEcUV3vq5Y4C0gNcbxNSJOp3wyNUaA491jVRFXhjvXt651xueJMv6xnuxB17fq58BdP1oPzPgQPIxQI2BU61/yFCTGBITHkjyR3O8nFL85OmcBwAeOGXTTNhh8ZIuJf0cHxkoOAjp53+O6RebRuHeNAQAAA==" | gunzip
-
-if [ -n "$(command -v setuid-piano)" ] ; then
+if which setuid-piano >&- 2>&- ; then
 	# if setuid-piano is installed, play the x-files theme
 	setuid-piano 61 500
 	setuid-piano 68 500

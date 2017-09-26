@@ -20,8 +20,6 @@ setopt pushd_to_home
 setopt share_history
 
 # load things
-autoload -Uz colors
-colors
 autoload -Uz compinit
 compinit
 zmodload zsh/complist
@@ -154,4 +152,11 @@ alias wh='where'
 alias x='exit'
 
 # prompt
-PROMPT='%{$fg_bold[magenta]%}%?%{$reset_color%} %{$fg_bold[cyan]%}%~%{$reset_color%} %{$fg_bold[white]%}»%{$reset_color%} '
+PROMPT='%F{magenta}%B%?%f%b %F{cyan}%B%~%f%b %F{white}%B»%f%b '
+
+TRAPALRM() {
+	zle reset-prompt
+}
+TMOUT=1
+
+RPROMPT='%F{white}%B%*%f%b'

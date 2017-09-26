@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+if [[ -z "$@" ]] ; then
+  echo "Say what?" >&2
+  return 1
+fi
+if [[ -t 1 ]] ; then
+  espeak -v en --ipa "$@"
+else
+  espeak -v en --stdout "$@"
+fi

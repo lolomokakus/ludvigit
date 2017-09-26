@@ -40,7 +40,7 @@ zle -N down-line-or-beginning-search
 function intelligent-return-key {
 	if [[ ${#BUFFER} -eq 0 ]] ; then
 		echo
-		if [[ $(ls -1 | wc -l) -gt $((LINES - 2)) ]] ; then
+		if [[ $(ls -1U | wc -l) -gt $((LINES - 2)) ]] ; then
 			echo "Too many entries to list."
 		else
 			ls --color=auto --group-directories-first -FhoN
@@ -59,7 +59,7 @@ bindkey '^M' intelligent-return-key
 
 # completion
 zstyle ':completion:*' cache-path "$HOME/.zsh_cache"
-zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS} 'ma=37;45'
+zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}" 'ma=37;45'
 #zstyle ':completion:*' list-dirs-first true
 zstyle ':completion:*' menu select=2
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
@@ -73,34 +73,9 @@ SAVEHIST=10000
 
 # functions and aliases
 function path {
-	if [[ -z "$@" ]] ; then
-		echo $PATH
-	else
-		export PATH="$@"
-	fi
-}
-
-function say {
-	if [[ -z "$@" ]] ; then
-		echo "Say what?" >&2
-		return 1
-	fi
-	if [[ -t 1 ]] ; then
-		espeak -v en --stdout "$@" | paplay
-	else
-		espeak -v en --stdout "$@"
-	fi
-}
-
-function säg {
-	if [[ -z "$@" ]] ; then
-		echo "Säg vadå?" >&2
-		return 1
-	fi
-	if [[ -t 1 ]] ; then
-		espeak -v sv --stdout "$@" | paplay
-	else
-		espeak -v sv --stdout "$@"
+	echo "$PATH"
+	if [[ -v 1 ]] ; then
+		export PATH="$1"
 	fi
 }
 
@@ -175,7 +150,7 @@ alias history='fc -il 1 | less +G'
 alias manh='man -H'
 alias p0x='ping 0x4c.se'
 alias su='sudo -i'
-alias wa='which -a'
+alias wh='where'
 alias x='exit'
 
 # prompt

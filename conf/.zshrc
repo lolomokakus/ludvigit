@@ -152,7 +152,7 @@ alias wh='where'
 alias x='exit'
 
 # report time
-TIMEFMT='%J (user: %*U, system: %*S, total: %*E)'
+TIMEFMT='user: %*U, system: %*S, total: %*E'
 REPORTTIME=5
 
 # prompt

@@ -153,7 +153,7 @@ alias x='exit'
 
 # report time
 TIMEFMT='%J (user: %*U, system: %*S, total: %*E)'
-REPORTTIME=10
+REPORTTIME=5
 
 # prompt
 PROMPT='%F{magenta}%B%?%f%b %F{cyan}%B%~%f%b %F{white}%B»%f%b '

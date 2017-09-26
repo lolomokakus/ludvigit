@@ -31,12 +31,12 @@ EOF
 
 if which setuid-piano >/dev/null 2>&1 ; then
 	# if setuid-piano is installed, play the x-files theme
-	setuid-piano 61 500
-	setuid-piano 68 500
-	setuid-piano 66 500
-	setuid-piano 68 500
-	setuid-piano 71 500
-	setuid-piano 68 500
+	setuid-piano 61 440
+	setuid-piano 68 440
+	setuid-piano 66 440
+	setuid-piano 68 440
+	setuid-piano 71 440
+	setuid-piano 68 1320
 fi
 
 exit 0

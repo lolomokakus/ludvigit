@@ -154,9 +154,9 @@ alias x='exit'
 # prompt
 PROMPT='%F{magenta}%B%?%f%b %F{cyan}%B%~%f%b %F{white}%B»%f%b '
 
-TRAPALRM() {
-	zle reset-prompt
-}
-TMOUT=1
+#TRAPALRM() {
+#	zle reset-prompt
+#}
+#TMOUT=1
 
-RPROMPT='%F{white}%B%*%f%b'
+#RPROMPT='%F{white}%B%*%f%b'

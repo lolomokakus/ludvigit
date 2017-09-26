@@ -69,6 +69,13 @@ HISTFILE="$HOME/.zsh_history"
 HISTSIZE=10000
 SAVEHIST=10000
 
+# report time after running a command
+TIMEFMT='%J (U: %*U, S: %*S, R: %*E)'
+REPORTTIME=5
+
+# prompt
+PROMPT='%F{magenta}%B%?%f%b %F{cyan}%B%~%f%b %F{white}%B»%f%b '
+
 # functions and aliases
 function path {
 	if [[ -v 1 ]] ; then
@@ -94,6 +101,7 @@ alias p='pwd'
 alias j='jobs -l'
 alias jr='jobs -lr'
 alias js='jobs -ls'
+alias t='time'
 
 alias k='kill'
 alias c='kill -CONT'
@@ -150,17 +158,3 @@ alias p0x='ping 0x4c.se'
 alias su='sudo -i'
 alias wh='where'
 alias x='exit'
-
-# report time
-TIMEFMT='user: %*U, system: %*S, total: %*E'
-REPORTTIME=5
-
-# prompt
-PROMPT='%F{magenta}%B%?%f%b %F{cyan}%B%~%f%b %F{white}%B»%f%b '
-
-#TRAPALRM() {
-#	zle reset-prompt
-#}
-#TMOUT=1
-
-#RPROMPT='%F{white}%B%*%f%b'

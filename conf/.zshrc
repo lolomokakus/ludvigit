@@ -73,10 +73,10 @@ SAVEHIST=10000
 
 # functions and aliases
 function path {
-	echo "$PATH"
 	if [[ -v 1 ]] ; then
 		export PATH="$1"
 	fi
+	echo "$PATH"
 }
 
 alias sudo='sudo ' # this makes aliases work when run with sudo

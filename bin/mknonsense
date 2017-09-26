@@ -19,11 +19,10 @@ trap stop_early SIGINT SIGTERM
 
 if [[ -z "$1" ]] ; then
   STRING="Please enter a string to make nonsense out of."
+  echo "$STRING"
 else
   STRING="$1"
 fi
-
-echo "$STRING"
 
 if [[ -z "$2" ]] ; then
 	originalLanguage=$DEFAULTLANG

@@ -1,6 +1,6 @@
 export PATH="$HOME/.local/bin:$PATH:."
 
-if [[ -v SSH_CONNECTION ]] ; then
+if [[ -v SSH_TTY ]] ; then
 	function login_sound {
 		setuid-piano 59 170
 		setuid-piano 58 170

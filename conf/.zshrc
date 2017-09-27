@@ -70,7 +70,7 @@ HISTSIZE=10000
 SAVEHIST=10000
 
 # report time after running a command
-TIMEFMT='%J (U: %*U, S: %*S, R: %*E)'
+TIMEFMT='%J (U: %*U; S: %*S; R: %*E)'
 REPORTTIME=5
 
 # prompt

@@ -48,8 +48,7 @@ while [[ $pass -lt $PASSES ]] ; do
   if [[ $VERBOSE = true ]] ; then
     printf "$STRING\n"
   else
-    printf "\r"
-    printf "["
+    printf "\r["
     indicator=0
     while [[ $indicator -lt $PASSES ]] ; do
       if [[ $pass -lt $indicator ]] ; then

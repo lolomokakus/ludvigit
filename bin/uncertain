@@ -2,7 +2,5 @@
 # inspired by Brendan D. Gregg's absurd collection of free
 # sysadmin tools: http://www.brendangregg.com/specials.html
 
-# select 0 or 1 randomly
-uncertain=$(( $RANDOM % 2 ))
-# exit with the randomly selected number
-exit $uncertain
+# select 0 or 1 randomly and return it
+exit $(( RANDOM % 2 ))

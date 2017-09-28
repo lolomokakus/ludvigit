@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-
 ENGINE=bing
 LANGUAGES=(af ar bg bn bs ca cs cy da de el en es et fa fi fj fr he hi hr ht hu id it ja ko lt lv mg ms mt nl no otq pl pt ro ru sk sl sm sr-Latn sv sw th tlh to tr ty uk ur vi yua yue zh-CN)
 DEFAULTLANG=en
@@ -9,8 +8,7 @@ VERBOSE=false
 
 function stop_early() {
   if [[ $VERBOSE != true ]] ; then
-    echo
-    echo "$STRING"
+    printf "\n$STRING\n"
   fi
   exit 1
 }
@@ -19,7 +17,7 @@ trap stop_early SIGINT SIGTERM
 
 if [[ -z "$1" ]] ; then
   STRING="Please enter a string to make nonsense out of."
-  echo "$STRING"
+  printf "$STRING\n"
 else
   STRING="$1"
 fi
@@ -30,6 +28,16 @@ else
 	originalLanguage="$2"
 fi
 
+if [[ $VERBOSE != true ]] ; then
+  printf "["
+  indicator=0
+  while [[ $indicator -lt $PASSES ]] ; do
+    printf "-"
+    ((indicator++))
+  done
+  printf "]"
+fi
+
 pass=0
 while [[ $pass -lt $PASSES ]] ; do
   selectedLanguage=$((RANDOM % ${#LANGUAGES[@]} - 1))
@@ -38,9 +46,20 @@ while [[ $pass -lt $PASSES ]] ; do
   done
   STRING=$(trans -engine $ENGINE -brief -no-autocorrect ${LANGUAGES[$selectedLanguage]}:"$originalLanguage" -- "$(trans -engine $ENGINE -brief -no-autocorrect "$originalLanguage":${LANGUAGES[$selectedLanguage]} -- "$STRING")")
   if [[ $VERBOSE = true ]] ; then
-    echo "$STRING"
+    printf "$STRING\n"
   else
-    echo -n "."
+    printf "\r"
+    printf "["
+    indicator=0
+    while [[ $indicator -lt $PASSES ]] ; do
+      if [[ $pass -lt $indicator ]] ; then
+        printf "-"
+      else
+        printf "#"
+      fi
+      ((indicator++))
+    done
+    printf "]"
   fi
   ((pass++))
   if [[ $pass -ne $PASSES ]] ; then
@@ -49,8 +68,7 @@ while [[ $pass -lt $PASSES ]] ; do
 done
 
 if [[ $VERBOSE != true ]] ; then
-  echo
-  echo "$STRING"
+  printf "\n$STRING\n"
 fi
 
 exit 0

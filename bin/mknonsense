@@ -3,7 +3,7 @@ ENGINE=bing
 LANGUAGES=(af ar bg bn bs ca cs cy da de el en es et fa fi fj fr he hi hr ht hu id it ja ko lt lv mg ms mt nl no otq pl pt ro ru sk sl sm sr-Latn sv sw th tlh to tr ty uk ur vi yua yue zh-CN)
 DEFAULTLANG=en
 PASSES=20
-DELAY=2
+DELAY=1
 VERBOSE=false
 
 function stop_early() {

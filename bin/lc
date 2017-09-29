@@ -1,0 +1,2 @@
+#!/usr/bin/env bash
+physlock -p "[9;1][14;1]The system was locked by $(whoami) on $(date +'%F %T')."

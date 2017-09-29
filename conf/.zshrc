@@ -37,7 +37,6 @@ zle -N down-line-or-beginning-search
 
 function intelligent-return-key {
 	if [[ ${#BUFFER} -eq 0 ]] ; then
-		zle reset-prompt
 		echo
 		if [[ $(ls -1U | wc -l) -gt $((LINES - 2)) ]] ; then
 			echo "Too many entries to list."

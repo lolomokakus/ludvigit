@@ -37,13 +37,14 @@ zle -N down-line-or-beginning-search
 
 function intelligent-return-key {
 	if [[ ${#BUFFER} -eq 0 ]] ; then
+		zle reset-prompt
 		echo
 		if [[ $(ls -1U | wc -l) -gt $((LINES - 2)) ]] ; then
 			echo "Too many entries to list."
 		else
 			ls --color=auto --group-directories-first -FhoN
 		fi
-		zle redisplay
+		zle reset-prompt
 	else
 		zle accept-line
 	fi

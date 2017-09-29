@@ -20,6 +20,9 @@ pcmanfm -d &
 nm-applet &
 pasystray -n &
 
+xset s blank 600
+xset dpms 900 900 900
+
 pactl set-sink-volume alsa_output.pci-0000_00_1b.0.iec958-stereo 60%
 pactl set-sink-volume alsa_output.pci-0000_00_1b.0.analog-stereo 60%
 pactl set-source-volume alsa_input.pci-0000_00_1b.0.analog-stereo 30%

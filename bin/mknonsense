@@ -5,14 +5,6 @@ DEFAULTLANG=en
 PASSES=20
 DELAY=1
 
-function stop_early() {
-  printf "\n" >&2
-  printf -- "$STRING\n"
-  exit 1
-}
-
-trap stop_early SIGINT SIGTERM
-
 if [[ -z "$1" ]] ; then
   STRING="Please enter a string to make nonsense out of."
   printf -- "$STRING\n" >&2

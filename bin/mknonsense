@@ -8,7 +8,8 @@ VERBOSE=false
 
 function stop_early() {
   if [[ $VERBOSE != true ]] ; then
-    printf "\n$STRING\n"
+    printf "\n" >&2
+    printf "$STRING\n"
   fi
   exit 1
 }
@@ -17,7 +18,7 @@ trap stop_early SIGINT SIGTERM
 
 if [[ -z "$1" ]] ; then
   STRING="Please enter a string to make nonsense out of."
-  printf "$STRING\n"
+  printf "$STRING\n" >&2
 else
   STRING="$1"
 fi
@@ -29,13 +30,13 @@ else
 fi
 
 if [[ $VERBOSE != true ]] ; then
-  printf "["
+  printf "[" >&2
   indicator=0
   while [[ $indicator -lt $PASSES ]] ; do
-    printf "-"
+    printf "-" >&2
     ((indicator++))
   done
-  printf "]"
+  printf "]" >&2
 fi
 
 pass=0
@@ -44,21 +45,22 @@ while [[ $pass -lt $PASSES ]] ; do
   while [[ ${LANGUAGES[$selectedLanguage]} = "$originalLanguage" ]] ; do
     selectedLanguage=$((RANDOM % ${#LANGUAGES[@]} - 1))
   done
-  STRING=$(trans -engine $ENGINE -brief -no-autocorrect ${LANGUAGES[$selectedLanguage]}:"$originalLanguage" -- "$(trans -engine $ENGINE -brief -no-autocorrect "$originalLanguage":${LANGUAGES[$selectedLanguage]} -- "$STRING")")
+  tempString="$(trans -engine $ENGINE -brief -no-autocorrect "$originalLanguage":${LANGUAGES[$selectedLanguage]} -- "$STRING")"
+  STRING=$(trans -engine $ENGINE -brief -no-autocorrect ${LANGUAGES[$selectedLanguage]}:"$originalLanguage" -- "$tempString")
   if [[ $VERBOSE = true ]] ; then
     printf "$STRING\n"
   else
-    printf "\r["
+    printf "\r[" >&2
     indicator=0
     while [[ $indicator -lt $PASSES ]] ; do
       if [[ $pass -lt $indicator ]] ; then
-        printf "-"
+        printf "-" >&2
       else
-        printf "#"
+        printf "#" >&2
       fi
       ((indicator++))
     done
-    printf "]"
+    printf "]" >&2
   fi
   ((pass++))
   if [[ $pass -ne $PASSES ]] ; then
@@ -67,7 +69,8 @@ while [[ $pass -lt $PASSES ]] ; do
 done
 
 if [[ $VERBOSE != true ]] ; then
-  printf "\n$STRING\n"
+  printf "\n" >&2
+  printf "$STRING\n"
 fi
 
 exit 0

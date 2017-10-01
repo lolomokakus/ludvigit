@@ -138,10 +138,9 @@ alias l='ls -FhoN'
 alias la='ls -AFhoN'
 alias ldot='ls -dFhoN .*'
 
-alias cp='cp -ri'
-alias mv='mv -i'
-alias rm='rm -ri'
-alias srm='srm -ri'
+alias cp='cp -fr'
+alias rm='rm -r'
+alias srm='srm -rs'
 
 alias grep='grep --color=auto -n'
 alias -g G='| grep'

@@ -9,7 +9,7 @@ VERBOSE=false
 function stop_early() {
   if [[ $VERBOSE != true ]] ; then
     printf "\n" >&2
-    printf "$STRING\n"
+    printf -- "$STRING\n"
   fi
   exit 1
 }
@@ -18,7 +18,7 @@ trap stop_early SIGINT SIGTERM
 
 if [[ -z "$1" ]] ; then
   STRING="Please enter a string to make nonsense out of."
-  printf "$STRING\n" >&2
+  printf -- "$STRING\n" >&2
 else
   STRING="$1"
 fi
@@ -48,7 +48,7 @@ while [[ $pass -lt $PASSES ]] ; do
   tempString="$(trans -engine $ENGINE -brief -no-autocorrect "$originalLanguage":${LANGUAGES[$selectedLanguage]} -- "$STRING")"
   STRING=$(trans -engine $ENGINE -brief -no-autocorrect ${LANGUAGES[$selectedLanguage]}:"$originalLanguage" -- "$tempString")
   if [[ $VERBOSE = true ]] ; then
-    printf "$STRING\n"
+    printf -- "$STRING\n"
   else
     printf "\r[" >&2
     indicator=0
@@ -70,7 +70,7 @@ done
 
 if [[ $VERBOSE != true ]] ; then
   printf "\n" >&2
-  printf "$STRING\n"
+  printf -- "$STRING\n"
 fi
 
 exit 0

@@ -140,7 +140,7 @@ alias ldot='ls -dFhoN .*'
 
 alias cp='cp -fr'
 alias rm='rm -r'
-alias srm='srm -rs'
+alias srm='srm -r'
 
 alias grep='grep --color=auto -n'
 alias -g G='| grep'

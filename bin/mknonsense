@@ -4,20 +4,10 @@ LANGUAGES=(af ar bg bn bs ca cs cy da de el en es et fa fi fj fr he hi hr ht hu 
 DEFAULTLANG=en
 PASSES=20
 DELAY=1
-VERBOSE=false
-
-function stop_early() {
-  if [[ $VERBOSE != true ]] ; then
-    printf "\n$STRING\n"
-  fi
-  exit 1
-}
-
-trap stop_early SIGINT SIGTERM
 
 if [[ -z "$1" ]] ; then
   STRING="Please enter a string to make nonsense out of."
-  printf "$STRING\n"
+  printf -- "$STRING\n" >&2
 else
   STRING="$1"
 fi
@@ -28,46 +18,43 @@ else
 	originalLanguage="$2"
 fi
 
-if [[ $VERBOSE != true ]] ; then
-  printf "["
-  indicator=0
-  while [[ $indicator -lt $PASSES ]] ; do
-    printf "-"
-    ((indicator++))
-  done
-  printf "]"
-fi
+printf "[" >&2
+indicator=0
+while [[ $indicator -lt $PASSES ]] ; do
+  printf "-" >&2
+  ((indicator++))
+done
+printf "]" >&2
 
 pass=0
 while [[ $pass -lt $PASSES ]] ; do
   selectedLanguage=$((RANDOM % ${#LANGUAGES[@]} - 1))
-  while [[ ${LANGUAGES[$selectedLanguage]} = "$originalLanguage" ]] ; do
-    selectedLanguage=$((RANDOM % ${#LANGUAGES[@]} - 1))
-  done
-  STRING=$(trans -engine $ENGINE -brief -no-autocorrect ${LANGUAGES[$selectedLanguage]}:"$originalLanguage" -- "$(trans -engine $ENGINE -brief -no-autocorrect "$originalLanguage":${LANGUAGES[$selectedLanguage]} -- "$STRING")")
-  if [[ $VERBOSE = true ]] ; then
-    printf "$STRING\n"
+  if [[ $pass = 0 ]] ; then
+    STRING="$(trans -engine $ENGINE -brief -no-autocorrect "$originalLanguage":${LANGUAGES[$selectedLanguage]} -- "$STRING")"
+  elif [[ $pass = $((PASSES - 1)) ]] ; then
+    STRING="$(trans -engine $ENGINE -brief -no-autocorrect ${LANGUAGES[$previousLanguage]}:"$originalLanguage" -- "$STRING")"
   else
-    printf "\r["
-    indicator=0
-    while [[ $indicator -lt $PASSES ]] ; do
-      if [[ $pass -lt $indicator ]] ; then
-        printf "-"
-      else
-        printf "#"
-      fi
-      ((indicator++))
-    done
-    printf "]"
+    STRING="$(trans -engine $ENGINE -brief -no-autocorrect ${LANGUAGES[$previousLanguage]}:${LANGUAGES[$selectedLanguage]} -- "$STRING")"
   fi
-  ((pass++))
-  if [[ $pass -ne $PASSES ]] ; then
+  previousLanguage=$selectedLanguage
+  printf "\r[" >&2
+  indicator=0
+  while [[ $indicator -lt $PASSES ]] ; do
+    if [[ $pass -lt $indicator ]] ; then
+      printf "-" >&2
+    else
+      printf "#" >&2
+    fi
+    ((indicator++))
+  done
+  printf "]" >&2
+  if [[ $pass != $((PASSES - 1)) ]] ; then
     sleep $DELAY
   fi
+  ((pass++))
 done
 
-if [[ $VERBOSE != true ]] ; then
-  printf "\n$STRING\n"
-fi
+printf "\n" >&2
+printf -- "$STRING\n"
 
 exit 0

@@ -1,8 +1,12 @@
 #!/usr/bin/env bash
 if pacmd list-cards | grep "active profile: <output:analog-stereo+input:analog-stereo>" >/dev/null 2>&1 ; then
   pacmd set-card-profile 1 output:iec958-stereo+input:analog-stereo
+  sleep 0.1
+  pacmd set-sink-port alsa_output.pci-0000_00_1b.0.iec958-stereo iec958-stereo-output
   notify-send "Audio profile changed" "Output switched to speakers" --icon="audio-card"
 elif pacmd list-cards | grep "active profile: <output:iec958-stereo+input:analog-stereo>" >/dev/null 2>&1 ; then
   pacmd set-card-profile 1 output:analog-stereo+input:analog-stereo
+  sleep 0.1
+  pacmd set-sink-port alsa_output.pci-0000_00_1b.0.analog-stereo analog-output-headphones
   notify-send "Audio profile changed" "Output switched to headset" --icon="audio-card"
 fi

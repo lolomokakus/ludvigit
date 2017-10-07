@@ -151,6 +151,7 @@ alias piano='setuid-piano'
 alias typewrite='setuid-typewrite'
 
 alias cmd='wine cmd'
+alias hd='hexdump -C'
 alias history='fc -il 1 | less +G'
 alias manh='man -H'
 alias p0x='ping -a 0x4c.se'

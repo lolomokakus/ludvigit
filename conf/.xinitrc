@@ -24,13 +24,13 @@ xset s off
 xset s noblank
 xset -dpms
 
-pacmd set-sink-volume alsa_output.pci-0000_00_1b.0.iec958-stereo 60%
-pacmd set-sink-volume alsa_output.pci-0000_00_1b.0.analog-stereo 60%
-pacmd set-source-volume alsa_input.pci-0000_00_1b.0.analog-stereo 30%
-pacmd set-source-volume alsa_output.pci-0000_00_1b.0.analog-stereo.monitor 100%
+pactl set-sink-volume alsa_output.pci-0000_00_1b.0.iec958-stereo 60%
+pactl set-sink-volume alsa_output.pci-0000_00_1b.0.analog-stereo 60%
+pactl set-source-volume alsa_input.pci-0000_00_1b.0.analog-stereo 30%
+pactl set-source-volume alsa_output.pci-0000_00_1b.0.analog-stereo.monitor 100%
 
-pacmd load-sample sosumi "$HOME/.local/share/sounds/sosumi.wav"
-pacmd load-module module-x11-bell sample=sosumi display=$DISPLAY
+pactl upload-sample "$HOME/.local/share/sounds/sosumi.wav" sosumi
+pactl load-module module-x11-bell sample=sosumi display=$DISPLAY
 xset b 100
 
 exec xfce4-session

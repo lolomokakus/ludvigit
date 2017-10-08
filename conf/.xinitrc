@@ -1,10 +1,10 @@
 cd
 
 if [ -d /etc/X11/xinit/xinitrc.d ] ; then
-    for file in /etc/X11/xinit/xinitrc.d/?*.sh ; do
-        [ -x "$file" ] && . "$file"
-    done
-    unset file
+	for file in /etc/X11/xinit/xinitrc.d/?*.sh ; do
+		[ -x "$file" ] && . "$file"
+	done
+	unset file
 fi
 
 export QT_QPA_PLATFORMTHEME=qt5gtk2

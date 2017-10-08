@@ -33,4 +33,4 @@ pactl upload-sample "$HOME/.local/share/sounds/sosumi.wav" sosumi
 pactl load-module module-x11-bell sample=sosumi display=$DISPLAY
 xset b 100
 
-exec xfce4-session
+exec startxfce4

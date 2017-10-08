@@ -7,8 +7,8 @@ print_info() {
 	info "CPU" cpu
 	info "GPU" gpu
 	info "Uptime" uptime
-	info "Memory" memory
-	info "Storage" disk
+	#info "Memory" memory
+	#info "Storage" disk
 }
 
 colors=(13 15 7 14 7 7)

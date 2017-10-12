@@ -12,13 +12,14 @@ export QT_QPA_PLATFORMTHEME=qt5gtk2
 feh --no-fehbg --bg-fill /usr/share/backgrounds/highway.png
 
 compton &
+conky &
+fcitx &
+nm-applet &
+numlockx on &
+pasystray -n &
+pcmanfm -d &
 /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 xfsettingsd &
-numlockx on &
-conky &
-pcmanfm -d &
-nm-applet &
-pasystray -n &
 
 xset s off
 xset s noblank

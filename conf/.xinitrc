@@ -9,7 +9,7 @@ fi
 
 export QT_QPA_PLATFORMTHEME=qt5gtk2
 
-feh --no-fehbg --bg-fill /usr/share/backgrounds/highway.png
+feh --no-fehbg --bg-fill /usr/local/share/backgrounds/highway.png
 
 compton &
 conky &

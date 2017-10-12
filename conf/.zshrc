@@ -37,9 +37,9 @@ zle -N down-line-or-beginning-search
 
 function intelligent-return-key {
 	if [[ ${#BUFFER} -eq 0 ]] ; then
-		echo
+		printf "\n"
 		if [[ $(ls -1U | wc -l) -gt $((LINES - 2)) ]] ; then
-			echo "Too many entries to list."
+			printf "Too many entries to list.\n"
 		else
 			ls --color=auto --group-directories-first -FhoN
 		fi
@@ -81,7 +81,7 @@ function path {
 	if [[ -v 1 ]] ; then
 		export PATH="$1"
 	fi
-	echo "$PATH"
+	printf "$PATH\n"
 }
 
 alias sudo='sudo ' # this makes aliases work when run with sudo
@@ -155,7 +155,7 @@ alias hd='hexdump -C'
 alias history='fc -il 1 | less +G'
 alias manh='man -H'
 alias p0x='ping -a 0x4c.se'
-alias reset='reset && echo "\x1b[9;0]\x1b[14;0]\x1b[10;440]\x1b[11;100]"'
+alias reset='reset && printf "\x1b[9;0]\x1b[14;0]\x1b[10;440]\x1b[11;100]"'
 alias su='sudo -i'
 alias wh='where'
 alias x='exit'

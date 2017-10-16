@@ -142,6 +142,9 @@ alias cp='cp -fr'
 alias rm='rm -r'
 alias srm='srm -r'
 
+alias lo='locate -b'
+alias udb='updatedb'
+
 alias grep='grep --color=auto -n'
 alias -g G='| grep'
 alias -g L='| less'

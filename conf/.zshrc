@@ -66,9 +66,9 @@ function omniscient-return-key {
 zle -N omniscient-return-key
 
 # keybindings
-bindkey '^[[A' up-line-or-beginning-search
-bindkey '^[[B' down-line-or-beginning-search
-bindkey '^M' intelligent-return-key
+bindkey "$terminfo[Up]" up-line-or-beginning-search
+bindkey "$terminfo[Down]" down-line-or-beginning-search
+bindkey "$terminfo[Return]" intelligent-return-key
 
 # completion
 zstyle ':completion:*' cache-path "$HOME/.zsh_cache"

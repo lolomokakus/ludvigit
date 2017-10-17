@@ -7,7 +7,7 @@ DELAY=1
 
 if [[ -z "$1" ]] ; then
   STRING="Please enter a string to make nonsense out of."
-  printf -- "$STRING\n" >&2
+  echo "$STRING" >&2
 else
   STRING="$1"
 fi
@@ -18,13 +18,13 @@ else
 	originalLanguage="$2"
 fi
 
-printf "[" >&2
+echo -n "[" >&2
 indicator=0
 while [[ $indicator -lt $PASSES ]] ; do
-  printf "-" >&2
+  echo -n "-" >&2
   ((indicator++))
 done
-printf "]" >&2
+echo -n "]" >&2
 
 pass=0
 while [[ $pass -lt $PASSES ]] ; do
@@ -37,24 +37,24 @@ while [[ $pass -lt $PASSES ]] ; do
     STRING="$(trans -engine $ENGINE -brief -no-autocorrect ${LANGUAGES[$previousLanguage]}:${LANGUAGES[$selectedLanguage]} -- "$STRING")"
   fi
   previousLanguage=$selectedLanguage
-  printf "\r[" >&2
+  echo -en "\r[" >&2
   indicator=0
   while [[ $indicator -lt $PASSES ]] ; do
     if [[ $pass -lt $indicator ]] ; then
-      printf "-" >&2
+      echo -n "-" >&2
     else
-      printf "#" >&2
+      echo -n "#" >&2
     fi
     ((indicator++))
   done
-  printf "]" >&2
+  echo -n "]" >&2
   if [[ $pass != $((PASSES - 1)) ]] ; then
     sleep $DELAY
   fi
   ((pass++))
 done
 
-printf "\n" >&2
-printf -- "$STRING\n"
+echo >&2
+echo "$STRING"
 
 exit 0

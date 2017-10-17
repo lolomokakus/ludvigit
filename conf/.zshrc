@@ -38,21 +38,20 @@ zle -N down-line-or-beginning-search
 function omniscient-return-key {
 	case $BUFFER in
 		\$?*)
-			var="${$(set -- "$BUFFER"; printf "$1")##*\$}"
-			printf "\n"
+			var="${$(set -- "$BUFFER"; echo "$1")##*\$}"
+			echo
 			if [[ -v "$var" ]] ; then
-				printf "${(P)var}"
+				echo "${(P)var}"
 			else
-				printf "(unset)"
+				echo "(unset)"
 			fi
-			printf "\n"
 			zle kill-buffer
 			zle reset-prompt
 			;;
 		'')
-			printf "\n"
+			echo
 			if [[ "$(ls -1U | wc -l)" -gt "$((LINES - 2))" ]] ; then
-				printf "Too many entries to list.\n"
+				echo "Too many entries to list."
 			else
 				ls --color=auto --group-directories-first -FhoN
 			fi
@@ -96,7 +95,7 @@ function path {
 	if [[ -v 1 ]] ; then
 		export PATH="$1"
 	fi
-	printf "$PATH\n"
+	echo "$PATH"
 }
 
 alias sudo='sudo ' # this makes aliases work when run with sudo
@@ -173,7 +172,7 @@ alias hd='hexdump -C'
 alias history='fc -il 1 | less +G'
 alias manh='man -H'
 alias p0x='ping -a 0x4c.se'
-alias reset='reset && printf "\x1b[9;0]\x1b[14;0]\x1b[10;440]\x1b[11;100]"'
+alias reset='reset && echo -n "\x1b[9;0]\x1b[14;0]\x1b[10;440]\x1b[11;100]"'
 alias su='sudo -i'
 alias wh='where'
 alias x='exit'

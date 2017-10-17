@@ -19,6 +19,6 @@ neofetch --config "$HOME/.login_neofetch"
 
 unsetopt no_match
 if ! ls -1U /var/lib/dkms/nvidia/*mainline* >/dev/null 2>&1 && uname -r | grep mainline >/dev/null 2>&1 ; then
-	printf "\x1b[1;31mNOTE: THE NVIDIA DRIVER IS BROKEN ON MAINLINE AGAIN\x1b[0m\n"
+	echo "\x1b[1;31mNOTE: THE NVIDIA DRIVER IS BROKEN ON MAINLINE AGAIN\x1b[0m"
 fi
 setopt no_match

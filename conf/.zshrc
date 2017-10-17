@@ -35,20 +35,35 @@ zle -N up-line-or-beginning-search
 autoload -Uz down-line-or-beginning-search
 zle -N down-line-or-beginning-search
 
-function intelligent-return-key {
-	if [[ ${#BUFFER} -eq 0 ]] ; then
-		printf "\n"
-		if [[ $(ls -1U | wc -l) -gt $((LINES - 2)) ]] ; then
-			printf "Too many entries to list.\n"
-		else
-			ls --color=auto --group-directories-first -FhoN
-		fi
-		zle reset-prompt
-	else
-		zle accept-line
-	fi
+function omniscient-return-key {
+	case $BUFFER in
+		\$?*)
+			var="${$(set -- "$BUFFER"; printf "$1")##*\$}"
+			printf "\n"
+			if [[ -v "$var" ]] ; then
+				printf "${(P)var}"
+			else
+				printf "(unset)"
+			fi
+			printf "\n"
+			zle kill-buffer
+			zle reset-prompt
+			;;
+		'')
+			printf "\n"
+			if [[ "$(ls -1U | wc -l)" -gt "$((LINES - 2))" ]] ; then
+				printf "Too many entries to list.\n"
+			else
+				ls --color=auto --group-directories-first -FhoN
+			fi
+			zle reset-prompt
+			;;
+		*)
+			zle accept-line
+			;;
+	esac
 }
-zle -N intelligent-return-key
+zle -N omniscient-return-key
 
 # keybindings
 bindkey '^[[A' up-line-or-beginning-search
@@ -70,7 +85,7 @@ HISTSIZE=10000
 SAVEHIST=10000
 
 # report time after running a command
-TIMEFMT='%J (U: %*U; S: %*S; R: %*E)'
+TIMEFMT='%J (u: %*U; s: %*S; r: %*E)'
 REPORTTIME=5
 
 # prompt

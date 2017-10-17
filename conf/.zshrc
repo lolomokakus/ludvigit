@@ -38,10 +38,10 @@ zle -N down-line-or-beginning-search
 function omniscient-return-key {
 	case $BUFFER in
 		\$?*)
-			var="${$(set -- "$BUFFER"; echo "$1")##*\$}"
+			_ork_var="${$(set -- "$BUFFER"; echo "$1")##*\$}"
 			echo
-			if [[ -v "$var" ]] ; then
-				echo "${(P)var}"
+			if [[ -v "$_ork_var" ]] ; then
+				echo "${(P)_ork_var}"
 			else
 				echo "(unset)"
 			fi

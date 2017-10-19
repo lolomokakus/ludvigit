@@ -1,0 +1,35 @@
+#!/usr/bin/env bash
+LOADERCONF=/boot/loader/loader.conf
+
+if [[ $EUID -ne 0 ]] ; then
+	exit 1
+fi
+
+if [[ -z "$1" ]] ; then
+	exit 2
+fi
+
+case "$1" in
+	"lts")
+		echo "default arch-linux-lts" > $LOADERCONF
+		;;
+	"linux")
+		echo "default arch-linux" > $LOADERCONF
+		;;
+	"mainline")
+		echo "default arch-linux-mainline" > $LOADERCONF
+		;;
+	"git")
+		echo "default arch-linux-git" > $LOADERCONF
+		;;
+	*)
+		exit 3
+		;;
+esac
+
+echo "editor 0" >> $LOADERCONF
+echo "timeout 2" >> $LOADERCONF
+
+systemctl reboot
+
+exit 0

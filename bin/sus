@@ -13,8 +13,14 @@ def sus(string):
             output += word[:len(word) // 2 + 1] + word[len(word) // 2 - 1::-1] + " "
     print(output.rstrip())
 
-if len(sys.argv) > 1:
-    sus(" ".join(sys.argv[1:]))
-else:
-    for line in sys.stdin:
-        sus(line)
+def main():
+    if len(sys.argv) > 1:
+        sus(" ".join(sys.argv[1:]))
+    else:
+        for line in sys.stdin:
+            sus(line)
+
+try:
+    main()
+except KeyboardInterrupt:
+    sys.exit(1)

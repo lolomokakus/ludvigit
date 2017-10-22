@@ -1,5 +1,0 @@
-#!/usr/bin/env bash
-while true; do
-	beep -l 500
-	sleep .5
-done

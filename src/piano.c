@@ -4,9 +4,11 @@
 #include <stdlib.h> // For atoi()
 #include <sys/ioctl.h> // For ioctl()
 #include <time.h> // For nanosleep()
+
+/* Define the frequency of the fifth A */
+#define A4 440
+
 int main(int argc, char *argv[]) {
-	/* Define the frequency of the fifth A */
-	static const int a4 = 440;
 	/* Open the current TTY */
 	int console = open("/dev/tty0", O_WRONLY);
 	/* Default settings */
@@ -53,7 +55,7 @@ int main(int argc, char *argv[]) {
 		timer, will make the PC speaker beep at roughly the specified frequency.
 	*/
 	/* Start beeping */
-	ioctl(console, KIOCSOUND, (int)(1193180 / (pow(2, (float)(key - 49) / 12) * a4)));
+	ioctl(console, KIOCSOUND, (int)(1193180 / (pow(2, (float)(key - 49) / 12) * A4)));
 	/* Wait for the desired duration*/
 	nanosleep(&duration, NULL);
 	/* Stop beeping */

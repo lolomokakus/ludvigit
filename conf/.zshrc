@@ -65,10 +65,13 @@ function omniscient-return-key {
 zle -N omniscient-return-key
 
 # keybindings
+bindkey "$terminfo[kcuu1]" up-line-or-beginning-search
 bindkey "^[[A" up-line-or-beginning-search
 bindkey "^[OA" up-line-or-beginning-search
+bindkey "$terminfo[kcud1]" down-line-or-beginning-search
 bindkey "^[[B" down-line-or-beginning-search
 bindkey "^[OB" down-line-or-beginning-search
+bindkey "$terminfo[cr]" omniscient-return-key
 bindkey "^M" omniscient-return-key
 
 # completion

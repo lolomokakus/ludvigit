@@ -8,6 +8,7 @@
 #include <string.h> // For strcmp()
 #include <sys/ioctl.h> // For ioctl()
 #include <time.h> // For nanosleep()
+
 int main(int argc, char *argv[]) {
 	/* Defaults */
 	struct timespec delay = {0, 50000000}; // 50ms

@@ -13,7 +13,7 @@ main = forever $ do
 	eof <- hIsEOF stdin
 	if not eof
 		then do
-			line <- hGetLine stdin
+			line <- getLine
 			putStrLn $ (unwords . map sus . words) line
 			main
 		else exitSuccess

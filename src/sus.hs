@@ -1,3 +1,5 @@
+import Control.Monad
+import System.Exit
 import System.IO
 
 sus :: String -> String
@@ -7,11 +9,11 @@ sus word
 	| otherwise = take (length word `div` 2 + 1) word ++ (reverse . take (length word `div` 2)) word
 
 main :: IO ()
-main = do
+main = forever $ do
 	eof <- hIsEOF stdin
-	if eof
-		then return ()
-		else do
+	if not eof
+		then do
 			line <- hGetLine stdin
 			putStrLn $ (unwords . map sus . words) line
 			main
+		else exitSuccess

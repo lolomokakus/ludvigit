@@ -1,0 +1,14 @@
+# cache
+*.hi
+*.o
+
+# built programs
+collatz
+piano
+sus
+typewrite
+
+# apple garbage
+._*
+.DS_Store
+.DS_Store?

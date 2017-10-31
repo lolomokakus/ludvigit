@@ -1,5 +1,3 @@
-import System.IO
-
 sus :: String -> String
 sus word
 	| length word == 1 = word

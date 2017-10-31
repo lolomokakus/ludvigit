@@ -3,6 +3,7 @@
 *.o
 
 # built programs
+a.out
 collatz
 piano
 sus
@@ -12,3 +13,6 @@ typewrite
 ._*
 .DS_Store
 .DS_Store?
+
+# files that i usually make
+test

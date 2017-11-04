@@ -15,4 +15,5 @@ typewrite
 .DS_Store?
 
 # files that i usually make
-test
+a.out
+test*

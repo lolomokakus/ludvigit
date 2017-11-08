@@ -6,10 +6,10 @@ PASSES=20
 DELAY=1
 
 if [[ -z "$1" ]] ; then
-  STRING="Please enter a string to make nonsense out of."
-  echo "$STRING" >&2
+	STRING="Please enter a string to make nonsense out of."
+	echo "$STRING" >&2
 else
-  STRING="$1"
+	STRING="$1"
 fi
 
 if [[ -z "$2" ]] ; then
@@ -21,37 +21,37 @@ fi
 echo -n "[" >&2
 indicator=0
 while [[ $indicator -lt $PASSES ]] ; do
-  echo -n "-" >&2
-  ((indicator++))
+	echo -n "-" >&2
+	((indicator++))
 done
 echo -n "]" >&2
 
 pass=0
 while [[ $pass -lt $PASSES ]] ; do
-  selectedLanguage=$((RANDOM % ${#LANGUAGES[@]} - 1))
-  if [[ $pass = 0 ]] ; then
-    STRING="$(trans -engine $ENGINE -brief -no-autocorrect "$originalLanguage":${LANGUAGES[$selectedLanguage]} -- "$STRING")"
-  elif [[ $pass = $((PASSES - 1)) ]] ; then
-    STRING="$(trans -engine $ENGINE -brief -no-autocorrect ${LANGUAGES[$previousLanguage]}:"$originalLanguage" -- "$STRING")"
-  else
-    STRING="$(trans -engine $ENGINE -brief -no-autocorrect ${LANGUAGES[$previousLanguage]}:${LANGUAGES[$selectedLanguage]} -- "$STRING")"
-  fi
-  previousLanguage=$selectedLanguage
-  echo -en "\r[" >&2
-  indicator=0
-  while [[ $indicator -lt $PASSES ]] ; do
-    if [[ $pass -lt $indicator ]] ; then
-      echo -n "-" >&2
-    else
-      echo -n "#" >&2
-    fi
-    ((indicator++))
-  done
-  echo -n "]" >&2
-  if [[ $pass != $((PASSES - 1)) ]] ; then
-    sleep $DELAY
-  fi
-  ((pass++))
+	selectedLanguage=$((RANDOM % ${#LANGUAGES[@]} - 1))
+	if [[ $pass = 0 ]] ; then
+		STRING="$(trans -engine $ENGINE -brief -no-autocorrect "$originalLanguage":${LANGUAGES[$selectedLanguage]} -- "$STRING")"
+	elif [[ $pass = $((PASSES - 1)) ]] ; then
+		STRING="$(trans -engine $ENGINE -brief -no-autocorrect ${LANGUAGES[$previousLanguage]}:"$originalLanguage" -- "$STRING")"
+	else
+		STRING="$(trans -engine $ENGINE -brief -no-autocorrect ${LANGUAGES[$previousLanguage]}:${LANGUAGES[$selectedLanguage]} -- "$STRING")"
+	fi
+	previousLanguage=$selectedLanguage
+	echo -en "\r[" >&2
+	indicator=0
+	while [[ $indicator -lt $PASSES ]] ; do
+		if [[ $pass -lt $indicator ]] ; then
+			echo -n "-" >&2
+		else
+			echo -n "#" >&2
+		fi
+		((indicator++))
+	done
+	echo -n "]" >&2
+	if [[ $pass != $((PASSES - 1)) ]] ; then
+		sleep $DELAY
+	fi
+	((pass++))
 done
 
 echo >&2

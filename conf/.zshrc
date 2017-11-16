@@ -93,7 +93,7 @@ TIMEFMT='%J (u: %*U; s: %*S; r: %*E)'
 REPORTTIME=5
 
 # prompt
-PROMPT='%F{magenta}%B%?%f%b %F{cyan}%B%~%f%b %F{white}%B»%f%b '
+PROMPT='%F{magenta}%B%?%f%b %F{cyan}%B%~%f%b %F{white}%Bλ%f%b '
 
 # functions and aliases
 function path {

@@ -53,7 +53,7 @@ function omniscient-return-key {
 			if [[ "$(ls -1U | wc -l)" -gt "$((LINES - 2))" ]] ; then
 				echo "Too many entries to list."
 			else
-				ls -FhoN --group-directories-first --time-style=long-iso
+				ls -FhoN --color=auto --group-directories-first --time-style=long-iso
 			fi
 			zle reset-prompt
 			;;

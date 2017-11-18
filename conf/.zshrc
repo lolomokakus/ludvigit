@@ -53,7 +53,7 @@ function omniscient-return-key {
 			if [[ "$(ls -1U | wc -l)" -gt "$((LINES - 2))" ]] ; then
 				echo "Too many entries to list."
 			else
-				ls --color=auto --group-directories-first -FhoN
+				ls -FhoN --group-directories-first --time-style=long-iso
 			fi
 			zle reset-prompt
 			;;
@@ -153,10 +153,10 @@ alias reboot='systemctl reboot'
 alias shutdown='systemctl poweroff'
 alias suspend='systemctl suspend'
 
-alias ls='ls --color=auto --group-directories-first'
-alias l='ls -FhoN'
-alias la='ls -AFhoN'
-alias ldot='ls -dFhoN .*'
+alias ls='ls --color=auto'
+alias l='ls -FhoN --group-directories-first --time-style=long-iso'
+alias la='ls -AFhoN --group-directories-first --time-style=long-iso'
+alias ldot='ls -dFhoN --group-directories-first --time-style=long-iso .*'
 
 alias cp='cp -fr'
 alias rm='rm -r'

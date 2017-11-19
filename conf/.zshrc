@@ -99,8 +99,9 @@ PROMPT='%F{magenta}%B%?%f%b %F{cyan}%B%~%f%b %F{white}%Bλ%f%b '
 function path {
 	if [[ -v 1 ]] ; then
 		export PATH="$1"
+	else
+		echo "$PATH"
 	fi
-	echo "$PATH"
 }
 
 alias sudo='sudo ' # this makes aliases work when run with sudo

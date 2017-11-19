@@ -1,15 +1,15 @@
-collatz :: [Integer] -> [Integer]
-collatz nums
-	| last nums == 1 = nums
-	| last nums `mod` 2 == 0 = collatz $ nums ++ [last nums `div` 2]
-	| otherwise = collatz $ nums ++ [last nums * 3 + 1]
+import Numeric.Natural
+
+collatz :: Natural -> [Natural]
+collatz 1 = [1]
+collatz x
+	| even x = x : collatz (x `div` 2)
+	| odd x = x : collatz (x * 3 + 1)
 
 main :: IO ()
 main = do
 	putStrLn "Enter a number:"
-	num <- readLn :: IO Integer
-	let steps = collatz [num]
-	putStrLn "Steps:"
-	_ <- mapM print steps
-	putStrLn "Total stopping time:"
-	print $ length steps - 1
+	x <- readLn :: IO Natural
+	let steps = collatz x
+	putStrLn ("Steps: " ++ (unwords . map show) steps)
+	putStrLn ("Total stopping time: " ++ show (length steps - 1))

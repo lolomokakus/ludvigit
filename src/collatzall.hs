@@ -6,8 +6,8 @@ collatz x
 	| even x = x : collatz (x `div` 2)
 	| odd x = x : collatz (x * 3 + 1)
 
-formatCollatz :: Natural -> String
-formatCollatz x = show x ++ ": " ++ (show . length . collatz) x
+formatCollatz :: Natural -> IO ()
+formatCollatz x = putStrLn (show x ++ ": " ++ (show . length . collatz) x)
 
 main :: IO ()
-main = mapM_ (putStrLn . formatCollatz) [1..]
+main = mapM_ formatCollatz [1..]

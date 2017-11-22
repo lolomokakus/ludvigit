@@ -4,7 +4,7 @@ if [[ -z "$@" ]] ; then
   exit 1
 fi
 if [[ -t 1 ]] ; then
-  espeak -v en --ipa "$@"
+  espeak -v en --ipa "$@" 2>/dev/null
 else
-  espeak -v en --stdout "$@"
+  espeak -v en --stdout "$@" 2>/dev/null
 fi

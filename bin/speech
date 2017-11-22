@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+name="$(basename $0)"
+if [[ "$name" == "dice" ]] ; then
+  lang="la"
+elif [[ "$name" == "say" ]] ; then
+  lang="en"
+elif [[ "$name" == "säg" ]] ; then
+  lang="sv"
+else
+  echo "Invalid basename!" >&2
+  exit 1
+fi
+if [[ -n "$*" ]] ; then
+  if [[ -t 1 ]] ; then
+    espeak -v "$lang" --ipa "$*" 2>/dev/null
+  else
+    espeak -v "$lang" --stdout "$*" 2>/dev/null
+  fi
+else
+  if [[ -t 1 ]] ; then
+    espeak -v "$lang" --ipa --stdin 2>/dev/null
+  else
+    espeak -v "$lang" --stdout --stdin 2>/dev/null
+  fi
+fi

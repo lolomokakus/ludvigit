@@ -1,10 +1,14 @@
 #!/usr/bin/env bash
-if [[ -z "$@" ]] ; then
-  echo "Säg vadå?" >&2
-  exit 1
-fi
-if [[ -t 1 ]] ; then
-  espeak -v sv --ipa "$@" 2>/dev/null
+if [[ -n "$*" ]] ; then
+  if [[ -t 1 ]] ; then
+    espeak -v sv --ipa "$*" 2>/dev/null
+  else
+    espeak -v sv --stdout "$*" 2>/dev/null
+  fi
 else
-  espeak -v sv --stdout "$@" 2>/dev/null
+  if [[ -t 1 ]] ; then
+    espeak -v sv --ipa --stdin 2>/dev/null
+  else
+    espeak -v sv --stdout --stdin 2>/dev/null
+  fi
 fi

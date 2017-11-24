@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
-# Fakes a Windows pre-8 BSoD.
-# A Python clone of Folkert van Heusden's original C program: https://www.vanheusden.com/bsod/
+# Ser ut som en BSOD på Windowsversioner innan 8.
+# En Pythonversion av Folkert van Heusdens C-program med samma namn: https://www.vanheusden.com/bsod/
 
 import curses
 import random
 import sys
 
-def randomSysfile(argument = "midsummer"): # Generates a random system file name
+def randomSysfile(argument = "midsummer"): # Väljer en systemfil i listan
 	if argument == "halloween":
 		sysfiles = [
 			"HALOWEEN.SYS"
@@ -333,7 +333,7 @@ def randomSysfile(argument = "midsummer"): # Generates a random system file name
 			]
 	return random.choice(sysfiles)
 
-def randomError(argument = "midsummer"): # Generates a random stop error
+def randomError(argument = "midsummer"): # Väljer ett systemfel i listan
 	if argument == "halloween":
 		errors = [
 			"EMBRACE_EXTEND_EXTINGUISH"
@@ -443,32 +443,32 @@ def randomError(argument = "midsummer"): # Generates a random stop error
 			]
 	return random.choice(errors)
 
-def randomHex(): # Generates a random hex number (0 to ffffffff)
+def randomHex(): # Skapar ett hexadecimalt tal mellan 0x00000000 och 0xFFFFFFFF
 	return "{:08x}".format(random.randint(1, 4294967295)).upper()
 
 def main(stdscr):
 	try:
 		y, x = stdscr.getmaxyx()
-		if y < 28 or x < 76: # Check if terminal is big enough
-			return 2 # Return values are processed later
+		if y < 28 or x < 76: # Kontrollera att terminalen är tillräckligt stor
+			return 2 # Felkoderna tas omhand längre ner i programmet
 
-		random.seed() # Seed the RNG
+		random.seed() # Initiera slumpgeneratorn
 
-		if curses.has_colors(): # Check if the terminal has color support
-			curses.init_pair(1, curses.COLOR_WHITE, curses.COLOR_BLUE) # If so, set the default colors
+		if curses.has_colors(): # Kontrollera att terminalen är i färg
+			curses.init_pair(1, curses.COLOR_WHITE, curses.COLOR_BLUE) # Ställ in rätt färger om den är det
 			stdscr.bkgd(curses.color_pair(1))
-			stdscr.attron(curses.A_BOLD) # **BOLD TEXT**
+			stdscr.attron(curses.A_BOLD) # **FETSTIL**
 
 		sysfile = randomSysfile()
 		error = randomError()
-		# We can't generate a random hex number this way because we need several different ones
+		# Eftersom fler än ett hexadecimalt tal behövs skapas de senare
 
 		for argument in sys.argv:
-			if argument == "--halloween": # Check for spooky arguments
+			if argument == "--halloween": # Bu!
 				sysfile = randomSysfile("halloween")
 				error = randomError("halloween")
 
-		stdscr.clear() # Let's go!
+		stdscr.clear() # Nu kör vi!
 		stdscr.addstr(1, 0, "A problem has been detected and Windows has been shut down to prevent damage")
 		stdscr.addstr(2, 0, "to your computer.")
 		stdscr.addstr(4, 0, "The problem seems to be caused by the following file: " + sysfile)
@@ -487,18 +487,18 @@ def main(stdscr):
 		stdscr.addstr(22, 0, "Technical information:")
 		stdscr.addstr(24, 0, "*** STOP: 0x" + randomHex() + " (0x" + randomHex() + ",0x" + randomHex() + ",0x" + randomHex() + ",0x" + randomHex() + ")")
 		stdscr.addstr(27, 0, "***  " + sysfile + " - Address " + randomHex() + " base at " + randomHex() + ", DateStamp " + randomHex())
-		stdscr.addstr(y - 1, x - 1, "") # Moves the cursor to the lower right corner
+		stdscr.addstr(y - 1, x - 1, "") # Flyttar pekaren längst ner till höger
 
-		stdscr.getch() # Wait for keypress
+		stdscr.getch() # Vänta på att användaren ska trycka på en tangent
 		return 0
 
-	except(KeyboardInterrupt): # Handle Ctrl+C gracefully
+	except(KeyboardInterrupt): # Ta emot Ctrl+C manuellt så vi slipper varningar
 		return 1
 
 status = curses.wrapper(main)
-# 0 = OK
-# 1 = KeyboardInterrupt
-# 2 = Terminal is too small
+# 0 = Okej
+# 1 = Ctrl+C
+# 2 = Terminalen är för liten
 if status == 2:
 	print("Your terminal is too small! (Need at least 76x28)")
 

@@ -1,24 +1,24 @@
-# cache
+# Cache
 *.hi
 *.o
 
-# built programs
+# Kompilerade program
 collatz
 collatzall
 piano
 sus
 typewrite
 
-# links
+# Länkar
 dice
 say
 säg
 
-# apple garbage
+# Appleskit
 ._*
 .DS_Store
 .DS_Store?
 
-# files that i usually make
+# Filer som jag brukar skapa
 a.out
 test*

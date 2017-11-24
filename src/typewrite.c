@@ -1,56 +1,58 @@
-#include <ctype.h> // For isspace()
-#include <fcntl.h> // For open()
-#include <linux/kd.h> // For KDMKTONE
-#include <math.h> // For floor()
-#include <stdbool.h> // For bool
-#include <stdio.h> // For getchar(), putchar() and fflush()
-#include <stdlib.h> // For atoi()
-#include <string.h> // For strcmp()
-#include <sys/ioctl.h> // For ioctl()
-#include <time.h> // For nanosleep()
+#include <ctype.h> // För isspace()
+#include <fcntl.h> // För open()
+#include <linux/kd.h> // För KDMKTONE
+#include <math.h> // För floor()
+#include <stdbool.h> // För bool
+#include <stdio.h> // För getchar(), putchar() och fflush()
+#include <stdlib.h> // För atoi()
+#include <string.h> // För strcmp()
+#include <sys/ioctl.h> // För ioctl()
+#include <time.h> // För nanosleep()
 
 int main(int argc, char *argv[]) {
-	/* Defaults */
+	/* Grundinställningar */
 	struct timespec delay = {0, 50000000}; // 50ms
 	bool sound = false;
-	/* Variables we'll need */
+	/* Variabler som kommer behövas */
 	int console;
 	char character;
-	/* If there are two or mode arguments and the second one is "sound", turn on the sound */
+	/* Slå på klicken om det finns två eller fler parametrar och den andra är "sound" */
 	if(argc >= 3 && !strcmp(argv[2], "sound")) {
 		sound = true;
 	}
-	/* If there are one or more arguments */
+	/*
+		Slå på klicken om den första parametern är "sound" och försök annars tolka den
+		som en väntetid i millisekunder
+	*/
 	if(argc >= 2) {
-		/* If the first argument is "sound", turn on the sound, otherwise try to use the argument as the delay */
 		if(!strcmp(argv[1], "sound")) {
 			sound = true;
 		} else {
 			int temp_delay = atoi(argv[1]);
-			/* Convert milliseconds into seconds and nanoseconds */
+			/* Konvertera millisekunderna till sekunder och nanosekunder */
 			delay.tv_sec = floor(temp_delay / 1000);
 			temp_delay -= delay.tv_sec * 1000;
 			delay.tv_nsec = temp_delay * 1000000;
 		}
 	}
-	/* Open the current TTY for writing if sound is enabled */
+	/* Öppna terminalen i skrivläge om klicken är aktiverade */
 	if(sound) {
 		console = open("/dev/tty0", O_WRONLY);
 	}
-	/* Go through each character in the standard input */
+	/* Gå igenom alla tecken i stdin */
 	while(character = getchar(), character != EOF) {
-		/* Print it */
+		/* Skriv ut tecknet */
 		putchar(character);
-		/* Flush the stdout buffer */
+		/* Kläm ut det ur bufferten */
 		fflush(stdout);
-		/* Make some noise if the current character isn't whitespace and noisemaking is enabled */
+		/* Klicka om klicken är påslagna och tecknet inte är mellanslag el. dyl. */
 		if(!isspace(character) && sound) {
-			/* Beeps at 100Hz for 5ms (I say "beeps" but it sounds more like a click) */
+			/* Piper med 100Hz i 5ms (det låter snarare som ett klick) */
 			ioctl(console, KDMKTONE, 339612);
 		}
-		/* Delay printing the next character */
+		/* Vänta med att skriva ut nästa bokstav */
 		nanosleep(&delay, NULL);
 	}
-	/* Bye */
+	/* Hej då */
 	return 0;
 }

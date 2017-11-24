@@ -1,4 +1,4 @@
-# options
+# Inställingar
 setopt always_to_end
 setopt auto_cd
 setopt auto_pushd
@@ -19,16 +19,16 @@ setopt pushd_minus
 setopt pushd_to_home
 setopt share_history
 
-# load things
+# Läs in saker
 autoload -Uz compinit
 compinit
 zmodload zsh/complist
 source /usr/share/doc/pkgfile/command-not-found.zsh
 
-# freeze tty
+# Frys terminalen
 ttyctl -f
 
-# define and declare widgets
+# Definiera widgetar
 autoload -Uz up-line-or-beginning-search
 zle -N up-line-or-beginning-search
 
@@ -64,7 +64,7 @@ function omniscient-return-key {
 }
 zle -N omniscient-return-key
 
-# keybindings
+# Tangentbordsgenvägar
 bindkey "$terminfo[kcuu1]" up-line-or-beginning-search
 bindkey "^[[A" up-line-or-beginning-search
 bindkey "^[OA" up-line-or-beginning-search
@@ -74,7 +74,7 @@ bindkey "^[OB" down-line-or-beginning-search
 bindkey "$terminfo[cr]" omniscient-return-key
 bindkey "^M" omniscient-return-key
 
-# completion
+# Automatisk komplettering
 zstyle ':completion:*' cache-path "$HOME/.zsh_cache"
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}" 'ma=37;45'
 #zstyle ':completion:*' list-dirs-first true
@@ -83,19 +83,19 @@ zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
 zstyle ':completion:*' rehash true
 zstyle ':completion:*' use-cache true
 
-# history
+# Historik
 HISTFILE="$HOME/.zsh_history"
 HISTSIZE=10000
 SAVEHIST=10000
 
-# report time after running a command
+# Visa hur lång tid program tog efter att de har avslutats
 TIMEFMT='%J (u: %*U; s: %*S; r: %*E)'
 REPORTTIME=5
 
-# prompt
+# Prompten
 PROMPT='%F{magenta}%B%?%f%b %F{cyan}%B%~%f%b %F{white}%Bλ%f%b '
 
-# functions and aliases
+# Funktioner och alias
 function path {
 	if [[ -v 1 ]] ; then
 		export PATH="$1"
@@ -104,7 +104,7 @@ function path {
 	fi
 }
 
-alias sudo='sudo ' # this makes aliases work when run with sudo
+alias sudo='sudo ' # Krävs för att alias ska funka med sudo
 
 alias 1='cd -1'
 alias 2='cd -2'

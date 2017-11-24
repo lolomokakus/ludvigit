@@ -1,16 +1,16 @@
 %
-; use mm
+; använd millimeter istället för tum eller nån annan skit
 G21
-; initial position
+; utgångsläge
 N001 G91 G28 X0 Y0 Z0 M05
 N005 G90 T1 M06
-; start spindle
+; starta spindeln
 N010 M03 S20000
-; go to start position
+; flytta spindeln till början på första bokstaven
 N015 G00 X20 Y25
-; raise spindle
+; höj spindeln
 N020 Z25
-; cut L
+; skär ut bokstaven L
 N025 G01 F300 Z-2
 N030 X25 Y20
 N035 X65
@@ -20,9 +20,9 @@ N050 Y100
 N055 X20 Y105
 N060 Y25
 N065 G00 Z25
-; go to second start position
+; flytta spindeln till början på andra bokstaven
 N070 X100 Y25
-; cut H
+; skär ut bokstaven H
 N075 G01 Z-2
 N080 X105 Y20
 N085 Y60
@@ -38,8 +38,8 @@ N135 X100 Y105
 N140 Y25
 ; raise your spindles ヽ༼ຈل͜ຈ༽ﾉ
 N145 G00 Z25
-; go to initial position
+; gå tillbaka till utgångsläget
 N150 G91 G28 X0 Y0 Z0 M05
-; end program
+; avsluta programmet
 N155 M30
 %

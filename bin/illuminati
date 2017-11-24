@@ -30,7 +30,7 @@ cat <<'EOF'
 EOF
 
 if which setuid-piano >/dev/null 2>&1 ; then
-	# if setuid-piano is installed, play the x-files theme
+	# Spela signaturmelodin till X-Files om setuid-piano är installerat
 	setuid-piano 61 440
 	setuid-piano 68 440
 	setuid-piano 66 440

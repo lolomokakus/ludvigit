@@ -1,4 +1,4 @@
 # ludvigit
-My personal collection of random code and config files.
+Min personliga samling konfigurationsfiler och onödig programkod
 
-Everything in the `bin` and `src` directories is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+Allt i katalogerna `bin` och `src` är fri mjukvara. Vem som helst får lov att dela med sig av och/eller ändra den enligt reglerna i GNU General Public License så som den publicerats av Free Software Foundation, antingen version 3 eller nyare.

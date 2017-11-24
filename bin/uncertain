@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
-# inspired by Brendan D. Gregg's absurd collection of free
-# sysadmin tools: http://www.brendangregg.com/specials.html
+# Inspirerat av Brendan D. Greggs absurda samling gratis administrationsverktyg:
+# http://www.brendangregg.com/specials.html
 
-# select 0 or 1 randomly and return it
+# Välj 0 eller 1 och avsluta med det som felkod
 exit $(( RANDOM % 2 ))

@@ -1,34 +1,33 @@
 #!/usr/bin/env bash
-# needs to be owned by root and have the setuid bit set! (or just be run as root)
-# store initial led states
+# Måste köras av root!
+# Spara lampornas nuvarande lägen
 NUM_STATE_INITIAL=$(cat /sys/class/leds/input0::numlock/brightness)
 CAPS_STATE_INITIAL=$(cat /sys/class/leds/input0::capslock/brightness)
 SCROLL_STATE_INITIAL=$(cat /sys/class/leds/input0::scrolllock/brightness)
-# i'm not sure if these files differ depending on what keyboard you have, but
-# it works on my machine (tm)
+# Jag vet inte om de här filerna funkar på alla datorer, men de funkar i alla fall på min
 
 function leds_off() {
-  # this function turns off the leds...
+  # Den här funktionen stänger av lamporna...
   echo 0 > /sys/class/leds/input0::numlock/brightness
   echo 0 > /sys/class/leds/input0::capslock/brightness
   echo 0 > /sys/class/leds/input0::scrolllock/brightness
 }
 
 function leds_on() {
-  # ...this one turns them on...
+  # ...den här slår på dem...
   echo 1 > /sys/class/leds/input0::numlock/brightness
   echo 1 > /sys/class/leds/input0::capslock/brightness
   echo 1 > /sys/class/leds/input0::scrolllock/brightness
 }
 
 function leds_restore() {
-  # ...and this one restores the stored states.
+  # ...och den här återställer deras ursprungliga lägen.
   echo $NUM_STATE_INITIAL > /sys/class/leds/input0::numlock/brightness
   echo $CAPS_STATE_INITIAL > /sys/class/leds/input0::capslock/brightness
   echo $SCROLL_STATE_INITIAL > /sys/class/leds/input0::scrolllock/brightness
 }
 
-# restore stored states on exit
+# Återställ lamporna när programmet avslutas
 trap "leds_restore ; exit" SIGINT SIGTERM
 
 while true ; do

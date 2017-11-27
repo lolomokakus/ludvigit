@@ -23,9 +23,9 @@ int main(int argc, char *argv[]) {
 	if(argc >= 3) {
 		int temp_duration = atoi(argv[2]);
 		/*
-			timespec-poster har två fält, tv_sec och tv_nsec. tv_sec innehåller ett antal sekunder
-			och tv_nsec innehåller ett antal nanosekunder. Eftersom användaren matar in tonens
-			längd i millisekunder behövs det lite trix för att få allt att funka.
+			timespec-strukter har två fält, tv_sec och tv_nsec. tv_sec innehåller ett antal
+			sekunder och tv_nsec innehåller ett antal nanosekunder. Eftersom användaren
+			matar in tonens längd i millisekunder behövs det lite trix för att få allt att funka.
 		*/
 		duration.tv_sec = floor(temp_duration / 1000);
 		temp_duration -= duration.tv_sec * 1000;

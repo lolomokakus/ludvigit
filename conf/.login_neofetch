@@ -1,12 +1,12 @@
 print_info() {
 	info title
 	info underline
-	info "OS" distro
-	info "Kernel" kernel
-	info "Shell" shell
+	info "Operativsystem" distro
+	info "Kärna" kernel
+	info "Kommandotolk" shell
 	info "CPU" cpu
 	info "GPU" gpu
-	info "Uptime" uptime
+	info "Tid igång" uptime
 }
 
 colors=(13 15 7 14 7 7)

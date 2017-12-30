@@ -1,0 +1,23 @@
+print_info() {
+	info title
+	info underline
+	info "Modell" model
+	info "CPU" cpu
+	info "GPU" gpu
+	info "Operativsystem" distro
+	info "Kärna" kernel
+	info "Kommandotolk" shell
+	info "Tid igång" uptime
+}
+
+colors=(13 15 7 14 7 7)
+image_backend="ascii"
+image_source="$HOME/.login_ascii"
+kernel_shorthand="off"
+os_arch="off"
+shell_path="off"
+shell_version="on"
+speed_shorthand="on"
+uptime_shorthand="tiny"
+
+config_version="3.3.0"

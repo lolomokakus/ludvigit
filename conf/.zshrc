@@ -43,7 +43,7 @@ function omniscient-return-key {
 			if [[ -v "$_ork_var" ]] ; then
 				echo "${(P)_ork_var}"
 			else
-				echo "(unset)"
+				echo "(inte definierad)"
 			fi
 			zle kill-buffer
 			zle reset-prompt
@@ -51,7 +51,7 @@ function omniscient-return-key {
 		'')
 			echo
 			if [[ "$(ls -1U | wc -l)" -gt "$((LINES - 2))" ]] ; then
-				echo "Too many entries to list."
+				echo "För många objekt för att visa."
 			else
 				ls -FhoN --color=auto --group-directories-first --time-style=long-iso
 			fi
@@ -89,7 +89,7 @@ HISTSIZE=10000
 SAVEHIST=10000
 
 # Visa hur lång tid program tog efter att de har avslutats
-TIMEFMT='%J (u: %*U; s: %*S; r: %*E)'
+TIMEFMT='%J (%*E)'
 REPORTTIME=5
 
 # Prompten
@@ -181,4 +181,3 @@ alias manh='man -H'
 alias p0x='ping -a 0x4c.se'
 alias su='sudo -i'
 alias wh='where'
-alias x='exit'

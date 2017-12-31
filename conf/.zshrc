@@ -89,11 +89,11 @@ HISTSIZE=10000
 SAVEHIST=10000
 
 # Visa hur lång tid program tog efter att de har avslutats
-TIMEFMT='%J (%*E)'
+TIMEFMT='%J (A: %*U; S: %*S; V: %*E)'
 REPORTTIME=5
 
 # Prompten
-PROMPT='%F{magenta}%B%?%f%b %F{cyan}%B%~%f%b %F{white}%Bλ%f%b '
+PROMPT='%F{magenta}%B%(?.☺.%?)%f%b %F{cyan}%B%~%f%b %F{white}%B»%f%b '
 
 # Funktioner och alias
 function path {

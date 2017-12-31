@@ -6,7 +6,7 @@ print_info() {
 	info "GPU" gpu
 	info "Operativsystem" distro
 	info "Kärna" kernel
-	info "Kommandotolk" shell
+	info "Unixskal" shell
 	info "Tid igång" uptime
 }
 

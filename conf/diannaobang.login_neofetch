@@ -7,7 +7,6 @@ print_info() {
 	info "Operativsystem" distro
 	info "Kärna" kernel
 	info "Unixskal" shell
-	info "Tid igång" uptime
 }
 
 colors=(13 15 7 14 7 7)

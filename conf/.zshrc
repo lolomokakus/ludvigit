@@ -104,7 +104,8 @@ function path {
 	fi
 }
 
-alias sudo='sudo ' # Krävs för att alias ska funka med sudo
+alias sd='sudo ' # Krävs för att alias ska funka med sudo
+alias su='sudo -i'
 
 alias 1='cd -1'
 alias 2='cd -2'
@@ -148,6 +149,9 @@ alias gp='git push'
 alias gr='git rm'
 alias gst='git status'
 
+alias um='udisksctl mount --block-device'
+alias uu='udisksctl unmount --block-device'
+
 alias emergency='systemctl emergency'
 alias hibernate='systemctl hibernate'
 alias reboot='systemctl reboot'
@@ -179,5 +183,4 @@ alias hd='hexdump -C'
 alias history='fc -il 1 | less +G'
 alias manh='man -H'
 alias p0x='ping -a 0x4c.se'
-alias su='sudo -i'
 alias wh='where'

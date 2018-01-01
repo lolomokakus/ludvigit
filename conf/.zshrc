@@ -53,7 +53,7 @@ function omniscient-return-key {
 			if [[ "$(ls -1U | wc -l)" -gt "$((LINES - 2))" ]] ; then
 				echo "För många objekt för att visa."
 			else
-				ls -FhoN --color=auto --group-directories-first --time-style=long-iso
+				ls -FhoN --color=auto --group-directories-first
 			fi
 			zle reset-prompt
 			;;

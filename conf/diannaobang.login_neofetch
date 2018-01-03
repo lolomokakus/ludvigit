@@ -3,7 +3,6 @@ print_info() {
 	info underline
 	info "Modell" model
 	info "CPU" cpu
-	info "GPU" gpu
 	info "Operativsystem" distro
 	info "Kärna" kernel
 	info "Unixskal" shell

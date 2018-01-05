@@ -7,7 +7,7 @@ elif [[ "$name" == "say" ]] ; then
 elif [[ "$name" == "säg" ]] ; then
   lang="sv"
 else
-  echo "Invalid basename!" >&2
+  echo "Ogiltigt filnamn!" >&2
   exit 1
 fi
 if [[ -n "$*" ]] ; then

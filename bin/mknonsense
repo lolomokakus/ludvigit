@@ -36,6 +36,9 @@ while [[ $pass -lt $PASSES ]] ; do
 	else
 		STRING="$(trans -engine $ENGINE -brief -no-autocorrect ${LANGUAGES[$previousLanguage]}:${LANGUAGES[$selectedLanguage]} -- "$STRING")"
 	fi
+	if [[ "$?" -ne 0 ]] ; then
+		exit 1
+	fi
 	previousLanguage=$selectedLanguage
 	echo -en "\r[" >&2
 	indicator=0

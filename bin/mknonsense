@@ -5,14 +5,14 @@ DEFAULTLANG=sv
 PASSES=20
 DELAY=1
 
-if [[ -z "$1" ]] ; then
+if [[ -z "$1" ]]; then
 	STRING="Ange texten som ska bli nonsens inom citationstecken på kommandoraden."
 	echo "$STRING" >&2
 else
 	STRING="$1"
 fi
 
-if [[ -z "$2" ]] ; then
+if [[ -z "$2" ]]; then
 	originalLanguage=$DEFAULTLANG
 else
 	originalLanguage="$2"
@@ -20,30 +20,30 @@ fi
 
 echo -n "[" >&2
 indicator=0
-while [[ $indicator -lt $PASSES ]] ; do
+while [[ $indicator -lt $PASSES ]]; do
 	echo -n "-" >&2
 	((indicator++))
 done
 echo -n "]" >&2
 
 pass=0
-while [[ $pass -lt $PASSES ]] ; do
+while [[ $pass -lt $PASSES ]]; do
 	selectedLanguage=$((RANDOM % ${#LANGUAGES[@]} - 1))
-	if [[ $pass = 0 ]] ; then
+	if [[ $pass = 0 ]]; then
 		STRING="$(trans -engine $ENGINE -brief -no-autocorrect "$originalLanguage":${LANGUAGES[$selectedLanguage]} -- "$STRING")"
-	elif [[ $pass = $((PASSES - 1)) ]] ; then
+	elif [[ $pass = $((PASSES - 1)) ]]; then
 		STRING="$(trans -engine $ENGINE -brief -no-autocorrect ${LANGUAGES[$previousLanguage]}:"$originalLanguage" -- "$STRING")"
 	else
 		STRING="$(trans -engine $ENGINE -brief -no-autocorrect ${LANGUAGES[$previousLanguage]}:${LANGUAGES[$selectedLanguage]} -- "$STRING")"
 	fi
-	if [[ "$?" -ne 0 ]] ; then
+	if [[ "$?" -ne 0 ]]; then
 		exit 1
 	fi
 	previousLanguage=$selectedLanguage
 	echo -en "\r[" >&2
 	indicator=0
-	while [[ $indicator -lt $PASSES ]] ; do
-		if [[ $pass -lt $indicator ]] ; then
+	while [[ $indicator -lt $PASSES ]]; do
+		if [[ $pass -lt $indicator ]]; then
 			echo -n "-" >&2
 		else
 			echo -n "#" >&2
@@ -51,7 +51,7 @@ while [[ $pass -lt $PASSES ]] ; do
 		((indicator++))
 	done
 	echo -n "]" >&2
-	if [[ $pass != $((PASSES - 1)) ]] ; then
+	if [[ $pass != $((PASSES - 1)) ]]; then
 		sleep $DELAY
 	fi
 	((pass++))

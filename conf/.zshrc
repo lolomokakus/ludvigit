@@ -88,7 +88,7 @@ HISTFILE="$HOME/.zsh_history"
 HISTSIZE=10000
 SAVEHIST=10000
 
-# Visa hur lång tid program tog efter att de har avslutats
+# Visa hur lång tid program tog efter att de avslutats
 TIMEFMT='%J (A: %*U; S: %*S; V: %*E)'
 REPORTTIME=5
 
@@ -141,13 +141,13 @@ alias pfl='pkgfile -l'
 alias g='git'
 alias ga='git add'
 alias gaa='git add --all'
-alias gcl='git clone --recursive'
-alias gcm='git commit -vm'
+alias gc='git clone --recursive'
+alias gm='git commit -vm'
 alias gf='git fetch'
 alias gl='git pull'
 alias gp='git push'
 alias gr='git rm'
-alias gst='git status'
+alias gs='git status'
 
 alias um='udisksctl mount --block-device'
 alias uu='udisksctl unmount --block-device'

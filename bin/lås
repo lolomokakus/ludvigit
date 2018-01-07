@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 physlock -d -p "[1;35mVälkommen[0m till [1;36m$(hostname)[0m!
 
-Datorn låstes av [1;35m$(whoami)[0m [1;36m$(date +'%a')[0m [1;36m$(date +'%e')[0m [1;36m$(date +'%b')[0m [1;36m$(date +'%Y')[0m [1;36m$(date +'%T')[0m."
+Datorn låstes av [1;35m$(whoami)[0m [1;36m$(date +'%a')[0m [1;36m$(date +'%e')[0m [1;36m$(date +'%b')[0m [1;36m$(date +'%Y')[0m [1;36m$(date +'%T')[0m." >/dev/null 2>&1

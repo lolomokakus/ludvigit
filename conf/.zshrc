@@ -88,9 +88,9 @@ HISTFILE="$HOME/.zsh_history"
 HISTSIZE=10000
 SAVEHIST=10000
 
-# Visa hur lång tid program tog efter att de avslutats
+# Visa *inte* hur lång tid program tog efter att de avslutats
 TIMEFMT='%J (A: %*U; S: %*S; V: %*E)'
-REPORTTIME=5
+#REPORTTIME=5
 
 # Prompten
 PROMPT='%F{magenta}%B%(?.☺.%?)%f%b %F{cyan}%B%~%f%b %F{white}%B»%f%b '

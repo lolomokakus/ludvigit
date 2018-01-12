@@ -35,18 +35,11 @@ zle -N up-line-or-beginning-search
 autoload -Uz down-line-or-beginning-search
 zle -N down-line-or-beginning-search
 
-function omniscient-return-key {
+function intelligent-returtangent {
 	case $BUFFER in
 		\$?*)
-			local _ork_var="${$(set -- "$BUFFER"; echo "$1")##*\$}"
-			echo
-			if [[ -v "$_ork_var" ]] ; then
-				echo "${(P)_ork_var}"
-			else
-				echo "(inte definierad)"
-			fi
-			zle kill-buffer
-			zle reset-prompt
+			BUFFER="echo $BUFFER"
+			zle accept-line
 			;;
 		'')
 			echo
@@ -62,7 +55,7 @@ function omniscient-return-key {
 			;;
 	esac
 }
-zle -N omniscient-return-key
+zle -N intelligent-returtangent
 
 # Tangentbordsgenvägar
 bindkey "$terminfo[kcuu1]" up-line-or-beginning-search
@@ -71,8 +64,8 @@ bindkey "^[OA" up-line-or-beginning-search
 bindkey "$terminfo[kcud1]" down-line-or-beginning-search
 bindkey "^[[B" down-line-or-beginning-search
 bindkey "^[OB" down-line-or-beginning-search
-bindkey "$terminfo[cr]" omniscient-return-key
-bindkey "^M" omniscient-return-key
+bindkey "$terminfo[cr]" intelligent-returtangent
+bindkey "^M" intelligent-returtangent
 
 # Automatisk komplettering
 zstyle ':completion:*' cache-path "$HOME/.zsh_cache"
